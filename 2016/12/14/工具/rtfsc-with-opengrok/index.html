@@ -23,7 +23,7 @@
   
 
   
-<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+<link rel="stylesheet" href="/xiwuxisheng.github.io/css/style.css">
 
 
   
@@ -192,7 +192,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-tools-2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/xiwuxisheng.github.io/images/theme/theme-tools-2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">搭建大型源码阅读环境——使用 OpenGrok</h1>
     <div class="head-info">
@@ -221,8 +221,8 @@
 <p>而我这里要讲的主角 OpenGrok 属于另一类，免费，开源，运行流畅，功能也毫不逊色。</p>
 </li>
 </ol>
-<p>如果你还在寻觅适合你自己的解决方案，大可以花一点时间将以上几种都尝试一遍，哪个称手用哪个，也可以像我一样，针对不同的项目使用不同的工具。想直观了解 OpenGrok 的同学可以直接先看看一些使用 OpenGrok 的在线源码查看网站，看看它能否满足你的需求，其中的一些列在 <a href="https://github.com/OpenGrok/OpenGrok/wiki/OpenGrok-installations">OpenGrok installations</a>。</p>
-<h2 id="OpenGrok-特性"><a href="#OpenGrok-特性" class="headerlink" title="OpenGrok 特性"></a>OpenGrok 特性</h2><p>译自官方 <a href="https://github.com/OpenGrok/OpenGrok/wiki/Features">Wiki</a>。</p>
+<p>如果你还在寻觅适合你自己的解决方案，大可以花一点时间将以上几种都尝试一遍，哪个称手用哪个，也可以像我一样，针对不同的项目使用不同的工具。想直观了解 OpenGrok 的同学可以直接先看看一些使用 OpenGrok 的在线源码查看网站，看看它能否满足你的需求，其中的一些列在 <a target="_blank" rel="noopener" href="https://github.com/OpenGrok/OpenGrok/wiki/OpenGrok-installations">OpenGrok installations</a>。</p>
+<h2 id="OpenGrok-特性"><a href="#OpenGrok-特性" class="headerlink" title="OpenGrok 特性"></a>OpenGrok 特性</h2><p>译自官方 <a target="_blank" rel="noopener" href="https://github.com/OpenGrok/OpenGrok/wiki/Features">Wiki</a>。</p>
 <p>OpenGrok 提供如下特性：</p>
 <ol>
 <li><p>快速搜索代码的引擎</p>
@@ -256,8 +256,8 @@
 <li><p>带语法高亮的交叉引用显示，可以使用 CSS 自定义样式</p>
 </li>
 <li><p>可以开发插件支持新的语言和版本控制系统</p>
-<p> 已经支持的语言： <a href="https://github.com/OpenGrok/OpenGrok/wiki/Supported-Languages-and-Formats">Supported Languages and Formats</a></p>
-<p> 已经支持的版本控制系统：<a href="https://github.com/OpenGrok/OpenGrok/wiki/Supported-Revision-Control-Systems">Supported Revision Control Systems</a></p>
+<p> 已经支持的语言： <a target="_blank" rel="noopener" href="https://github.com/OpenGrok/OpenGrok/wiki/Supported-Languages-and-Formats">Supported Languages and Formats</a></p>
+<p> 已经支持的版本控制系统：<a target="_blank" rel="noopener" href="https://github.com/OpenGrok/OpenGrok/wiki/Supported-Revision-Control-Systems">Supported Revision Control Systems</a></p>
 </li>
 </ol>
 <h2 id="配置-OpenGrok"><a href="#配置-OpenGrok" class="headerlink" title="配置 OpenGrok"></a>配置 OpenGrok</h2><h3 id="截屏"><a href="#截屏" class="headerlink" title="截屏"></a>截屏</h3><p>按惯例先上图吧，万一你一眼就发现不是你的菜呢（截图来自<a target="_blank" rel="noopener" href="https://opengrok.github.io/OpenGrok/">官网</a>）。</p>
@@ -272,9 +272,9 @@
 <li><p>下载 <a target="_blank" rel="noopener" href="http://tomcat.apache.org/">Tomcat</a>，解压到一个目录，如 D:\Programs\apache-tomcat-8.5.8，并将此目录添加为 CATALINA_HOME 环境变量。</p>
 <p><img   class="lazyload" data-original="/images/posts/tools/catalina-home.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 </li>
-<li><p>下载 <a href="https://github.com/universal-ctags/ctags">Universal Ctags</a> for Windows，将 ctags.exe 文件所在目录添加到 PATH 环境变量。</p>
+<li><p>下载 <a target="_blank" rel="noopener" href="https://github.com/universal-ctags/ctags">Universal Ctags</a> for Windows，将 ctags.exe 文件所在目录添加到 PATH 环境变量。</p>
 </li>
-<li><p>下载 <a href="https://github.com/OpenGrok/OpenGrok/releases">OpenGrok</a> 的最新包，比如 opengrok-0.13-rc4.zip，解压到一个目录，如 D:\Programs\opengrok-0.13-rc4。</p>
+<li><p>下载 <a target="_blank" rel="noopener" href="https://github.com/OpenGrok/OpenGrok/releases">OpenGrok</a> 的最新包，比如 opengrok-0.13-rc4.zip，解压到一个目录，如 D:\Programs\opengrok-0.13-rc4。</p>
 </li>
 <li><p>配置 data root。</p>
 <p>data root 用于放置生成的索引文件和配置信息，比如我在 OpenGrok 目录下创建了一个 data 目录用作 data root，即 D:\Programs\opengrok-0.13-rc4\data。</p>
@@ -321,8 +321,8 @@
 <h3 id="折腾狂魔"><a href="#折腾狂魔" class="headerlink" title="折腾狂魔"></a>折腾狂魔</h3><p><strong>在 Vim 里使用</strong></p>
 <p>没错，还有人做了支持在 Vim 里使用 OpenGrok 的插件，如果你是 Vim 控+折腾狂魔，可以一试，这里仅给出插件地址：</p>
 <ul>
-<li><a href="https://github.com/asenac/vim-opengrok">asenac/vim-opengrok</a></li>
-<li><a href="https://github.com/jdevera/vim-opengrok-search">jdevera/vim-opengrok-search</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/asenac/vim-opengrok">asenac/vim-opengrok</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jdevera/vim-opengrok-search">jdevera/vim-opengrok-search</a></li>
 </ul>
 <p>反正像我这种智商是折腾不动了，就安心在浏览器里用了。</p>
 <p><strong>在源码里做笔记</strong></p>
@@ -339,19 +339,19 @@
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>习武</li>
-    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2016/12/14/%E5%B7%A5%E5%85%B7/rtfsc-with-opengrok/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;12&#x2F;14&#x2F;%E5%B7%A5%E5%85%B7&#x2F;rtfsc-with-opengrok&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;12&#x2F;14&#x2F;%E5%B7%A5%E5%85%B7&#x2F;rtfsc-with-opengrok&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="https://xiwuxisheng.github.io/2016/12/14/%E5%B7%A5%E5%85%B7/rtfsc-with-opengrok/index.html" title="https:&#x2F;&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;12&#x2F;14&#x2F;%E5%B7%A5%E5%85%B7&#x2F;rtfsc-with-opengrok&#x2F;index.html">https:&#x2F;&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;12&#x2F;14&#x2F;%E5%B7%A5%E5%85%B7&#x2F;rtfsc-with-opengrok&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/OpenGrok-RTFSC/" rel="tag">OpenGrok, RTFSC</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng.github.io/tags/OpenGrok-RTFSC/" rel="tag">OpenGrok, RTFSC</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/xiwuxisheng/xiwuxisheng.github.io/2017/02/19/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/the-kite-runner/"><i class="iconfont iconleft"></i>读书：追风筝的人</a>
-    <a href="/xiwuxisheng/xiwuxisheng.github.io/2016/10/22/Vim/vim-markdown-toc-release/">vim-markdown-toc 发布 v1.0 版<i class="iconfont iconright"></i></a>
+    <a href="/xiwuxisheng.github.io/2017/02/19/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/the-kite-runner/"><i class="iconfont iconleft"></i>读书：追风筝的人</a>
+    <a href="/xiwuxisheng.github.io/2016/10/22/Vim/vim-markdown-toc-release/">vim-markdown-toc 发布 v1.0 版<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -422,7 +422,7 @@
   
   
     
-<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+<script src="/xiwuxisheng.github.io/js/color-mode.js"></script>
 
   
   
@@ -464,8 +464,8 @@
 
 
 
-<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
-<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+<script src="/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng.github.io/js/script.js"></script>
 
 
 

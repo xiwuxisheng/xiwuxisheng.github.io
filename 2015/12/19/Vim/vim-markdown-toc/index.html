@@ -23,7 +23,7 @@
   
 
   
-<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+<link rel="stylesheet" href="/xiwuxisheng.github.io/css/style.css">
 
 
   
@@ -192,7 +192,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-vim-2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/xiwuxisheng.github.io/images/theme/theme-vim-2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">为 Markdown 生成 TOC 的 Vim 插件</h1>
     <div class="head-info">
@@ -208,7 +208,7 @@
         <p>因为饱受 GFM 和 Redcarpet 两种 Markdown 引擎生成 TOC 链接的差异的折磨，而我又不得不同时使用它们——博客基于 Jekyll 使用 Redcarpet（<em>Update 2016/09/16: GitHub Pages 现在已经改为只支持 kramdown</em>），而其它放在 GitHub 仓库里的文档使用 GFM，我决定为我常用的 Markdown 编辑器 Vim 做一款同时支持 GFM 和 Redcarpet 两种 TOC 链接风格的 Table of Contents 自动生成插件。</p>
 <p>这算是我真正意义上完全独立开发的第一款实用 Vim 插件，当然开发过程中也参考了别人的做法。</p>
 <h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul>
-<li><a href="https://github.com/mzlogin/vim-markdown-toc">vim-markdown-toc</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mzlogin/vim-markdown-toc">vim-markdown-toc</a></li>
 </ul>
 <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
 <li><p>为 Markdown 文件生成 Table of Contents，目前支持 GFM 和 Redcarpet 两种链接风格。</p>
@@ -232,7 +232,7 @@
 <h3 id="更新已存在的-Table-of-Contents"><a href="#更新已存在的-Table-of-Contents" class="headerlink" title="更新已存在的 Table of Contents"></a>更新已存在的 Table of Contents</h3><p>通常不需要手动做这件事，保存文件时会自动更新已经存在的 Table of Contents。</p>
 <p>除非是在配置里关闭了保存时自动更新，并且维持插入 Table of Contents 前后的 <code>&lt;!-- vim-markdown-toc --&gt;</code>，此时可使用 <code>:UpdateToc</code> 命令手动更新。</p>
 <h3 id="删除-Table-of-Contents"><a href="#删除-Table-of-Contents" class="headerlink" title="删除 Table of Contents"></a>删除 Table of Contents</h3><p><code>:RemoveToc</code> 命令可以帮你删除本插件生成的 Table of Contents。</p>
-<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>推荐使用 <a href="http://github.com/VundleVim/Vundle.Vim">Vundle</a> 来管理你的 Vim 插件，这样你就可以简单三步完成安装：</p>
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>推荐使用 <a target="_blank" rel="noopener" href="http://github.com/VundleVim/Vundle.Vim">Vundle</a> 来管理你的 Vim 插件，这样你就可以简单三步完成安装：</p>
 <ol>
 <li><p>在你的 vimrc 文件中添加如下内容：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">Plugin</span> <span class="hljs-string">&#x27;mzlogin/vim-markdown-toc&#x27;</span><br></code></pre></td></tr></table></figure></li>
@@ -269,13 +269,13 @@
 <p>这不会影响 Markdown 文档解析后的显示效果，只用于提升源文件的可读性。</p>
 </li>
 </ol>
-<h2 id="屏幕截图"><a href="#屏幕截图" class="headerlink" title="屏幕截图"></a>屏幕截图</h2><p><a href="https://github.com/mzlogin/chinese-copywriting-guidelines/blob/Simplified/README.en.md">使用本插件生成 TOC 的英文文档在线示例</a></p>
+<h2 id="屏幕截图"><a href="#屏幕截图" class="headerlink" title="屏幕截图"></a>屏幕截图</h2><p><a target="_blank" rel="noopener" href="https://github.com/mzlogin/chinese-copywriting-guidelines/blob/Simplified/README.en.md">使用本插件生成 TOC 的英文文档在线示例</a></p>
 <p><img   class="lazyload" data-original="https://github.com/mzlogin/vim-markdown-toc/raw/master/screenshots/english.gif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <p><a target="_blank" rel="noopener" href="https://mazhuang.org/wiki/chinese-copywriting-guidelines/">使用本插件生成 TOC 的中文文档在线示例</a></p>
 <p><img   class="lazyload" data-original="https://github.com/mzlogin/vim-markdown-toc/raw/master/screenshots/chinese.gif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://mazhuang.org/2015/12/05/diff-between-gfm-and-redcarpet/">GFM 与 Redcarpet 的不同点</a></li>
-<li><a href="https://github.com/ajorgensen/vim-markdown-toc">ajorgensen/vim-markdown-toc</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ajorgensen/vim-markdown-toc">ajorgensen/vim-markdown-toc</a></li>
 </ul>
 
       </section>
@@ -284,19 +284,19 @@
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>习武</li>
-    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2015/12/19/Vim/vim-markdown-toc/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2015&#x2F;12&#x2F;19&#x2F;Vim&#x2F;vim-markdown-toc&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2015&#x2F;12&#x2F;19&#x2F;Vim&#x2F;vim-markdown-toc&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="https://xiwuxisheng.github.io/2015/12/19/Vim/vim-markdown-toc/index.html" title="https:&#x2F;&#x2F;xiwuxisheng.github.io&#x2F;2015&#x2F;12&#x2F;19&#x2F;Vim&#x2F;vim-markdown-toc&#x2F;index.html">https:&#x2F;&#x2F;xiwuxisheng.github.io&#x2F;2015&#x2F;12&#x2F;19&#x2F;Vim&#x2F;vim-markdown-toc&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/vim-markdown-toc/" rel="tag">vim, markdown, toc</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng.github.io/tags/vim-markdown-toc/" rel="tag">vim, markdown, toc</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/xiwuxisheng/xiwuxisheng.github.io/2016/01/12/Linux/use-ubuntu-notes/"><i class="iconfont iconleft"></i>Ubuntu 使用笔记</a>
-    <a href="/xiwuxisheng/xiwuxisheng.github.io/2015/10/25/Mac/mac/">Mac 遇到问题集锦<i class="iconfont iconright"></i></a>
+    <a href="/xiwuxisheng.github.io/2016/01/12/Linux/use-ubuntu-notes/"><i class="iconfont iconleft"></i>Ubuntu 使用笔记</a>
+    <a href="/xiwuxisheng.github.io/2015/10/25/Mac/mac/">Mac 遇到问题集锦<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -367,7 +367,7 @@
   
   
     
-<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+<script src="/xiwuxisheng.github.io/js/color-mode.js"></script>
 
   
   
@@ -409,8 +409,8 @@
 
 
 
-<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
-<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+<script src="/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng.github.io/js/script.js"></script>
 
 
 
