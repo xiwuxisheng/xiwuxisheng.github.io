@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定制 Fiddler 之按设备过滤请求 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="需求在开发/测试过程中有多台设备（PC/手机/模拟器）...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">定制 Fiddler 之按设备过滤请求</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-fiddler-1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">定制 Fiddler 之按设备过滤请求</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 08, 2015</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2027</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在开发/测试过程中有多台设备（PC/手机/模拟器）通过 Fiddler 代理上网时，如何方便地从满屏纷飞的 Session 中筛选出自己关心的那台设备的请求？</p>
+<h3 id="设想"><a href="#设想" class="headerlink" title="设想"></a>设想</h3><p>通过 FiddlerScript 扩展，在 Session 的右键弹出菜单中添加一项，作为「查看所有设备请求」和「查看单个设备请求」的切换开关。</p>
+<p><em>设计操作流程：</em></p>
+<ol>
+<li><p>找到自己关心的设备发出的某一条请求，在它的右键弹出菜单里有我们添加的菜单项「开/关过滤单设备请求」。</p>
+</li>
+<li><p>点击该菜单项后：</p>
+<ul>
+<li>若当前状态为「查看所有设备请求」，则切换为「查看单个设备请求」状态，该设备为此条请求的发送者，并清除当前已显示的所有不关心的设备的请求。</li>
+<li>若当前状态为「查看单个设备请求」，则切换为「查看所有设备请求」状态。</li>
+</ul>
+</li>
+</ol>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><em>实现思路：</em></p>
+<ul>
+<li><p>通过修改 CustomRules.js，在右键弹出菜单上添加一个菜单项来切换请求筛选状态。</p>
+</li>
+<li><p>每一条请求都带有 ClientIP，它在没有网络切换之类的情况发生时能较好地唯一标识一台设备。</p>
+</li>
+<li><p>筛选规则是将非来自该 ClientIP 的请求隐藏掉。</p>
+</li>
+</ul>
+<p><em>实现步骤：</em></p>
+<ol>
+<li><p>打开 CustomRules.js。</p>
+<p>启动Fiddler，依次选择菜单 Rules &gt; Customize Rules…</p>
+</li>
+<li><p>在 <code>OnBeforeRequest</code> 前添加如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 是否过滤单设备请求标志</span><br>public <span class="hljs-keyword">static</span> <span class="hljs-keyword">var</span> gs_FilterDevice: boolean = <span class="hljs-literal">false</span>;<br><span class="hljs-comment">// 显示请求的设备的 ClientIP</span><br>public <span class="hljs-keyword">static</span> <span class="hljs-keyword">var</span> gs_FilterClientIP: <span class="hljs-built_in">String</span> = <span class="hljs-literal">null</span>;<br><br><span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">IsUnMatchClientIP</span>(<span class="hljs-params">oS:Session</span>):<span class="hljs-title">Boolean</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> (oS.m_clientIP != gs_FilterClientIP);<br>&#125;<br><br>public <span class="hljs-keyword">static</span> ContextAction(<span class="hljs-string">&quot;开/关过滤单设备请求&quot;</span>)<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ToggleDeviceFilter</span>(<span class="hljs-params">oSessions: Fiddler.Session[]</span>)</span>&#123;<br>    <span class="hljs-keyword">if</span> (gs_FilterDevice) &#123;<br>        gs_FilterDevice = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">var</span> oS: Session = FiddlerApplication.UI.GetFirstSelectedSession();<br>    <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == oS) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-keyword">if</span> (!gs_FilterDevice) &#123;<br>        gs_FilterDevice = <span class="hljs-literal">true</span>;<br>    &#125;<br>    gs_FilterClientIP = oS.clientIP;<br><br>    <span class="hljs-comment">// 删除当前已显示的非所关心设备的请求</span><br>    FiddlerApplication.UI.actSelectSessionsMatchingCriteria(IsUnMatchClientIP);<br>    FiddlerApplication.UI.actRemoveSelectedSessions();<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>在 <code>OnBeforeRequest</code> 函数里添加如下代码，用于在「查看单个设备请求」状态时将不关心的设备产生的新请求隐藏：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">if</span> (gs_FilterDevice &amp;&amp; oSession.m_clientIP != gs_FilterClientIP) &#123;<br>    oSession[<span class="hljs-string">&quot;ui-hide&quot;</span>] = <span class="hljs-string">&quot;true&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><em>最终效果如下图：</em></p>
+<ul>
+<li><p>筛选前</p>
+<p><img   class="lazyload" data-original="/images/posts/fiddler/fiddler-filter-by-device-before.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+</li>
+<li><p>筛选后</p>
+<p><img   class="lazyload" data-original="/images/posts/fiddler/fiddler-filter-by-device-after.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+</li>
+</ul>
+<h3 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h3><p>当前做法有如下缺陷，尚未想到好办法解决：  </p>
+<ul>
+<li><p>菜单项并不能标明当前的状态，不知道筛选是开是关，这可以通过查看当前 Session 列表里是否有多种设备的请求来判断。</p>
+</li>
+<li><p>当设备有网络切换时，比如重启了路由或者离开又回到某 Wifi，ClientIP 可能发生了变化，需要关闭筛选后在设备以新的 ClientIP 产生的请求上右键再次开启筛选。</p>
+</li>
+</ul>
+<h3 id="附注"><a href="#附注" class="headerlink" title="附注"></a>附注</h3><p>我使用的完整最新的 CustomRules.js 文件我上传到了一个 Gist 里，详见：<a target="_blank" rel="noopener" href="https://gist.github.com/mzlogin/3c5f9781c5bedff3fcfb">https://gist.github.com/mzlogin/3c5f9781c5bedff3fcfb</a>，如果想直接使用可以复制脚本内容后放置到「我的文档/Fiddler 2/Scripts/CustomRules.js」，也可以在此目录下使用 git 抓取我的最新定制 js 文件。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2015/07/08/Fiddler/fiddler-filter-by-device/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2015&#x2F;07&#x2F;08&#x2F;Fiddler&#x2F;fiddler-filter-by-device&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2015&#x2F;07&#x2F;08&#x2F;Fiddler&#x2F;fiddler-filter-by-device&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/Fiddler-Filter-Device/" rel="tag">Fiddler, Filter, Device</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2015/10/25/Mac/mac/"><i class="iconfont iconleft"></i>Mac 遇到问题集锦</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2015/05/27/SVN/svn-exception/">TortoiseSVN 从 GitHub 更新时发生异常<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E6%83%B3"><span class="toc-text">设想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E9%99%B7"><span class="toc-text">缺陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%84%E6%B3%A8"><span class="toc-text">附注</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

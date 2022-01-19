@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>一道在知乎很火的 Java 题——如何输出 ab - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="这是一个源自知乎的话题，原贴链接：一道百度的面试题，有...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">一道在知乎很火的 Java 题——如何输出 ab</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-java-4.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">一道在知乎很火的 Java 题——如何输出 ab</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>九月 20, 2016</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2400</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>这是一个源自知乎的话题，原贴链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50801791">一道百度的面试题，有大神会嘛？</a></p>
+<p>虽然我不是大神，但我也点进去看了一下，思考了一会之后有了一些思路，然后去看其它人的答案的时候果然全都已经被各路大神们先想到并贴出来了，所以我就不去凑热闹写重复答案了，整理一下网友们的智慧在这里自娱自乐好了。</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><img    class="lazyload" data-original="/images/posts/java/output-ab.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">java-output-ab</span></p>
+<h2 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h2><p>作为一个多年前也见过不少笔试题的少年，看到这个题目的第一想法是脑筋急转弯——注入一段逻辑直接改变原 if 结构。</p>
+<h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>填入内容 <code>true)&#123;System.out.print(&quot;a&quot;);&#125;if(false</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">true</span>) &#123;<br>        System.out.print(<span class="hljs-string">&quot;a&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">false</span>) &#123;<br>        System.out.print(<span class="hljs-string">&quot;a&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        System.out.print(<span class="hljs-string">&quot;b&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>类似地也可以填入 <code>true)&#123;System.out.print(&quot;ab&quot;);return;&#125;if(false</code> 等。</p>
+<p>当初大学时单纯的少年可是很难想出这样的套路的，时间改变了我们啊。</p>
+<h2 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h2><p>如果正经遵从题目的原代码结构，那就得想办法构造一段代码，既能输出 <code>a</code>，又能返回 <code>false</code>。</p>
+<h3 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h3><p>我也想到能否使用 <code>System.out.print</code> 的返回值来做文章，但奈何并不记得它返回什么，首先让我们复习一下 <code>PrintStream</code> 的 <code>print</code>、<code>println</code> 和 <code>printf</code> 方法的区别：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>print</td>
+<td>打印一个值或者对象</td>
+<td>void</td>
+</tr>
+<tr>
+<td>println</td>
+<td>打印并换行</td>
+<td>void</td>
+</tr>
+<tr>
+<td>printf</td>
+<td>格式化打印</td>
+<td>PrintStream</td>
+</tr>
+</tbody></table>
+<p>所以适用的是 <code>printf</code>，它的返回值是 <code>PrintStream</code> 类型的 <code>System.out</code>，判它是否为空即可。</p>
+<p>填入内容 <code>System.out.printf(&quot;a&quot;) == null</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (System.out.printf(<span class="hljs-string">&quot;a&quot;</span>) == <span class="hljs-keyword">null</span>) &#123;<br>        System.out.print(<span class="hljs-string">&quot;a&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        System.out.print(<span class="hljs-string">&quot;b&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>经测试填入 <code>System.out.append(&quot;a&quot;) == null</code> 也是可以达到效果的。</p>
+<h3 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h3><p>仍然是思路二，但从匿名内部类来作文章。</p>
+<p>实现代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span> Object() &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;<br>            System.out.print(<span class="hljs-string">&quot;a&quot;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>    &#125;.print()) &#123;<br>        System.out.print(<span class="hljs-string">&quot;a&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        System.out.print(<span class="hljs-string">&quot;b&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里利用的知识点是匿名内部类可以声明基类没有的新方法并且马上调用。</p>
+<h3 id="解法四"><a href="#解法四" class="headerlink" title="解法四"></a>解法四</h3><p>使用 Java 8 里的 lambda 来实现思路二。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (((BooleanSupplier)(() -&gt; &#123;System.out.print(<span class="hljs-string">&quot;a&quot;</span>);<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;&#125;)).getAsBoolean()) &#123;<br>        System.out.print(<span class="hljs-string">&quot;a&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        System.out.print(<span class="hljs-string">&quot;b&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>严格来讲这个不一定能算作正确答案，因为要增加 <code>import java.util.function.BooleanSupplier;</code>。</p>
+<h2 id="脑洞大开"><a href="#脑洞大开" class="headerlink" title="脑洞大开"></a>脑洞大开</h2><p>讲完严肃的解法，来看看网友 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/qiong-xiao-zi-158">穷小子</a> 开脑洞的思路：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-comment">//    if ( ) &#123;</span><br>        System.out.print(<span class="hljs-string">&quot;a&quot;</span>);<br><span class="hljs-comment">//    &#125; else &#123;</span><br>        System.out.print(<span class="hljs-string">&quot;b&quot;</span>);<br><span class="hljs-comment">//    &#125;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果没有特意说明只能在括号里加东西，倒真是个妙计！</p>
+<p>同样看得我一愣一愣的还有 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/caiwei710">caiwei</a> 同学的答案，他和朋友们发现题目里少写了个大括号（真的），于是我们看到他的朋友老方的解决方案：</p>
+<p><img    class="lazyload" data-original="/images/posts/java/add-brace.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">add-brace</span></p>
+<p>真是防不胜防啊~不过我喜欢！:+1:</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50801791/answer/122781965">RednaxelaFX 的回答</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50801791/answer/122773831">仓鼠君 的回答</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50801791/answer/122769426">放开那女孩 的回答</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50801791/answer/122863062">穷小子 的回答</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50801791/answer/122795854">caiwei 的回答</a></li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2016/09/20/Java/java-output-ab/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;09&#x2F;20&#x2F;Java&#x2F;java-output-ab&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;09&#x2F;20&#x2F;Java&#x2F;java-output-ab&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2016/10/22/Vim/vim-markdown-toc-release/"><i class="iconfont iconleft"></i>vim-markdown-toc 发布 v1.0 版</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2016/05/21/GitHub/enable-https-for-github-pages/">为绑定域名的 GitHub Pages 启用 HTTPS<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="toc-text">思路一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80"><span class="toc-text">解法一</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E4%BA%8C"><span class="toc-text">思路二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C"><span class="toc-text">解法二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%89"><span class="toc-text">解法三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E5%9B%9B"><span class="toc-text">解法四</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%91%E6%B4%9E%E5%A4%A7%E5%BC%80"><span class="toc-text">脑洞大开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

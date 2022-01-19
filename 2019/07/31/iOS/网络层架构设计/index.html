@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>网络架构设计 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="引言一般情况下，我们设计的网络架构面向过程设计，那么设...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">网络架构设计</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-iOS-5.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">网络架构设计</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 31, 2019</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1248</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>一般情况下，我们设计的网络架构面向过程设计，那么设计的方案大多数会出现下面的现象： </p>
+<ul>
+<li>1.耦合，主要包括缓存、网络状态监听、请求头设置、请求设置、参数处理、请求结果模型解析、成功和失败的回调处理等；</li>
+<li>2.糅合了业务，比如登录状态，cookie设置、参数业务处理；</li>
+<li>3.灵活性低，更改初始化设置非常麻烦；</li>
+<li>4.批量处理或者同步处理存在另外设计；</li>
+<li>5.扩展性不强，比如希望在请求接口上做缓存或者签名，也杂糅在设计的网络架构里面；</li>
+</ul>
+<hr>
+<p>那么具体该怎么设计呢，这里是个人见解，不喜勿喷：</p>
+<p>1.划分层次，自顶向下，应该是<code>业务处理并发起请求--&gt;场景请求方式处理(批量请求或者同步控制或者不同方式请求等)--&gt;调用底层发起请求--&gt;底层请求结果传递--&gt;场景请求结果处理(动态模型封装或异常error传递)--&gt;业务类获取请求结果对应业务操作</code>，一般大体是这样的流程。</p>
+<p>2.划分设计的层次结构，根据上述情况，业务类应该是最外层，属于不可公用部分，应该由不同的项目自身去扩展设计，只需要里面调用同样组件处理即可，这里我们需要考虑的一个是场景设计类，一个底层调用类，后续的组件也主要是以底层设计为主，场景为扩展区间。<br>底层设计属于可替换组件，只做网络请求，具体做哪方面的请求，这里并不需要知道，优点是我们可以更换不同的网络库，而不影响本身业务实现(这里考虑的是网络库的更新换代)。<br>场景设计只是对请求的进一步扩展，增添更多的功能来适应我们业务的需要，但是注意，它不关注具体业务是什么，只做对业务需求的兼容性，就如同网络请求提供了了get/post/put/head/delete等场景，但是具体调用哪一种，是业务本身来决定。</p>
+<p>3.设计方式，从项目来看，整个网络请求设计了3层，现在要做的是如何设计这3层之间的数据传递，数据传递要做到解耦，那么我们去考虑的必然是面向对象设计，即在网络请求流向里流转的必然是一个对象。<br>这里又存在一个问题：<code>这个对象应该包含哪些东西？</code><br>根据我的理解，该对象应该实现问题1里面的各个特性，包括：是否需要缓存、是否做网络监听处理、请求头和参数怎么设置、结果模型是什么样的、超时时间等，成功和失败可以用于参数传递，这里可以不参与对象构造。<br>下面又有一个问题：<code>不同的项目去构造该对象模型怎么知道需要哪些东西？或者扩展了对象范围如何不影响原有结构？</code><br>这里就需要用到协议，除了必须的URL、参数等必须的外，加入的扩展协议方法都是可选，并且需要一直提供一个extra另外参数用于扩展<br>同理，返回的响应模型也是一个对象，也有对应的协议。<br>好处是： </p>
+<ul>
+<li>1.项目根据自己的业务需要去实现对应的协议，构造对象；</li>
+<li>2.提供扩展和维护，用于升级；</li>
+<li>3.对象可以携带更多的信息。</li>
+</ul>
+<p>4.场景设计这里忽略，底层设计里面，要将问所说的缓存、网络状态监听等独立出来，可以通过观察订阅模式或者中介者模式来获取对应信息，通过流转的对象项目配置信息来处理，我们需要在底层将可能出现的情况预先设计埋点。</p>
+<hr>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2019/07/31/iOS/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2019&#x2F;07&#x2F;31&#x2F;iOS&#x2F;%E7%BD%91%E7%BB%9C%E5%B1%82%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2019&#x2F;07&#x2F;31&#x2F;iOS&#x2F;%E7%BD%91%E7%BB%9C%E5%B1%82%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/iOS-%E6%97%A5%E6%9C%9F/" rel="tag">iOS, 日期</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2019/09/14/%E5%B7%A5%E5%85%B7/gitee-and-tapd/"><i class="iconfont iconleft"></i>让 Tapd 的源码关联功能支持 Gitee 平台</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2019/07/05/iOS/pod%E7%BB%84%E4%BB%B6%E5%8C%96/">Cocoapods的组件化私有库<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

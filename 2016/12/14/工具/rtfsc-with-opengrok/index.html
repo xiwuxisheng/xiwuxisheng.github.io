@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>搭建大型源码阅读环境——使用 OpenGrok - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="RTFSC 是程序员打怪升级路上避不开的功课，那营造一...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">搭建大型源码阅读环境——使用 OpenGrok</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-tools-2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">搭建大型源码阅读环境——使用 OpenGrok</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 14, 2016</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7845</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>RTFSC 是程序员打怪升级路上避不开的功课，那营造一个舒适的环境来提升上课的体验就很有必要了。</p>
+<p>比如阅读 AOSP 这种大型源码，用什么姿势来阅读才能丝般顺滑，让 F**king Source Code 也变得不那么可恶呢？</p>
+<h2 id="工具的选择"><a href="#工具的选择" class="headerlink" title="工具的选择"></a>工具的选择</h2><p>阅读源码的工具我尝试过以下几类：</p>
+<ol>
+<li><p>IDE</p>
+<p>在看特定类型项目时这是我的首选。比如它原本就是一个 Visual Studio 工程，那当然用 Visual Studio 来打开阅读，看 Android App 或者 Library 源码当然用 Android Studio 体验更好。</p>
+</li>
+<li><p>编辑器配合插件</p>
+<p>比如 Vim + Ctags + Cscope，再配合文件模糊查找插件 LeaderF 和神器 YouCompleteMe，在源码规模不大时很方便，打开也轻快，阅读一些小项目时我还是乐意使用它们。</p>
+</li>
+<li><p>专门的源码阅读工具</p>
+<p>在针对特大型源码时，比如 AOSP 和 Chromium，使用上述两种方案可能会感觉乏力，这时候就需要祭出专门的源码阅读工具了。</p>
+<p>一类是商业软件，比如 Windows 下有著名的 Source Insight，跨平台的有 Understand，功能都很强大，都是不错的选择。当然它们都价格不菲。</p>
+<p>而我这里要讲的主角 OpenGrok 属于另一类，免费，开源，运行流畅，功能也毫不逊色。</p>
+</li>
+</ol>
+<p>如果你还在寻觅适合你自己的解决方案，大可以花一点时间将以上几种都尝试一遍，哪个称手用哪个，也可以像我一样，针对不同的项目使用不同的工具。想直观了解 OpenGrok 的同学可以直接先看看一些使用 OpenGrok 的在线源码查看网站，看看它能否满足你的需求，其中的一些列在 <a href="https://github.com/OpenGrok/OpenGrok/wiki/OpenGrok-installations">OpenGrok installations</a>。</p>
+<h2 id="OpenGrok-特性"><a href="#OpenGrok-特性" class="headerlink" title="OpenGrok 特性"></a>OpenGrok 特性</h2><p>译自官方 <a href="https://github.com/OpenGrok/OpenGrok/wiki/Features">Wiki</a>。</p>
+<p>OpenGrok 提供如下特性：</p>
+<ol>
+<li><p>快速搜索代码的引擎</p>
+<ul>
+<li><p>搜索全文、定义、符号、文件路径和修改历史</p>
+</li>
+<li><p>搜索任意指定子目录（分层搜索）</p>
+</li>
+<li><p>增量更新索引文件</p>
+</li>
+<li><p>支持类似 Google 的查询语法，比如 <code>path:Makefile defs:target</code></p>
+</li>
+<li><p>搜索日期范围内修改的文件</p>
+</li>
+<li><p>支持使用通配符搜索，如 <code>*</code> 表示多个字符，<code>?</code> 表示单个字符</p>
+</li>
+<li><p>在搜索结果中展示匹配行</p>
+</li>
+</ul>
+</li>
+<li><p>一个 Web 只读版的版本历史查看界面</p>
+<ul>
+<li><p>文件的修改日志</p>
+</li>
+<li><p>文件在两个版本间的 diff</p>
+</li>
+<li><p>文件夹的历史记录</p>
+</li>
+</ul>
+</li>
+<li><p>带语法高亮的交叉引用显示，可以使用 CSS 自定义样式</p>
+</li>
+<li><p>可以开发插件支持新的语言和版本控制系统</p>
+<p> 已经支持的语言： <a href="https://github.com/OpenGrok/OpenGrok/wiki/Supported-Languages-and-Formats">Supported Languages and Formats</a></p>
+<p> 已经支持的版本控制系统：<a href="https://github.com/OpenGrok/OpenGrok/wiki/Supported-Revision-Control-Systems">Supported Revision Control Systems</a></p>
+</li>
+</ol>
+<h2 id="配置-OpenGrok"><a href="#配置-OpenGrok" class="headerlink" title="配置 OpenGrok"></a>配置 OpenGrok</h2><h3 id="截屏"><a href="#截屏" class="headerlink" title="截屏"></a>截屏</h3><p>按惯例先上图吧，万一你一眼就发现不是你的菜呢（截图来自<a target="_blank" rel="noopener" href="https://opengrok.github.io/OpenGrok/">官网</a>）。</p>
+<p>搜索功能和源码树：</p>
+<p><img    class="lazyload" data-original="/images/posts/tools/opengrok-scr1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">OpenGrok Search and Browse</span></p>
+<p>代码导航和版本历史记录：</p>
+<p><img    class="lazyload" data-original="/images/posts/tools/opengrok-scr2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">OpenGrok Navitation and History</span></p>
+<h3 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h3><p>如下以 Windows 下为例，Mac OS X 与 Linux 下与此类似，很多步骤能使用 brew 或者 apt-get 会更方便。</p>
+<ol>
+<li><p>安装 <a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/">JDK</a>，并配置 JAVA_HOME 或者 JRE_HOME 环境变量为安装目录。</p>
+</li>
+<li><p>下载 <a target="_blank" rel="noopener" href="http://tomcat.apache.org/">Tomcat</a>，解压到一个目录，如 D:\Programs\apache-tomcat-8.5.8，并将此目录添加为 CATALINA_HOME 环境变量。</p>
+<p><img   class="lazyload" data-original="/images/posts/tools/catalina-home.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+</li>
+<li><p>下载 <a href="https://github.com/universal-ctags/ctags">Universal Ctags</a> for Windows，将 ctags.exe 文件所在目录添加到 PATH 环境变量。</p>
+</li>
+<li><p>下载 <a href="https://github.com/OpenGrok/OpenGrok/releases">OpenGrok</a> 的最新包，比如 opengrok-0.13-rc4.zip，解压到一个目录，如 D:\Programs\opengrok-0.13-rc4。</p>
+</li>
+<li><p>配置 data root。</p>
+<p>data root 用于放置生成的索引文件和配置信息，比如我在 OpenGrok 目录下创建了一个 data 目录用作 data root，即 D:\Programs\opengrok-0.13-rc4\data。</p>
+</li>
+<li><p>将 OpenGrok 的 lib 目录里的 source.war 解压到 D:\Programs\apache-tomcat-8.5.8\webapps\source，配置 WEB-INF\web.xml 文件的 CONFIGURATION 为上一步生成的 data 目录下的 configureation.xml，比如我的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span>OpenGrok<span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>A wicked fast source browser<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>Full path to the configuration file where OpenGrok can read its configuration<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>CONFIGURATION<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>D:/Programs/opengrok-0.13-rc4/data/configuration.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><em>注：这里只是配置一个文件路径，具体的 configuration.xml 会在第 8 步时自动生成。</em></p>
+</li>
+<li><p>配置 source root。</p>
+<p>可以让 OpenGrok 认为 source root 下的每个子文件夹是一个项目，所以我们利用这个特性来配置和阅读多个项目源码就好了。</p>
+<p>我的做法是在 OpenGrok 下创建了一个子目录 D:\Programs\opengrok-0.13-rc4\projects，然后将需要阅读的源码使用符号链接的方式链接到这个目录里：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> /d D:\Programs\opengrok-0.13-rc4\projects<br>mklink /J android D:\sources\android_5.1<br>mklink /J openjdk7 D:\sources\openjdk7<br></code></pre></td></tr></table></figure>
+
+<p>这样就有一个叫 android 的工程，它实际对应 D:\sources\android_5.1 下的源码，一个叫 openjdk7 的工程，它实际对应 D:\sources\openjdk7 下的源码。</p>
+</li>
+<li><p>建立索引。</p>
+<p>使用 opengrok.jar 调用 ctags 来为源码建立索引。命令行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">java -jar /path/to/opengrok.jar -P -S -v -s /path/to/<span class="hljs-built_in">source</span>/root -d /path/to/data/root -W /path/to/configuration.xml<br></code></pre></td></tr></table></figure>
+
+<p><code>-P</code> 表示为 source root 目录下的每个一级子目录生成一个工程。</p>
+<p><code>-S</code> 表示搜索并添加 “external” source repositories。</p>
+<p><code>-v</code> 表示打印操作的进度信息。</p>
+<p><code>-s</code> 表示指定 source root。</p>
+<p><code>-d</code> 表示指定 data root。</p>
+<p><code>-W</code> 表示指定将配置写到该文件。</p>
+<p>还有更多配置选项可以使用 <code>java -jar /path/to/opengrok.jar</code> 查看。</p>
+<p>比如我使用的完整命令行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">java -jar D:\Programs\opengrok-0.13-rc4\lib\opengrok.jar -P -S -v -s D:\Programs\opengrok-0.13-rc4\projects -d D:\Programs\opengrok-0.13-rc4\data -W D:\Programs\opengrok-0.13-rc4\data\configuration.xml<br></code></pre></td></tr></table></figure>
+
+<p>每次需要建立或更新索引的时候敲这么长一个命令当然很不爽，使用 doskey 或者 Cmder 里的 alias 命令将其 alias 为 opengrok-index 命令会省力不少，再不济把这命令存成个 bat 文件也行啊。</p>
+<p>为大型源码建立索引可能需要漫长的时间，这时候可以去干点别的事了。</p>
+</li>
+<li><p>启动 Tomcat，愉快地 RTFSC。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">D:\Programs\apache-tomcat-8.5.8\bin\catalina.bat start<br></code></pre></td></tr></table></figure>
+
+<p>用你最爱的浏览器打开 <a target="_blank" rel="noopener" href="http://localhost:8080/source/">http://localhost:8080/source/</a>，然后就能愉快地跟 OpenGrok 玩耍了。</p>
+<p>当新添加了项目，或者现有项目有源码更新时，再次执行上一步的命令，就能增量更新索引了。</p>
+</li>
+</ol>
+<h3 id="配置多项目"><a href="#配置多项目" class="headerlink" title="配置多项目"></a>配置多项目</h3><p>我曾经为如何在 OpenGrok 里配置多项目苦恼了好久——一开始我是把 Android 源码的根目录当作 source root 的，可想而知 OpenGrok 把 Android 分成了好多个子项目，而这时我也没法再添加新的工程了。</p>
+<p>后来才发现建一个专用的 source root，然后把各种项目源码根目录软链接过来，让 OpenGrok 为 source root 下的每个 symbol 一级子目录建立一个项目才是正确的使用方法。</p>
+<p>Windows 下建立软链接的方法是使用 <code>mklink /J android D:\sources\android_5.1</code>，Mac OS X 和 Linux 下可以使用 <code>ln -s /path/to/source project_name</code>。</p>
+<h3 id="折腾狂魔"><a href="#折腾狂魔" class="headerlink" title="折腾狂魔"></a>折腾狂魔</h3><p><strong>在 Vim 里使用</strong></p>
+<p>没错，还有人做了支持在 Vim 里使用 OpenGrok 的插件，如果你是 Vim 控+折腾狂魔，可以一试，这里仅给出插件地址：</p>
+<ul>
+<li><a href="https://github.com/asenac/vim-opengrok">asenac/vim-opengrok</a></li>
+<li><a href="https://github.com/jdevera/vim-opengrok-search">jdevera/vim-opengrok-search</a></li>
+</ul>
+<p>反正像我这种智商是折腾不动了，就安心在浏览器里用了。</p>
+<p><strong>在源码里做笔记</strong></p>
+<p>配合 Chrome 插件 <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/diigo-web-collector-captu/pnhplgjpclknigjpccbcnmicgcieojbh">Diigo</a>，还能给源码加标签，写注释等等。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/33505693/answer/132224974">https://www.zhihu.com/question/33505693/answer/132224974</a></p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="打开网页后报错"><a href="#打开网页后报错" class="headerlink" title="打开网页后报错"></a>打开网页后报错</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">There was an error!<br>CONFIGURATION parameter has not been configured <span class="hljs-keyword">in</span> web.xml! Please configure your webapp.<br>Unable <span class="hljs-keyword">to</span> determine source root path. Missing configuration?<br>java.io.FileNotFoundException: Unable <span class="hljs-keyword">to</span> determine source root path. Missing configuration?<br>	at org.opensolaris.opengrok.web.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">PageConfig</span>.</span></span>check<span class="hljs-constructor">SourceRootExistence(PageConfig.<span class="hljs-params">java</span>:1562)</span><br>	at org.apache.jsp.index_jsp.<span class="hljs-constructor">_jspService(<span class="hljs-params">index_jsp</span>.<span class="hljs-params">java</span>:222)</span><br>	at org.apache.jasper.runtime.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">HttpJspBase</span>.</span></span>service(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">HttpJspBase</span>.</span></span>java:<span class="hljs-number">70</span>)<br>	at javax.servlet.http.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">HttpServlet</span>.</span></span>service(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">HttpServlet</span>.</span></span>java:<span class="hljs-number">742</span>)<br>	at org.apache.jasper.servlet.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JspServletWrapper</span>.</span></span>service(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JspServletWrapper</span>.</span></span>java:<span class="hljs-number">443</span>)<br>	at org.apache.jasper.servlet.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JspServlet</span>.</span></span>service<span class="hljs-constructor">JspFile(JspServlet.<span class="hljs-params">java</span>:385)</span><br>	at org.apache.jasper.servlet.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JspServlet</span>.</span></span>service(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JspServlet</span>.</span></span>java:<span class="hljs-number">329</span>)<br>	at javax.servlet.http.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">HttpServlet</span>.</span></span>service(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">HttpServlet</span>.</span></span>java:<span class="hljs-number">742</span>)<br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ApplicationFilterChain</span>.</span></span>internal<span class="hljs-constructor">DoFilter(ApplicationFilterChain.<span class="hljs-params">java</span>:231)</span><br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ApplicationFilterChain</span>.</span></span><span class="hljs-keyword">do</span><span class="hljs-constructor">Filter(ApplicationFilterChain.<span class="hljs-params">java</span>:166)</span><br>	at org.apache.tomcat.websocket.server.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">WsFilter</span>.</span></span><span class="hljs-keyword">do</span><span class="hljs-constructor">Filter(WsFilter.<span class="hljs-params">java</span>:52)</span><br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ApplicationFilterChain</span>.</span></span>internal<span class="hljs-constructor">DoFilter(ApplicationFilterChain.<span class="hljs-params">java</span>:193)</span><br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ApplicationFilterChain</span>.</span></span><span class="hljs-keyword">do</span><span class="hljs-constructor">Filter(ApplicationFilterChain.<span class="hljs-params">java</span>:166)</span><br>	at org.opensolaris.opengrok.web.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StatisticsFilter</span>.</span></span><span class="hljs-keyword">do</span><span class="hljs-constructor">Filter(StatisticsFilter.<span class="hljs-params">java</span>:55)</span><br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ApplicationFilterChain</span>.</span></span>internal<span class="hljs-constructor">DoFilter(ApplicationFilterChain.<span class="hljs-params">java</span>:193)</span><br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ApplicationFilterChain</span>.</span></span><span class="hljs-keyword">do</span><span class="hljs-constructor">Filter(ApplicationFilterChain.<span class="hljs-params">java</span>:166)</span><br>	at org.opensolaris.opengrok.web.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AuthorizationFilter</span>.</span></span><span class="hljs-keyword">do</span><span class="hljs-constructor">Filter(AuthorizationFilter.<span class="hljs-params">java</span>:83)</span><br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ApplicationFilterChain</span>.</span></span>internal<span class="hljs-constructor">DoFilter(ApplicationFilterChain.<span class="hljs-params">java</span>:193)</span><br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ApplicationFilterChain</span>.</span></span><span class="hljs-keyword">do</span><span class="hljs-constructor">Filter(ApplicationFilterChain.<span class="hljs-params">java</span>:166)</span><br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StandardWrapperValve</span>.</span></span>invoke(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StandardWrapperValve</span>.</span></span>java:<span class="hljs-number">198</span>)<br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StandardContextValve</span>.</span></span>invoke(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StandardContextValve</span>.</span></span>java:<span class="hljs-number">96</span>)<br>	at org.apache.catalina.authenticator.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AuthenticatorBase</span>.</span></span>invoke(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AuthenticatorBase</span>.</span></span>java:<span class="hljs-number">478</span>)<br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StandardHostValve</span>.</span></span>invoke(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StandardHostValve</span>.</span></span>java:<span class="hljs-number">140</span>)<br>	at org.apache.catalina.valves.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ErrorReportValve</span>.</span></span>invoke(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ErrorReportValve</span>.</span></span>java:<span class="hljs-number">80</span>)<br>	at org.apache.catalina.valves.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AbstractAccessLogValve</span>.</span></span>invoke(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AbstractAccessLogValve</span>.</span></span>java:<span class="hljs-number">624</span>)<br>	at org.apache.catalina.core.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StandardEngineValve</span>.</span></span>invoke(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">StandardEngineValve</span>.</span></span>java:<span class="hljs-number">87</span>)<br>	at org.apache.catalina.connector.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">CoyoteAdapter</span>.</span></span>service(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">CoyoteAdapter</span>.</span></span>java:<span class="hljs-number">342</span>)<br>	at org.apache.coyote.http11.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Http11Processor</span>.</span></span>service(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Http11Processor</span>.</span></span>java:<span class="hljs-number">799</span>)<br>	at org.apache.coyote.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AbstractProcessorLight</span>.</span></span>process(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AbstractProcessorLight</span>.</span></span>java:<span class="hljs-number">66</span>)<br>	at org.apache.coyote.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AbstractProtocol$ConnectionHandler</span>.</span></span>process(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AbstractProtocol</span>.</span></span>java:<span class="hljs-number">868</span>)<br>	at org.apache.tomcat.util.net.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">NioEndpoint$SocketProcessor</span>.</span></span><span class="hljs-keyword">do</span><span class="hljs-constructor">Run(NioEndpoint.<span class="hljs-params">java</span>:1455)</span><br>	at org.apache.tomcat.util.net.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">SocketProcessorBase</span>.</span></span>run(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">SocketProcessorBase</span>.</span></span>java:<span class="hljs-number">49</span>)<br>	at java.util.concurrent.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ThreadPoolExecutor</span>.</span></span>run<span class="hljs-constructor">Worker(ThreadPoolExecutor.<span class="hljs-params">java</span>:1142)</span><br>	at java.util.concurrent.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ThreadPoolExecutor$Worker</span>.</span></span>run(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ThreadPoolExecutor</span>.</span></span>java:<span class="hljs-number">617</span>)<br>	at org.apache.tomcat.util.threads.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">TaskThread$WrappingRunnable</span>.</span></span>run(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">TaskThread</span>.</span></span>java:<span class="hljs-number">61</span>)<br>	at java.lang.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Thread</span>.</span></span>run(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Thread</span>.</span></span>java:<span class="hljs-number">745</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这一般是由于更新或切换了 OpenGrok 版本，但却没有将 tomcat 的 webapps 目录下的 source 文件夹替换为对应版本。</p>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>古人教会了我们工欲善其事，必先利其器的智慧，但我们也不能沉迷和徘徊于各种利器之间，选择一样自己感觉最称手的工具，把它用熟练，少再在这上面花时间折腾，毕竟把有限的生命投入到无限的 RTFSC 才是正道不是么。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2016/12/14/%E5%B7%A5%E5%85%B7/rtfsc-with-opengrok/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;12&#x2F;14&#x2F;%E5%B7%A5%E5%85%B7&#x2F;rtfsc-with-opengrok&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;12&#x2F;14&#x2F;%E5%B7%A5%E5%85%B7&#x2F;rtfsc-with-opengrok&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/OpenGrok-RTFSC/" rel="tag">OpenGrok, RTFSC</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2017/02/19/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/the-kite-runner/"><i class="iconfont iconleft"></i>读书：追风筝的人</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2016/10/22/Vim/vim-markdown-toc-release/">vim-markdown-toc 发布 v1.0 版<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">工具的选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenGrok-%E7%89%B9%E6%80%A7"><span class="toc-text">OpenGrok 特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-OpenGrok"><span class="toc-text">配置 OpenGrok</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%AA%E5%B1%8F"><span class="toc-text">截屏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="toc-text">安装和配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%A4%9A%E9%A1%B9%E7%9B%AE"><span class="toc-text">配置多项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%98%E8%85%BE%E7%8B%82%E9%AD%94"><span class="toc-text">折腾狂魔</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5%E5%90%8E%E6%8A%A5%E9%94%99"><span class="toc-text">打开网页后报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AF%9D"><span class="toc-text">后话</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

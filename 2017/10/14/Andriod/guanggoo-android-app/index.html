@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>发布一款光谷社区第三方 Android App - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="在过去的一个来月，我利用业余时间做了一款光谷社区的第三...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">发布一款光谷社区第三方 Android App</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-andriod-1.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">发布一款光谷社区第三方 Android App</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 14, 2017</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1311</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>在过去的一个来月，我利用业余时间做了一款光谷社区的第三方 Android 客户端。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>光谷社区是我在决定离开帝都回武汉的过程中，及回武汉之后关注得较多的武汉本土社区，网站 <a target="_blank" rel="noopener" href="http://guanggoo.com/">http://guanggoo.com</a> 自己的 description 是这样的：</p>
+<blockquote>
+<p>光谷社区是源自光谷的高端社交网络，这里有关于创业、创意、IT、金融等最热话题的交流，也有招聘问答、活动交友等最新资讯的发布。</p>
+</blockquote>
+<p>描述得还比较准确。我觉得身在光谷，或者心系光谷的童鞋们可以关注一下。</p>
+<h2 id="发布详情"><a href="#发布详情" class="headerlink" title="发布详情"></a>发布详情</h2><p>目前支持特性：</p>
+<ol>
+<li>登录</li>
+<li>首页主题列表（三种视图）</li>
+<li>主题详情 / 评论列表</li>
+<li>节点列表 / 节点主题列表</li>
+<li>评论 / 艾特用户</li>
+<li>分享主题链接</li>
+<li>发表新主题</li>
+<li>查看用户信息</li>
+</ol>
+<p>源码放在 GitHub 上：</p>
+<p><a href="https://github.com/mzlogin/guanggoo-android">https://github.com/mzlogin/guanggoo-android</a></p>
+<p>部分界面截图：</p>
+<p><img   class="lazyload" data-original="https://mazhuang.org/guanggoo-android/screenshots/topic-list.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="https://mazhuang.org/guanggoo-android/screenshots/topic-detail.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="https://mazhuang.org/guanggoo-android/screenshots/nodes-list.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="https://mazhuang.org/guanggoo-android/screenshots/drawer.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>更多的功能开发、完善以及优化还在进行中，也希望看到的朋友们下载试用起来，多提建议多交流。</p>
+<p>好吧，啰嗦了这么多，哪里能够下载得到呢？</p>
+<p><strong>APK 下载链接</strong></p>
+<p>（如果是在微信里看到这里，建议长按后复制链接到浏览器打开）</p>
+<p><a target="_blank" rel="noopener" href="https://mazhuang.org/guanggoo-android/guanggoo-lastest.apk">https://mazhuang.org/guanggoo-android/guanggoo-lastest.apk</a></p>
+<p>百度网盘备用链接：</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1pL0t1Zd">https://pan.baidu.com/s/1pL0t1Zd</a></p>
+<p><strong>扫描或识别二维码下载</strong></p>
+<p>（如果使用微信识别二维码不能开始下载，还是复制上方的链接到浏览器打开下载吧）</p>
+<div align="center"><img  width="192px" height="192px"  class="lazyload" data-original="https://mazhuang.org/guanggoo-android/qrcode.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></div>
+
+<h2 id="为什么会做这个"><a href="#为什么会做这个" class="headerlink" title="为什么会做这个"></a>为什么会做这个</h2><ol>
+<li><p>社区目前只有 Web 页面，做了移动端适配，体验也还不错。不过作为一个打开频率较高的应用，我还是希望能用上 App；</p>
+</li>
+<li><p>之前偶然在社区的几个帖子里也有一些用户问到是否有 App 可用，都没有了下文，可以满足一下这部分用户的需求；</p>
+</li>
+<li><p>作为一个长期维护的业余项目，更深刻地体会 App 开发的整个生命周期，也将一些想学习的技术应用到实际项目中；</p>
+</li>
+<li><p>借此机会认识一下光谷技术圈子里志趣相投的朋友。</p>
+</li>
+</ol>
+<h2 id="前缘后续"><a href="#前缘后续" class="headerlink" title="前缘后续"></a>前缘后续</h2><p>上 GitHub 搜索 guanggoo 出来的结果很少，发现有一个 <a href="https://github.com/cauil/react-native-guanggoo">cauil/react-native-guanggoo</a> 的项目适配了 iOS，独缺 Android 客户端，于是决定自己写一个。要不是那一阵刚好闹 Facebook 开源许可证风波，让人没有学习 React Native 的信心和欲望，也许我就学点 React Native 在这位仁兄的基础上开发了。</p>
+<p>经过几周业余时间和十一长假期间的开发，目前完成度不算特别高，但常用的功能已经基本可用了，当然还有一些功能比如注册、帖子里的外部链接打开等，我是先抛给了系统浏览器。想着只埋头自己开发也比较枯燥，决定先放出一个版本来让网友们吐吐槽，提提意见，应该能做得更好。</p>
+<p>PS: 本文非软文，也没有收取光谷社区任何好处，请光谷社区嘴炮管理员看到这里帮我开通个 VIP，我的社区 ID 是 mzlogin，:-P。</p>
+<hr>
+<p>好了，最后照例安利一下我自己的微信公众号，近期专注 Java、Android 相关的技术分享，如果你感兴趣，可以关注一下接收最新动态。</p>
+<div align="center"><img  width="192px" height="192px"  class="lazyload" data-original="https://mazhuang.org/assets/images/qrcode.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></div>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2017/10/14/Andriod/guanggoo-android-app/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2017&#x2F;10&#x2F;14&#x2F;Andriod&#x2F;guanggoo-android-app&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2017&#x2F;10&#x2F;14&#x2F;Andriod&#x2F;guanggoo-android-app&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/Android-%E5%85%89%E8%B0%B7%E7%A4%BE%E5%8C%BA/" rel="tag">Android, 光谷社区</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2017/10/24/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/poses/"><i class="iconfont iconleft"></i>程序员节的过节姿势大全</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2017/08/20/Java/java-auto-boxing-unboxing/">从一个 NullPointerException 探究 Java 的自动装箱拆箱机制<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%AF%A6%E6%83%85"><span class="toc-text">发布详情</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%81%9A%E8%BF%99%E4%B8%AA"><span class="toc-text">为什么会做这个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BC%98%E5%90%8E%E7%BB%AD"><span class="toc-text">前缘后续</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

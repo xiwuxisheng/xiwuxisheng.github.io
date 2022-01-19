@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>为 Markdown 生成 TOC 的 Vim 插件 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="因为饱受 GFM 和 Redcarpet 两种 Mar...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">为 Markdown 生成 TOC 的 Vim 插件</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-vim-2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">为 Markdown 生成 TOC 的 Vim 插件</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 19, 2015</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2235</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>因为饱受 GFM 和 Redcarpet 两种 Markdown 引擎生成 TOC 链接的差异的折磨，而我又不得不同时使用它们——博客基于 Jekyll 使用 Redcarpet（<em>Update 2016/09/16: GitHub Pages 现在已经改为只支持 kramdown</em>），而其它放在 GitHub 仓库里的文档使用 GFM，我决定为我常用的 Markdown 编辑器 Vim 做一款同时支持 GFM 和 Redcarpet 两种 TOC 链接风格的 Table of Contents 自动生成插件。</p>
+<p>这算是我真正意义上完全独立开发的第一款实用 Vim 插件，当然开发过程中也参考了别人的做法。</p>
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul>
+<li><a href="https://github.com/mzlogin/vim-markdown-toc">vim-markdown-toc</a></li>
+</ul>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li><p>为 Markdown 文件生成 Table of Contents，目前支持 GFM 和 Redcarpet 两种链接风格。</p>
+</li>
+<li><p>更新已经存在的 Table of Contents。</p>
+</li>
+<li><p>保存文件时自动更新 Table of Contents。</p>
+</li>
+</ul>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="生成-Table-of-Contents"><a href="#生成-Table-of-Contents" class="headerlink" title="生成 Table of Contents"></a>生成 Table of Contents</h3><p>将光标移动到想在后面插入 Table of Contents 的那一行，然后运行下面的某个命令：</p>
+<ol>
+<li><p><code>:GenTocGFM</code></p>
+<p>生成 GFM 链接风格的 Table of Contents。</p>
+<p>适用于 GitHub 仓库里的 Markdown 文件，比如 README.md，也适用用于生成 GitBook 的 Markdown 文件。</p>
+</li>
+<li><p><code>:GenTocRedcarpet</code></p>
+<p>生成 Redcarpet 链接风格的 Table of Contents。</p>
+<p>适用于使用 Redcarpet 作为 Markdown 引擎的 Jekyll 项目或其它地方。</p>
+</li>
+</ol>
+<h3 id="更新已存在的-Table-of-Contents"><a href="#更新已存在的-Table-of-Contents" class="headerlink" title="更新已存在的 Table of Contents"></a>更新已存在的 Table of Contents</h3><p>通常不需要手动做这件事，保存文件时会自动更新已经存在的 Table of Contents。</p>
+<p>除非是在配置里关闭了保存时自动更新，并且维持插入 Table of Contents 前后的 <code>&lt;!-- vim-markdown-toc --&gt;</code>，此时可使用 <code>:UpdateToc</code> 命令手动更新。</p>
+<h3 id="删除-Table-of-Contents"><a href="#删除-Table-of-Contents" class="headerlink" title="删除 Table of Contents"></a>删除 Table of Contents</h3><p><code>:RemoveToc</code> 命令可以帮你删除本插件生成的 Table of Contents。</p>
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>推荐使用 <a href="http://github.com/VundleVim/Vundle.Vim">Vundle</a> 来管理你的 Vim 插件，这样你就可以简单三步完成安装：</p>
+<ol>
+<li><p>在你的 vimrc 文件中添加如下内容：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">Plugin</span> <span class="hljs-string">&#x27;mzlogin/vim-markdown-toc&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li><p><code>:so $MYVIMRC</code></p>
+</li>
+<li><p><code>:PluginInstall</code></p>
+</li>
+</ol>
+<p>使用 vim-plug 安装的过程的与此基本一样。</p>
+<h2 id="配置选项"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项</h2><ol>
+<li><p><code>g:vmt_auto_update_on_save</code></p>
+<p>默认值：1</p>
+<p>插件会自动更新已经存在的 Table of Contents，如果你不想要这个功能，可以在你的 vimrc 文件里加入如下内容关闭：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs viml">let g:vmt_auto_update_on_save = 0<br></code></pre></td></tr></table></figure></li>
+<li><p><code>g:vmt_dont_insert_fence</code></p>
+<p>默认值：0</p>
+<p>在默认情况下，<code>:GenTocXXX</code> 命令会在插入的 Table of Contents 前后加上 <code>&lt;!-- vim-markdown-toc --&gt;</code>，这是为了实现自动和手动更新 Table of Contents 功能。</p>
+<p>如果你不想看到它们，可以在 vimrc 文件里加入如下内容移除：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs viml">let g:vmt_dont_insert_fence = 1<br></code></pre></td></tr></table></figure>
+
+<p>需要注意的是移除之后插件将无法再帮你保存文件时自动更新 Table of Contents 了，也无法使用 <code>:UpdateToc</code> 命令了。这里如果还想更新 Table of Contents，只能先手动删除已经存在的，然后重新运行 <code>:GenTocXXX</code> 命令。</p>
+</li>
+<li><p><code>g:vmt_cycle_list_item_markers</code></p>
+<p>默认值：0</p>
+<p>在默认情况下，所有 Table of Contents 项目前面的标记都是 <code>*</code>：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs subunit">* [Level 1](#level<span class="hljs-string">-1</span>)<br>    * [Level 1<span class="hljs-string">-1</span>](#level<span class="hljs-string">-1</span><span class="hljs-string">-1</span>)<br>    * [Level 1<span class="hljs-string">-2</span>](#level<span class="hljs-string">-1</span><span class="hljs-string">-2</span>)<br>        * [Level 1<span class="hljs-string">-2</span><span class="hljs-string">-1</span>](#level<span class="hljs-string">-1</span><span class="hljs-string">-2</span><span class="hljs-string">-1</span>)<br>* [Level 2](level<span class="hljs-string">-2</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这里提供一个选项改变这个行为，如果设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs viml">let g:vmt_cycle_list_item_markers = 1<br></code></pre></td></tr></table></figure>
+
+<p>那标记将根据级别循环使用 <code>*</code>、<code>-</code> 和 <code>+</code>：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs subunit">* [Level 1](#level<span class="hljs-string">-1</span>)<br>    - [Level 1<span class="hljs-string">-1</span>](#level<span class="hljs-string">-1</span><span class="hljs-string">-1</span>)<br>    - [Level 1<span class="hljs-string">-2</span>](#level<span class="hljs-string">-1</span><span class="hljs-string">-2</span>)<br>        + [Level 1<span class="hljs-string">-2</span><span class="hljs-string">-1</span>](#level<span class="hljs-string">-1</span><span class="hljs-string">-2</span><span class="hljs-string">-1</span>)<br>* [Level 2](level<span class="hljs-string">-2</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这不会影响 Markdown 文档解析后的显示效果，只用于提升源文件的可读性。</p>
+</li>
+</ol>
+<h2 id="屏幕截图"><a href="#屏幕截图" class="headerlink" title="屏幕截图"></a>屏幕截图</h2><p><a href="https://github.com/mzlogin/chinese-copywriting-guidelines/blob/Simplified/README.en.md">使用本插件生成 TOC 的英文文档在线示例</a></p>
+<p><img   class="lazyload" data-original="https://github.com/mzlogin/vim-markdown-toc/raw/master/screenshots/english.gif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><a target="_blank" rel="noopener" href="https://mazhuang.org/wiki/chinese-copywriting-guidelines/">使用本插件生成 TOC 的中文文档在线示例</a></p>
+<p><img   class="lazyload" data-original="https://github.com/mzlogin/vim-markdown-toc/raw/master/screenshots/chinese.gif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mazhuang.org/2015/12/05/diff-between-gfm-and-redcarpet/">GFM 与 Redcarpet 的不同点</a></li>
+<li><a href="https://github.com/ajorgensen/vim-markdown-toc">ajorgensen/vim-markdown-toc</a></li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2015/12/19/Vim/vim-markdown-toc/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2015&#x2F;12&#x2F;19&#x2F;Vim&#x2F;vim-markdown-toc&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2015&#x2F;12&#x2F;19&#x2F;Vim&#x2F;vim-markdown-toc&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/vim-markdown-toc/" rel="tag">vim, markdown, toc</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2016/01/12/Linux/use-ubuntu-notes/"><i class="iconfont iconleft"></i>Ubuntu 使用笔记</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2015/10/25/Mac/mac/">Mac 遇到问题集锦<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-text">下载地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90-Table-of-Contents"><span class="toc-text">生成 Table of Contents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E5%B7%B2%E5%AD%98%E5%9C%A8%E7%9A%84-Table-of-Contents"><span class="toc-text">更新已存在的 Table of Contents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-Table-of-Contents"><span class="toc-text">删除 Table of Contents</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="toc-text">安装方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9"><span class="toc-text">配置选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE"><span class="toc-text">屏幕截图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-text">参考链接</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

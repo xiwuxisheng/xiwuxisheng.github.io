@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>编译优化 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="引言随着模块和代码量的增加，编译的效率会越来越低，有的...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">编译优化</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-iOS-2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">编译优化</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>六月 26, 2019</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2363</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>引言<br>随着模块和代码量的增加，编译的效率会越来越低，有的多达几个小时，这时候需要考虑做编译优化：<br>1.查找耗时文件和代码<br>2.针对性文件和代码做优化(代码简化，减少宏定义，库二进制化等)<br>3.项目结构组件化和模块化，拆分功能减少编译量(这个属于组件化的范畴，这里忽略)  </p>
+<p>查找和排序<br>这里需要脚本处理来获取编译数据日志 :  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript">#!<span class="hljs-regexp">/bin/</span>sh<br>myFile=<span class="hljs-string">&quot;./allFilesTimeCompile.txt&quot;</span><br>myFile2=<span class="hljs-string">&quot;./timeCompileSorted.txt&quot;</span><br><span class="hljs-keyword">if</span> [ ! -f <span class="hljs-string">&quot;$myFile&quot;</span> ]; then<br>    touch <span class="hljs-string">&quot;$myFile&quot;</span><br><span class="hljs-keyword">else</span><br>    rm -rf <span class="hljs-string">&quot;$myFile&quot;</span><br>fi<br><span class="hljs-keyword">if</span> [ ! -f <span class="hljs-string">&quot;$myFile2&quot;</span> ]; then<br>    touch <span class="hljs-string">&quot;$myFile2&quot;</span><br><span class="hljs-keyword">else</span><br>rm -rf <span class="hljs-string">&quot;$myFile2&quot;</span><br>fi<br>xcodebuild -workspace projectName.xcworkspace -scheme targetName -archivePath ~<span class="hljs-regexp">/Desktop/</span>targetName archive | xcpretty | gnomon <span class="hljs-number">1</span>&gt; <span class="hljs-string">&quot;$myFile&quot;</span> &amp;&amp;<br>sort -r <span class="hljs-string">&quot;$myFile&quot;</span> | head -n <span class="hljs-number">10000</span> <span class="hljs-number">1</span>&gt; <span class="hljs-string">&quot;$myFile2&quot;</span><br>wait<br></code></pre></td></tr></table></figure>
+<p>查找耗时文件和代码<br>原理<br>将编译日志按行有序输出到allFilesTimeCompile.txt文件中，然后根据每行输出时间的间隔长短进行排序，将时间长的靠前10000行输出到timeCompileSorted.txt文件中。  </p>
+<p>解释  </p>
+<ul>
+<li>xcodebuild是编译命令，这里”xcodebuild -workspace projectName.xcworkspace -scheme targetName -archivePath <del>/Desktop/targetName archive”表示编译打包的archive文件路径在”</del>/Desktop/targetName.archive”。</li>
+<li>xcpretty是美化编译日志的，表示按行输出日志。</li>
+<li>gnomon是标记出另外一个命令执行消耗的时间信息,这里用于每个文件编译的时间信息统计。</li>
+<li>sort排序命令行，这里使用管道输出将allFilesTimeCompile.txt文件的前10000行写入timeCompileSorted.txt文件中。</li>
+</ul>
+<p>使用<br>将上面的脚本放入一个.sh文件中（里面的projectName和targetName替换成自己的项目名和target名，archive的路径也可以按照自己的需求来），然后将该.sh文件放入项目根目录下，在通过控制台进入该项目根目录执行该.sh文件等待即可。  </p>
+<p>优化策略<br>代码简化<br>顾名思义就是进行代码冗余简化，重复代码进行合并或者是将冗余逻辑进行优化精简代码量，原理就是减少编译器的编译代码数量，从表层上降低编译器的编译时间。  </p>
+<p>减少宏定义<br>主要是将大量的宏定义更改为静态全局变量，这样将本身的<code>预编译时间</code>延后到了<code>运行期</code>,这样以来达到精简编译时间的目的，当然这种方式优化有限，不过精益求精总是好的。  </p>
+<p>库的二进制化<br>我们在项目中会大量使用一些第三方库或者自定义的私有库，这时候如果引入的是源码，当然会需要编译器的编译处理，部分第三方库在编译器里会占用大量编译时间。  </p>
+<p><code>疑问一：二进制化指什么意思？</code><br>简单来说就是打包成framework或者.a文件，即是静态库，（动态库是Apple禁止的，但是iOS10以上放开限制，允许使用动态库进行主从app的共用）因为静态库里面已经是编译好的二进制码，所以编译时会直接跳过，这样就减少了编译时间。  </p>
+<p><code>疑问二：二进制化后如果有依赖是否也在里面？要是其他静态库也包含了同样的依赖会不会编译冲突?</code><br>如果打包的是.a静态库，那么依赖肯定是在里面的，如果其他静态库也用到了同样的依赖，编译器会报重复编译冲突错误。所以一般都是不建议打包.a静态库的，除非本身不包含其他的依赖库。  </p>
+<p>解决方案：打包成不包含依赖的framework静态库。  </p>
+<p><code>二进制化方案</code><br>网上有很多方案，大体分为三种:  </p>
+<ul>
+<li>脚本，这种最常见，网上例子，可以去搜寻下，这里不多说了;  </li>
+<li>Aggregate文件,这种方案与上面那种类似，不过是单独用一个Aggregate独立出来了，路径<code>File——&gt;New——&gt;Target——&gt;Cross-platform——&gt;Aggregate</code>，然后在Aggregate的target选中<code>Build Phases——&gt;+ New Run Script Phase——&gt;shell</code>加入脚本。执行脚本的流程即可;  </li>
+<li>使用Cocoapods的package命令行，package命令需要先通过命令行安装<a href="https://github.com/CocoaPods/cocoapods-packager">cocoapods-packager</a>，在库项目的根目录下执行<code>pod package xxx.podspec --force</code>，当然这里有个注意事项，存在图片资源等bundle的需要从framework中单独提出来，放在framework中与代码文件夹并列的位置，否则库本身的资源文件无法读取出来。这里介绍的package方案比较全面，可以研究下<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/611049483be4">关于使用CocoaPods的package打包Framework以及使用注意</a>。</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2019/06/26/iOS/%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2019&#x2F;06&#x2F;26&#x2F;iOS&#x2F;%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2019&#x2F;06&#x2F;26&#x2F;iOS&#x2F;%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/iOS-%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/" rel="tag">iOS, 编译优化</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2019/07/05/iOS/pod%E7%BB%84%E4%BB%B6%E5%8C%96/"><i class="iconfont iconleft"></i>Cocoapods的组件化私有库</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2019/05/30/iOS/%E7%BD%91%E7%BB%9C%E6%9D%83%E9%99%90/">iOS10以上新机首次安装app，请求网络权限<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

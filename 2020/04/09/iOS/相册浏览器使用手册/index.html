@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>相册浏览器使用手册 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="最近做了相册浏览器的扩展开发功能，这里感谢缪烨大大，开...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">相册浏览器使用手册</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-iOS-7.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">相册浏览器使用手册</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 09, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8818</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>最近做了相册浏览器的扩展开发功能，这里感谢缪烨大大，开发了基础功能，我只是站在巨人的肩膀上。这个扩展的核心点在于增加了适配器处理，简单点来说就是将UI显示做到与数据分离，所有的数据来源通过适配器调用，而UI与数据之间使用了一层协议进行隔离，消除后续数据类型变更造成全面修改，增加灵活性。</p>
+<p>这里我们首先来看一下整体设计示意图：</p>
+<p><img   class="lazyload" data-original="/images/iOS/album_preview_structure.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>这里解释一下：</p>
+<ul>
+<li>适配代理器指的是当前要自定义适配而实现适配协议的那个代理类，可以根据需要自己指定；</li>
+<li>所有的数据模型必须实现定义的协议，协议的字段是可选的，根据需要进行转换；</li>
+<li>数据模型适配器提供了两种解析方式：一是通过适配代理器进行协议方法实现数据转换，二是通过模型自己实现属性值的映射，然后将模型数据扔给适配器就可以自动实现数据模型转换，这两种的本质都是为了将不同模型转换成协议规定的字段；</li>
+<li>预览展示分栏控制层引用适配器，可以通过更换适配器对象来实现数据的更换，预览视图的变化是根据适配器来的，也就是预览时图的代理数据就是适配器，因为适配器在最外层，也就是我们只需要关心数据变化本身，而不关心内部视图的实现。</li>
+</ul>
+<hr>
+<h3 id="实际显示示意图"><a href="#实际显示示意图" class="headerlink" title="实际显示示意图"></a>实际显示示意图</h3><p><img   class="lazyload" data-original="/images/iOS/album_actual_result.gif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<blockquote>
+<p>这里是一个初版的相册浏览器组件，包含了视频和图片的预览，可以看到目前图片可以进行分类展示，也就是我们所说的二维样板，视频在这里展示显示是一个，但是后续会在此基础上根据需求样板进行扩展，将视频做成多视频展示，并且包含视频中自定义视图的兼容，目前在适配器中已提供自定义视图的扩展介入，待确定UI样式类型。</p>
+</blockquote>
+<hr>
+<h3 id="层次结构图"><a href="#层次结构图" class="headerlink" title="层次结构图"></a>层次结构图</h3><p><img   class="lazyload" data-original="/images/iOS/album_code_structure.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>说明：</p>
+<ul>
+<li>FJKPhotoBaseView是基础构建视图，用于提供公用模型数据对接方法</li>
+<li>FJKPreViewModelAdapterProtocol 包含所有的数据规则协议、代理适配协议、预览数据加载协议等</li>
+<li>FJKPreViewModelAdapter 用于提供数据解析及数据传递的适配器</li>
+<li>FJKNewPhotoPreviewViewController 用于进行相册浏览的控制层，后续所有的预览信息入口由该控制器承载<br>其余的属于定制的视图及控制器，不在核心，这里不予多阐述</li>
+</ul>
+<hr>
+<h3 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h3><h4 id="1-首先确定需要预览的模型实现各自对应的协议，比如二维数组元素协议："><a href="#1-首先确定需要预览的模型实现各自对应的协议，比如二维数组元素协议：" class="headerlink" title="1.首先确定需要预览的模型实现各自对应的协议，比如二维数组元素协议："></a>1.首先确定需要预览的模型实现各自对应的协议，比如二维数组元素协议：</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@interface</span> <span class="hljs-attribute">FJKAlbumPhotoInfoModel </span>: NSObject&lt;FJKPreviewBaseArrayAdapterProtocol&gt;<br><span class="hljs-variable">@property</span> (nonatomic, copy) NSString *tag;<br><span class="hljs-variable">@property</span> (nonatomic, assign) NSInteger count;<br><span class="hljs-variable">@property</span> (nonatomic, copy) NSArray &lt;FJKAlbumPhotoDetailInfoModel&lt;FJKPicModelAdapterProtocol&gt; *&gt; *photoInfoList;<br><span class="hljs-variable">@end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@interface</span> <span class="hljs-attribute">FJKAlbumVideoModel </span>: NSObject&lt;FJKPreviewBaseArrayAdapterProtocol&gt;<br><span class="hljs-variable">@property</span> (nonatomic, copy) NSString *tag;<br><span class="hljs-variable">@property</span> (nonatomic, assign) NSInteger count;<br><span class="hljs-variable">@property</span> (nonatomic, copy) NSArray &lt;FJKAlbumVideoDetailInfoModel&lt;FJKVedioModelAdapterProtocol&gt; *&gt; *videoInfoList;<br><span class="hljs-variable">@end</span><br></code></pre></td></tr></table></figure>
+<p>不管是图片的二维数组元素模型还是视频二维数组元素模型都需要实现<code>FJKPreviewBaseArrayAdapterProtocol</code>这个二维数组协议。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">FJKPicModelAdapterProtocol</span> &lt;<span class="hljs-title">FJKPreviewBaseModelAdapterProtocol</span>&gt;</span><br><span class="hljs-keyword">@optional</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> * _Nullable url;         <span class="hljs-comment">//图片或者视频的地址</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable agentId;      <span class="hljs-comment">//拍摄者ID</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable agentName;    <span class="hljs-comment">//拍摄者名称</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable placeholderImage;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable picId;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable location;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable tag;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable truePhotoDescription;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-built_in">NSInteger</span> approveStatus;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable createTime;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable shootTime;<br><span class="hljs-keyword">@end</span><br></code></pre></td></tr></table></figure>
+<p>这是底层一维具体图片信息的协议，也就是二维数组元素<code>FJKAlbumPhotoInfoModel</code>里面<code>FJKAlbumPhotoDetailInfoModel</code>模型需要实现该协议，意思就是不管<code>FJKAlbumPhotoDetailInfoModel</code>是什么样子，最终需要的数据形式都是<code>FJKPicModelAdapterProtocol</code>的形式。那么一维具体视频信息也类似。</p>
+<blockquote>
+<p>这里<code>FJKPreviewBaseModelAdapterProtocol</code>数据基础协议，请看里面：</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-comment">//基础模型协议</span><br><span class="hljs-variable">@protocol</span> FJKPreviewBaseModelAdapterProtocol &lt;NSObject&gt;<br><span class="hljs-variable">@optional</span><br><span class="hljs-comment">//用于构造属性转换</span><br>- (NSDictionary *_Nullable)exChangeproperties;<br><span class="hljs-variable">@end</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里只提供一个进行字段转换的映射方法，因为每个模型都可能需要，这个<code>exChangeproperties</code>协议方法实际上主要是自动解析需要做的字段配置映射，参考MJExtension的模型字段映射就明白了，关于自动适配解析会在下面讲到。</p>
+</blockquote>
+<h4 id="2-适配器的使用"><a href="#2-适配器的使用" class="headerlink" title="2.适配器的使用"></a>2.适配器的使用</h4><ul>
+<li><strong>代理自定义适配</strong></li>
+<li><strong>自动适配</strong></li>
+</ul>
+<h6 id="代理自定义适配"><a href="#代理自定义适配" class="headerlink" title="代理自定义适配:"></a>代理自定义适配:</h6><p>请看下面的例子：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs abnf">FJKPreViewModelAdapter *adapter = [FJKPreViewModelAdapter new]<span class="hljs-comment">;</span><br>adapter.selectedIndexPath = indexPath<span class="hljs-comment">;</span><br>adapter.dataSource = self<span class="hljs-comment">;</span><br>FJKNewPhotoPreviewViewController *previewVC = [FJKNewPhotoPreviewViewController new]<span class="hljs-comment">;</span><br>previewVC.adapter = adapter<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>其中<code>FJKPreViewModelAdapter</code>就是适配器，这里的selectedIndexPath表示默认初始预览哪张图或者视频,如果不赋值则默认第一张，这里适配器的dataSource是当前的控制器，那么请看数据源代理。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-comment">//获取标题数组</span><br><span class="hljs-operator">-</span> (<span class="hljs-type">NSArray</span>&lt;<span class="hljs-type">NSString</span> *&gt; <span class="hljs-operator">*</span>_Nullable)numberDataOfTitles &#123;<br>    <span class="hljs-type">NSMutableArray</span> <span class="hljs-operator">*</span>titles <span class="hljs-operator">=</span> [<span class="hljs-type">NSMutableArray</span> array];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">FJKAlbumPhotoInfoModel</span> <span class="hljs-operator">*</span>model <span class="hljs-keyword">in</span> <span class="hljs-keyword">self</span>.albumModel.photoList) &#123;<br>        <span class="hljs-comment">// 配置照片内的tagTitles</span><br>        <span class="hljs-type">NSString</span> <span class="hljs-operator">*</span>title <span class="hljs-operator">=</span> [<span class="hljs-type">NSString</span> stringWithFormat:@<span class="hljs-string">&quot;%@(%ld)&quot;</span>,model.tag,model.count];<br>        [titles addObject:title];<br>    &#125;<br>    <span class="hljs-keyword">return</span> titles;<br>&#125;<br><br><span class="hljs-comment">//获取图片模型数组</span><br><span class="hljs-operator">-</span> (<span class="hljs-type">NSArray</span>&lt;<span class="hljs-type">NSObject</span>&lt;<span class="hljs-type">FJKPicModelAdapterProtocol</span>&gt; *&gt; <span class="hljs-operator">*</span>_Nullable)numberDataOfPicModels &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>.albumModel.photoList;<br>&#125;<br><br><span class="hljs-comment">//获取视频模型数组</span><br><span class="hljs-operator">-</span> (<span class="hljs-type">NSArray</span>&lt;<span class="hljs-type">NSObject</span>&lt;<span class="hljs-type">FJKVedioModelAdapterProtocol</span>&gt; *&gt; <span class="hljs-operator">*</span>_Nullable)numberDataOfVedioModels&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>.albumModel.videoList;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>大家大概明白是怎么回事了，就是通过dataSource的这三个协议方法将数据载入适配器。然后我们用于展示相册浏览的控制器<code>FJKNewPhotoPreviewViewController</code>直接赋值adapter就可以了，剩余的事情交给adapter去做就可以了。</p>
+<h6 id="自动适配"><a href="#自动适配" class="headerlink" title="自动适配:"></a>自动适配:</h6><p>请看下面的例子：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haxe"> FJKPreViewModelAdapter *adapter = [FJKPreViewModelAdapter <span class="hljs-keyword">new</span><span class="hljs-type"></span>];<br> adapter.selectedIndexPath = indexPath;<br><span class="hljs-comment">// adapter.dataSource = self;</span><br>[adapter adapterModel:<span class="hljs-type">strongSelf</span>.albumModel.photoList vedios:<span class="hljs-type">strongSelf</span>.albumModel.videoList];<br>FJKNewPhotoPreviewViewController *previewVC = [FJKNewPhotoPreviewViewController <span class="hljs-keyword">new</span><span class="hljs-type"></span>];<br>previewVC.adapter = adapter;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>这里就是不使用datasouce方式，而是直接将图片和视频的二维数组模型扔进适配器，难道这样就可以了吗，当然没这么简单，前面不是提到自动适配会有一道数据映射吗，这是协议规定的。该如何定义呢，这里用一维模型<code>FJKAlbumPhotoDetailInfoModel</code>来进行说明。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">FJKAlbumPhotoDetailInfoModel</span> : <span class="hljs-title">NSObject</span>&lt;<span class="hljs-title">FJKPicModelAdapterProtocol</span>&gt;</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *url;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *picId;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *agentId;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *agentName;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *location;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *tag;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *truePhotoDescription;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-built_in">NSInteger</span> approveStatus;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *createTime;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *shootTime;<br><span class="hljs-keyword">@end</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-comment">//基础图片数据模型协议</span><br><span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">FJKPicModelAdapterProtocol</span> &lt;<span class="hljs-title">FJKPreviewBaseModelAdapterProtocol</span>&gt;</span><br><span class="hljs-keyword">@optional</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> * _Nullable url;         <span class="hljs-comment">//图片或者视频的地址</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable agentId;      <span class="hljs-comment">//拍摄者ID</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable agentName;    <span class="hljs-comment">//拍摄者名称</span><br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable placeholderImage;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable picId;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable location;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable tag;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable truePhotoDescription;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-built_in">NSInteger</span> approveStatus;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable createTime;<br><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *_Nullable shootTime;<br><span class="hljs-keyword">@end</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>那么目前我们需要将<code>FJKAlbumPhotoDetailInfoModel</code>中的字段agentId转换到其实现的协议<code>FJKPicModelAdapterProtocol</code>中的picId，那么也就是项目里面使用picId时实际上使用的是<code>FJKAlbumPhotoDetailInfoModel</code>模型的agentId字段，我们只需要在<code>FJKAlbumPhotoDetailInfoModel</code>的implementation里面实现<code>exChangeproperties</code>协议方法，如下：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">FJKAlbumPhotoDetailInfoModel</span></span><br>- (<span class="hljs-built_in">NSDictionary</span> *_Nullable)exChangeproperties &#123;<br>    <span class="hljs-keyword">return</span> @&#123;<span class="hljs-string">@&quot;agentId&quot;</span>:<span class="hljs-string">@&quot;picId&quot;</span>&#125;;<br>&#125;<br><span class="hljs-keyword">@end</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这样适配器就能识别需要进行字段映射操作，进行值的变换。特别是需要进行使用的实际数据模型存在协议中不存在字段时，但是对应的是协议中一个字段，那么就可以通过这方式将其映射进去就可以了。</p>
+</blockquote>
+<hr>
+<h3 id="预览视图的扩展"><a href="#预览视图的扩展" class="headerlink" title="预览视图的扩展"></a>预览视图的扩展</h3><p>在适配器里有一个协议<code>FJKPhotoPreviewViewAdapterProtocol</code>,这里将预览的数据处理交由适配器进行处理了，请看协议：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@class</span> FJKPhotoPreviewView;<br><span class="hljs-variable">@protocol</span> FJKPhotoPreviewViewAdapterProtocol &lt;NSObject&gt;<br><span class="hljs-variable">@optional</span><br><span class="hljs-comment">//图片整体数量</span><br>- (NSInteger)<span class="hljs-attribute">numberOfTotalItems</span>:(FJKPhotoPreviewView *_Nullable)photoPreviewView;<br><span class="hljs-comment">//获取当前图片url</span><br><span class="hljs-selector-tag">-</span> (NSURL *_Nullable)<span class="hljs-selector-tag">preview</span>:(FJKPhotoPreviewView *_Nullable)<span class="hljs-selector-tag">photoPreviewView</span> <span class="hljs-selector-tag">imagePreviewViewAtIndex</span>:(NSUInteger)<span class="hljs-selector-tag">index</span>;<br><span class="hljs-comment">//获取标题数组</span><br><span class="hljs-selector-tag">-</span> (NSArray&lt;NSString *&gt; *_Nullable)<span class="hljs-selector-tag">previewCategoryTitleViewTitlts</span>:(JXCategoryTitleView *_Nullable)<span class="hljs-selector-tag">categoryTitleView</span>;<br><br><span class="hljs-comment">//根据indexPath获取当前图片对应的模型数据</span><br><span class="hljs-selector-tag">-</span> (NSObject&lt;FJKPicModelAdapterProtocol&gt; * _Nullable)<span class="hljs-selector-tag">previewModel</span>:(FJKPhotoPreviewView *_Nullable)<span class="hljs-selector-tag">photoPreviewView</span> <span class="hljs-selector-tag">cellItemIndex</span>:(NSIndexPath *_Nonnull)<span class="hljs-selector-tag">indexPath</span>;<br><span class="hljs-comment">//根据整体数组下标获取当前图片对应的模型数据</span><br><span class="hljs-selector-tag">-</span> (NSObject&lt;FJKPicModelAdapterProtocol&gt; * _Nullable)<span class="hljs-selector-tag">preview</span>:(FJKPhotoPreviewView *_Nullable)<span class="hljs-selector-tag">photoPreviewView</span> <span class="hljs-selector-tag">cellItemIndex</span>:(NSInteger)<span class="hljs-selector-tag">currentIndex</span>;<br><br><span class="hljs-comment">//获取当前index位置分类的第一个图片位置</span><br><span class="hljs-selector-tag">-</span> (NSInteger)<span class="hljs-selector-tag">preview</span>:(FJKPhotoPreviewView *_Nullable)<span class="hljs-selector-tag">photoPreviewView</span> <span class="hljs-selector-tag">didClickSelectedItemAtIndex</span>:(NSInteger)<span class="hljs-selector-tag">index</span>;<br><span class="hljs-comment">//获取当前图片所在下标位置</span><br><span class="hljs-selector-tag">-</span> (NSInteger)<span class="hljs-selector-tag">preview</span>:(FJKPhotoPreviewView *_Nullable)<span class="hljs-selector-tag">photoPreviewView</span> <span class="hljs-selector-tag">indexPath</span>:(NSIndexPath *_Nonnull)<span class="hljs-selector-tag">indexPath</span>;<br><span class="hljs-comment">//验证当前下标的完整性</span><br><span class="hljs-selector-tag">-</span> (NSInteger)<span class="hljs-selector-tag">preview</span>:(FJKPhotoPreviewView *_Nullable)<span class="hljs-selector-tag">photoPreviewView</span> <span class="hljs-selector-tag">currentTagIndex</span>:(NSInteger)<span class="hljs-selector-tag">currentIndex</span>;<br><br><span class="hljs-comment">//extend view</span><br><span class="hljs-selector-tag">-</span> (UIView *_Nullable)<span class="hljs-selector-tag">previewExtendView</span>:(FJKPhotoPreviewView *_Nullable)<span class="hljs-selector-tag">photoPreviewView</span>;<br><br>@<span class="hljs-selector-tag">end</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>具体的含义也都有注释，根据注释去填充即可，这里特别注意一个<code>previewExtendView</code>方法，该方法是提供另外的视图view通过适配器的代理实现，也就是适配中还有一个视图代理方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">weak</span>) <span class="hljs-keyword">id</span>&lt;FJKPreviewViewDelegateAdapterProtocol&gt; delegate;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">-</span> (UIView *_Nullable)<span class="hljs-selector-tag">previewExtendView</span>:(FJKPhotoPreviewView *_Nullable)<span class="hljs-selector-tag">photoPreviewView</span> &#123;<br>    <span class="hljs-selector-tag">if</span> (self.delegate &amp;&amp; [self.delegate <span class="hljs-attribute">respondsToSelector</span>:<span class="hljs-variable">@selector</span>(previewExtendView)]) &#123;<br>        <span class="hljs-selector-tag">return</span> <span class="hljs-selector-attr">[self.delegate previewExtendView]</span>;<br>    &#125;<br>    <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">nil</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>也就是预览中扩展视图的处理是通过适配器<code>FJKPreviewViewDelegateAdapterProtocol</code>代理来实现的，当然这个协议不是一成不变的，可以不断进行扩展的，但是有一点需要注意，为了不污染内部数据环境，所有的扩展视图的操作和事件都需要在适配器外部完成，适配器不会去处理对应的操作和事件信息。到这里关于扩展的使用说明完成。</p>
+</blockquote>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>该扩展目前还需要补充的地方有两点，一是多视频的容器替换处理，二是扩展视图的具体处理，这个要根据两端具体的UI设计进行兼容，后期根据需求不断进行版本维护。</li>
+<li>在自动解析数据适配方面还需要扩展提供多类型的数据形式解析api。</li>
+<li>该组件依赖的三方库包括JXCategoryView、QMUIKit、MJExtension。</li>
+<li>再次感谢缪烨大大的前期工作，为后期的开发打下了基础。</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2020/04/09/iOS/%E7%9B%B8%E5%86%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2020&#x2F;04&#x2F;09&#x2F;iOS&#x2F;%E7%9B%B8%E5%86%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2020&#x2F;04&#x2F;09&#x2F;iOS&#x2F;%E7%9B%B8%E5%86%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/%E7%9B%B8%E5%86%8C%E6%B5%8F%E8%A7%88-%E9%A2%84%E8%A7%88-QMUI-%E9%80%82%E9%85%8D%E5%99%A8/" rel="tag">相册浏览, 预览, QMUI, 适配器</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2020/04/10/iOS/%E8%A1%A8%E5%8D%95%E9%80%82%E9%85%8D%E5%99%A8/"><i class="iconfont iconleft"></i>iOS表单适配器</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2020/04/01/iOS/dispatch_group%E5%BC%95%E8%B5%B7%E7%9A%84%E5%BC%82%E5%B8%B8/">dispatch_group同步异常问题<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%98%BE%E7%A4%BA%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="toc-text">实际显示示意图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-text">层次结构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E4%BD%BF%E7%94%A8"><span class="toc-text">具体使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E8%A7%86%E5%9B%BE%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-text">预览视图的扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

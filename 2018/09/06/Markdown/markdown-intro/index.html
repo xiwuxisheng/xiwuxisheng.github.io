@@ -1,0 +1,649 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>一份简明的 Markdown 笔记与教程 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="为部门内知识分享准备的素材，记录了 Markdown ...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">一份简明的 Markdown 笔记与教程</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-markdown-1.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">一份简明的 Markdown 笔记与教程</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>九月 06, 2018</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>9091</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>为部门内知识分享准备的素材，记录了 Markdown 的优点、应用场景和编辑工具，介绍了标准语法与扩展语法，以及一些应用 Markdown 的奇技淫巧。个人使用 Markdown 的经验持续补充中，最新完整版请参见</p>
+<p><a href="https://github.com/mzlogin/markdown-intro">https://github.com/mzlogin/markdown-intro</a></p>
+<hr>
+<p>自从 2014 年左右接触到 Markdown 以来，对它的使用就一发而不可收拾。从最开始使用它在 GitHub Pages 里写博客，到用它编辑项目的 README 文件，再到撰写开发文档，编辑微信公众号文章和邮件内容等等，这期间也见证了它在各类平台和网站上的普及和被原生支持，可以说，Markdown 如今已经渗透了我在技术和网络活动的方方面面，成为了我撰写文本文档的首选。</p>
+<p>那么首先我们一起来看一下它的「定义」：</p>
+<blockquote>
+<p>Markdown 是一种轻量级标记语言，创始人为 John Gruber。它允许人们「使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者 HTML）文档」。——维基百科</p>
+</blockquote>
+<p>本文档的目的不在于面面俱到地介绍 Markdown，只是作为我对其理解的笔记整理，希望能同时帮助一些对 Markdown 感兴趣的人快速上手，或是作为一个工具，供对其已经有所了解的人在需要时参考。</p>
+<p>接下来请随我一起深入了解这门并不神秘的实用标记语言。</p>
+<p><strong>目录</strong></p>
+<ul>
+<li>TOC<br>{:toc}</li>
+</ul>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li><p>专注于文字内容；</p>
+</li>
+<li><p>纯文本，易读易写，可以方便地纳入版本控制；</p>
+</li>
+<li><p>语法简单，没有什么学习成本，能轻松在码字的同时做出美观大方的排版。</p>
+</li>
+</ol>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li><p>各类代码托管平台</p>
+<p>  主流的代码托管平台，如 GitHub、GitLab、BitBucket、Coding、Gitee 等等，都支持 Markdown 语法，很多开源项目的 README、开发文档、帮助文档、Wiki 等都用 Markdown 写作。</p>
+</li>
+<li><p>技术社区和写作平台</p>
+<p>  StackOverflow、CSDN、掘金、简书、GitBook、有道云笔记</p>
+</li>
+<li><p>论坛</p>
+<p>  V2EX、光谷社区</p>
+</li>
+</ul>
+<p>个人感觉比较遗憾的一点是各平台可能采用不同语言实现的 Markdown 解析引擎，或采用同一解析引擎的不同版本，而且可能有不同程度的定制与扩展，这导致在不同平台上使用 Markdown 写作时体验并不完全一致。不过幸好对于大家公认的一些标准语法，各家都是支持的。</p>
+<h3 id="编辑工具"><a href="#编辑工具" class="headerlink" title="编辑工具"></a>编辑工具</h3><p>理论上任何一款文本编辑器都能用于编辑 Markdown 文档，它们分别提供了不同程度的语法高亮、预览等功能，以下只是列举其中一部分，选择自己称手的即可。</p>
+<ul>
+<li><p>现代编辑器</p>
+<p>  VSCode / Atom</p>
+</li>
+<li><p>传统编辑器</p>
+<p>  Vim / Emacs / Sublime Text / Notepad++</p>
+</li>
+<li><p>IDE 自带编辑器</p>
+<p>  IntelliJ IDEA / Android Studio / WebStorm</p>
+</li>
+<li><p>专用编辑器</p>
+<p>  Ulysses / Mou / Typora / Markpad</p>
+</li>
+<li><p>在线编辑器</p>
+<p>  各种支持 Markdown 的网站都提供了在线编辑器</p>
+</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p><strong>Markdown：</strong></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"># atx-style 一级标题<br><br>## 二级标题<br><br>###### 六级标题<br><br><span class="hljs-section">Setext-style 一级标题</span><br><span class="hljs-section">===</span><br><br><span class="hljs-section">二级标题</span><br><span class="hljs-section">---</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<blockquote>
+<h1 id="atx-style-一级标题"><a href="#atx-style-一级标题" class="headerlink" title="atx-style 一级标题"></a>atx-style 一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h1 id="Setext-style-一级标题"><a href="#Setext-style-一级标题" class="headerlink" title="Setext-style 一级标题"></a>Setext-style 一级标题</h1><h2 id="二级标题-1"><a href="#二级标题-1" class="headerlink" title="二级标题"></a>二级标题</h2></blockquote>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>atx-style 一级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>二级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>六级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Setext-style 一级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>二级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h3><p>中间没有空行的连续不断的几行文字被视为一个段落。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs">白日依山尽，<br><br>黄河入海流。<br>（句号后面没空格）<br><br>欲穷千里目，<br><br>更上一层楼。  <br>（句号后面有俩空格）<br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<p>白日依山尽，</p>
+<p>黄河入海流。<br>（句号后面没空格）</p>
+<p>欲穷千里目，</p>
+<p>更上一层楼。<br>（句号后面有俩空格）</p>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>白日依山尽，<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>黄河入海流。<br>（句号后面没有空格）<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>欲穷千里目，<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>  更上一层楼。<br>  <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>  （句号后面有俩空格）<br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="行内格式"><a href="#行内格式" class="headerlink" title="行内格式"></a>行内格式</h3><p>对段落或者部分文本的强调效果。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">后面俩字<span class="hljs-strong">**加黑**</span><br><br>后面俩字<span class="hljs-strong">*斜体*</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<p>后面俩字<strong>加黑</strong></p>
+<p>后面俩字<em>斜体</em></p>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>  后面俩字<br>  <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>加黑<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>  后面俩字<br>  <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>斜体<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="引用块"><a href="#引用块" class="headerlink" title="引用块"></a>引用块</h3><p><strong>Markdown：</strong></p>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta">&gt;</span> <span class="javascript">引用块段落一。</span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">引用块段落二。</span><br>&gt;&gt; 内嵌引用块段落一。<br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">### 引用块内的标题</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<blockquote>
+<p>引用块段落一。</p>
+<p>引用块段落二。</p>
+<blockquote>
+<p>内嵌引用块段落一。</p>
+</blockquote>
+<h3 id="引用块内的标题"><a href="#引用块内的标题" class="headerlink" title="引用块内的标题"></a>引用块内的标题</h3></blockquote>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">blockquote</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>引用块段落一。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>引用块段落二。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">blockquote</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>内嵌引用块段落一。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">blockquote</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;引用块内的标题&quot;</span>&gt;</span>引用块内的标题<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">blockquote</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h3><p>Markdown 支持行内式链接和引用式链接。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs stylus">行内式 <span class="hljs-selector-attr">[博客]</span>(https:<span class="hljs-comment">//mazhuang.org &quot;我的个人博客&quot;) 链接，带 title。</span><br><br>行内式 <span class="hljs-selector-attr">[GitHub]</span>(https:<span class="hljs-comment">//github.com/mzlogin) 链接。</span><br><br>引用式 <span class="hljs-selector-attr">[博客]</span><span class="hljs-selector-attr">[1]</span> 链接。<br><br>引用式 <span class="hljs-selector-attr">[GitHub]</span><span class="hljs-selector-attr">[2]</span> 链接，带 title。<br><br><span class="hljs-selector-attr">[1]</span>: https:<span class="hljs-comment">//mazhuang.org</span><br><span class="hljs-selector-attr">[2]</span>: https:<span class="hljs-comment">//github.com/mzlogin &quot;我的 GitHub 主页&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<p>行内式 <a target="_blank" rel="noopener" href="https://mazhuang.org/" title="我的个人博客">博客</a> 链接，带 title。</p>
+<p>行内式 <a href="https://github.com/mzlogin">GitHub</a> 链接。</p>
+<p>引用式 <a target="_blank" rel="noopener" href="https://mazhuang.org/">博客</a> 链接。</p>
+<p>引用式 <a href="https://github.com/mzlogin" title="我的 GitHub 主页">GitHub</a> 链接，带 title。</p>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>行内式 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://mazhuang.org&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;我的个人博客&quot;</span>&gt;</span>博客<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> 链接，带 title。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>行内式 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://github.com/mzlogin&quot;</span>&gt;</span>GitHub<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> 链接。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>引用式 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://mazhuang.org&quot;</span>&gt;</span>博客<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> 链接。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>引用式 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://github.com/mzlogin&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;我的 GitHub 主页&quot;</span>&gt;</span>GitHub<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> 链接，带 title。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>在超链接的写法前加一个 <code>!</code>，就是引用图片的方法。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">![Alt text](https:<span class="hljs-regexp">//m</span>azhuang.org/favicon.ico <span class="hljs-string">&quot;favicon&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<p><img    class="lazyload" data-original="https://mazhuang.org/favicon.ico" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    title="favicon"><span class="image-caption">Alt text</span></p>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://mazhuang.org/favicon.ico&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Alt text&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;favicon&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>包括有序列表和无序列表。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> 苹果<br><span class="hljs-bullet">-</span> 葡萄<br><span class="hljs-bullet">-</span> 榴莲<br><br><span class="hljs-bullet">1.</span> 苹果<br><span class="hljs-bullet">2.</span> 葡萄<br><span class="hljs-bullet">3.</span> 榴莲<br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<ul>
+<li>苹果</li>
+<li>葡萄</li>
+<li>榴莲</li>
+</ul>
+<ol>
+<li>苹果</li>
+<li>葡萄</li>
+<li>榴莲</li>
+</ol>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>苹果<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>葡萄<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>榴莲<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>苹果<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>葡萄<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>榴莲<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>其中无序列表的标记可以使用 <code>+</code>、<code>-</code> 或 <code>*</code>，有序列表前的数字可以是乱序的。</p>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>支持行内代码和代码块。</p>
+<p><strong>Markdown：</strong></p>
+<pre><code>Android 里使用 `TextUtils` 类的 `isEmpty` 方法来判断字符串是否为空。
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (TextUtils.isEmpty(text)) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</code></pre>
+<p><strong>预览效果：</strong></p>
+<p>Android 里使用 <code>TextUtils</code> 类的 <code>isEmpty</code> 方法来判断字符串是否为空。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (TextUtils.isEmpty(text)) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Android 里使用 <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>TextUtils<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span> 类的 <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>isEmpty<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span> 方法来判断字符串是否为空。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;highlight highlight-source-java&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pl-k&quot;</span>&gt;</span>if<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> (<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pl-smi&quot;</span>&gt;</span>TextUtils<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pl-k&quot;</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>isEmpty(text)) &#123;<br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pl-k&quot;</span>&gt;</span>return<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pl-c1&quot;</span>&gt;</span>null<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>;<br>&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上例中的语言标记 <code>java</code> 可选填，可用于在编辑器和渲染后的效果里添加语法高亮。</p>
+<p>块式代码也可以对整个代码段缩进四个空格，或一个 Tab 来实现。</p>
+<h3 id="水平分割线"><a href="#水平分割线" class="headerlink" title="水平分割线"></a>水平分割线</h3><p>使用一个单独行里的三个或以上 <code>*</code>、<code>-</code> 来生产一条水平分割线，它们之间可以有空格。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs diff">***<br><br><span class="hljs-comment">-----</span><br><br><span class="hljs-deletion">- - -</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<hr>
+<hr>
+<hr>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;hr /&gt;</span><br><br><span class="hljs-section">&lt;hr /&gt;</span><br><br><span class="hljs-section">&lt;hr /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="嵌入-HTML"><a href="#嵌入-HTML" class="headerlink" title="嵌入 HTML"></a>嵌入 HTML</h3><p>Markdown 标记语言的目的不是替代 HTML，也不是发明一种更便捷的插入 HTML 标签的方式。它对应的只是 HTML 标签的一个很小的子集。</p>
+<p>对于那些没有办法用 Markdown 语法来对应的 HTML 标签，直接使用 HTML 来写就好了。</p>
+<h2 id="扩展语法"><a href="#扩展语法" class="headerlink" title="扩展语法"></a>扩展语法</h2><p>本节的内容是介绍一些受到广泛支持的 Markdown 扩展语法。</p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p><strong>Markdown：</strong></p>
+<pre><code>| 编号  | 姓名（左） | 年龄（右） | 性别（中） |
+| ----- | :--------  | ---------: | :------:   |
+| 0     | 张三       | 28         | 男         |
+| 1     | 李四       | 29         | 男         |
+</code></pre>
+<p><strong>预览效果：</strong></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th align="left">姓名（左）</th>
+<th align="right">年龄（右）</th>
+<th align="center">性别（中）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td align="left">张三</td>
+<td align="right">28</td>
+<td align="center">男</td>
+</tr>
+<tr>
+<td>1</td>
+<td align="left">李四</td>
+<td align="right">29</td>
+<td align="center">男</td>
+</tr>
+</tbody></table>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>编号<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>姓名（左）<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>年龄（右）<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>性别（中）<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>张三<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>28<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>李四<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>29<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>在 GitHub / GitLab 里有较好的支持。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>[x] 洗碗<br><span class="hljs-bullet">- </span>[ ] 清洗油烟机<br><span class="hljs-bullet">- </span>[ ] 拖地<br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 洗碗</li>
+<li><input disabled="" type="checkbox"> 清洗油烟机</li>
+<li><input disabled="" type="checkbox"> 拖地</li>
+</ul>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;contains-task-list&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;task-list-item&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;task-list-item-checkbox&quot;</span> <span class="hljs-attr">checked</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span> 洗碗<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;task-list-item&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;task-list-item-checkbox&quot;</span>&gt;</span> 清洗油烟机<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;task-list-item&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;task-list-item-checkbox&quot;</span>&gt;</span> 拖地<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果是在 GitHub / GitLab 的 Issue 里，会附赠任务完成比例提示效果：</p>
+<p><img    class="lazyload" data-original="https://raw.githubusercontent.com/mzlogin/markdown-intro/master/assets/task-list-1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">task list 1</span></p>
+<p>还可以直接在网页上拖动调整顺序，勾选和取消勾选。</p>
+<p><img    class="lazyload" data-original="https://raw.githubusercontent.com/mzlogin/markdown-intro/master/assets/task-list-2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">task list 2</span></p>
+<h3 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h3><p><strong>Markdown：</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">后面三个字打上~~删除线~~。<br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<p>后面三个字打上<del>删除线</del>。</p>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>后面三个字打上<span class="hljs-tag">&lt;<span class="hljs-name">del</span>&gt;</span>删除线<span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span>。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h3><p>自动链接扩展，即：当识别到 URL，或用 <code>&lt;</code>、<code>&gt;</code> 包括的 URL 时，会自动为其生成 <code>a</code> 标签。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">https:</span><span class="hljs-comment">//github.com</span><br><br><span class="hljs-params">&lt;example@gmail.com&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<p><a href="https://github.com/">https://github.com</a></p>
+<p><a href="mailto:&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://github.com&quot;</span>&gt;</span>https://github.com<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:example@gmail.com&quot;</span>&gt;</span>example@gmail.com<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="emoji"><a href="#emoji" class="headerlink" title="emoji"></a>emoji</h3><p>以 GitHub Pages 为例。</p>
+<p><strong>Markdown：</strong></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-meta">:camel:</span> :blush: :smile:<br></code></pre></td></tr></table></figure>
+
+<p><strong>预览效果：</strong></p>
+<p>:camel: :blush: :smile:</p>
+<p><strong>对应 HTML：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;emoji&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;:camel:&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;:camel:&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f42b.png&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;20&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;20&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;emoji&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;:blush:&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;:blush:&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f60a.png&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;20&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;20&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;emoji&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;:smile:&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;:smile:&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;20&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;20&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="奇技淫巧"><a href="#奇技淫巧" class="headerlink" title="奇技淫巧"></a>奇技淫巧</h2><p>脑洞清奇的工程师们还发掘了很多使用 Markdown 的方法，大部分都是引入第三方 JavaScript 插件来实现。对这部分我只做简述，对其中的部分功能比如作图等，还是推荐用专门的可视化工具去做。</p>
+<h3 id="画流程图和时序图"><a href="#画流程图和时序图" class="headerlink" title="画流程图和时序图"></a>画流程图和时序图</h3><p>有部分网站和编辑器实现了对 Markdown 里流程图和时序图的支持，比如我们使用的项目管理工具 TAPD 的在线编辑器，还有 VSCode + 插件 Markdown Preview Enhanced 等。</p>
+<p>以我们使用的项目管理工具 TAPD 的在线编辑器为例：</p>
+<p><img    class="lazyload" data-original="https://raw.githubusercontent.com/mzlogin/markdown-intro/master/assets/tapd-markdown-flowchart.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">流程图</span></p>
+<p><img    class="lazyload" data-original="https://raw.githubusercontent.com/mzlogin/markdown-intro/master/assets/tapd-markdown-seq.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">时序图</span></p>
+<h3 id="插入数学公式"><a href="#插入数学公式" class="headerlink" title="插入数学公式"></a>插入数学公式</h3><p>仍然以 TAPD 为例：</p>
+<p><img    class="lazyload" data-original="https://raw.githubusercontent.com/mzlogin/markdown-intro/master/assets/tapd-markdown-math.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">数学公式</span></p>
+<p>应该是利用 JavaScript 支持了 LaTeX 公式语法。</p>
+<h3 id="用-Markdown-做-PPT"><a href="#用-Markdown-做-PPT" class="headerlink" title="用 Markdown 做 PPT"></a>用 Markdown 做 PPT</h3><p>有专门的工具 <a href="https://github.com/yhatt/marp">Marp</a>，另外使用 VSCode + 插件 Markdown Preview Enhanced 也可以实现。</p>
+<h3 id="用-Markdown-写微信公众号"><a href="#用-Markdown-写微信公众号" class="headerlink" title="用 Markdown 写微信公众号"></a>用 Markdown 写微信公众号</h3><p>可以将公众号素材用 Markdown 编辑好后，贴到在线排版工具以后，复制到公众号编辑器里即可。有多种页面主题和代码主题可选择。</p>
+<p>我维护的工具地址：<a target="_blank" rel="noopener" href="https://md.mazhuang.org/">https://md.mazhuang.org</a></p>
+<p><img    class="lazyload" data-original="https://raw.githubusercontent.com/mzlogin/markdown-intro/master/assets/wechat-markdown.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">微信公众号</span></p>
+<h3 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h3><p>想象力丰富的工程师们还扩展了很多基于 Markdown 的玩法，包括但不限于：</p>
+<ul>
+<li>自动生成 / 更新 Table of Contents</li>
+<li>流程图 / 时序图</li>
+<li>制作幻灯片</li>
+<li>集成 PlantUML / GraphViz 的能力</li>
+<li>导出 HTML / PDF / 电子书</li>
+<li>…</li>
+</ul>
+<p>以上功能基本都可以用 VSCode + 插件 Markdown Preview Enhanced 实现。</p>
+<p>另外可以参考我以前的一篇博客 <a target="_blank" rel="noopener" href="https://mazhuang.org/2017/09/01/markdown-odd-skills/">关于 Markdown 的一些奇技淫巧</a>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://daringfireball.net/projects/markdown/syntax">Markdown: Syntax - DARING FIREBALL</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Markdown">Markdown - 维基百科</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.github.com/gfm/">GitHub Flavored Markdown Spec</a></li>
+<li><a target="_blank" rel="noopener" href="https://mazhuang.org/2017/09/01/markdown-odd-skills/">关于 Markdown 的一些奇技淫巧</a></li>
+</ul>
+<hr>
+<p>欢迎关注我的微信公众号，接收 markdown-intro 最新动态。</p>
+<div align="center"><img  width="192px" height="192px"  class="lazyload" data-original="https://mazhuang.org/assets/images/qrcode.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></div>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2018/09/06/Markdown/markdown-intro/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2018&#x2F;09&#x2F;06&#x2F;Markdown&#x2F;markdown-intro&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2018&#x2F;09&#x2F;06&#x2F;Markdown&#x2F;markdown-intro&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/Markdown-VSCode/" rel="tag">Markdown, VSCode</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2019/05/25/Java/a-stupid-bug/"><i class="iconfont iconleft"></i>记一个折磨了我一天半的 Bug</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2017/12/03/Andriod/tcp-connect-between-android-emulators/">解决两个 Android 模拟器之间无法网络通信的问题<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7"><span class="toc-text">编辑工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%A2%98"><span class="toc-text">标题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#atx-style-%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">atx-style 一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">二级标题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Setext-style-%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-text">Setext-style 一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98-1"><span class="toc-text">二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E8%90%BD"><span class="toc-text">段落</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E6%A0%BC%E5%BC%8F"><span class="toc-text">行内格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E5%9D%97"><span class="toc-text">引用块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E5%9D%97%E5%86%85%E7%9A%84%E6%A0%87%E9%A2%98"><span class="toc-text">引用块内的标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="toc-text">超链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-text">图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E5%88%86%E5%89%B2%E7%BA%BF"><span class="toc-text">水平分割线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%85%A5-HTML"><span class="toc-text">嵌入 HTML</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E8%AF%AD%E6%B3%95"><span class="toc-text">扩展语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-text">表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="toc-text">任务列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%BA%BF"><span class="toc-text">删除线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E9%93%BE%E6%8E%A5"><span class="toc-text">自动链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emoji"><span class="toc-text">emoji</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7"><span class="toc-text">奇技淫巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%BB%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%92%8C%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-text">画流程图和时序图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="toc-text">插入数学公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8-Markdown-%E5%81%9A-PPT"><span class="toc-text">用 Markdown 做 PPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8-Markdown-%E5%86%99%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-text">用 Markdown 写微信公众号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A"><span class="toc-text">更多</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

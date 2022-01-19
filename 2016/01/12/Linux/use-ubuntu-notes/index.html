@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ubuntu 使用笔记 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="使用 Ubuntu 过程中遇到的问题及解决方案。
+使用...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Ubuntu 使用笔记</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-ubuntu-1.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Ubuntu 使用笔记</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 12, 2016</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3700</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>使用 Ubuntu 过程中遇到的问题及解决方案。</p>
+<h2 id="使用-git-pull-遇到问题"><a href="#使用-git-pull-遇到问题" class="headerlink" title="使用 git pull 遇到问题"></a>使用 git pull 遇到问题</h2><p>提示</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Agent admitted failure <span class="hljs-built_in">to</span> sign <span class="hljs-keyword">using</span> <span class="hljs-keyword">the</span> key.<br>Permission denied (publickey).<br>fatal: Could <span class="hljs-keyword">not</span> <span class="hljs-built_in">read</span> <span class="hljs-built_in">from</span> remote repository.<br><br>Please make sure you have <span class="hljs-keyword">the</span> correct access rights<br><span class="hljs-keyword">and</span> <span class="hljs-keyword">the</span> repository exists.<br></code></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh-add ~/.ssh/id_rsa<br></code></pre></td></tr></table></figure>
+
+<h2 id="图形界面编辑配置文件"><a href="#图形界面编辑配置文件" class="headerlink" title="图形界面编辑配置文件"></a>图形界面编辑配置文件</h2><p>安装 dconf-editor。</p>
+<h2 id="配置-Exchange"><a href="#配置-Exchange" class="headerlink" title="配置 Exchange"></a>配置 Exchange</h2><p>为 ThunderBird 安装插件 ExQuilla，有时被墙。</p>
+<p><a target="_blank" rel="noopener" href="http://mesquilla.net/exquilla-currentrelease-tb-linux.xpi">http://mesquilla.net/exquilla-currentrelease-tb-linux.xpi</a></p>
+<h2 id="安装和配置-JDK"><a href="#安装和配置-JDK" class="headerlink" title="安装和配置 JDK"></a>安装和配置 JDK</h2><p>在 Terminal 运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo add-apt-repository ppa:webupd8team/java<br>sudo apt-get update<br>sudo apt-get install oracle-java8-installer<br><br>sudo vim /etc/profile<br><br><span class="hljs-built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-8-oracle<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$JAVA_HOME</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$JAVA_HOME</span>/lib:<span class="hljs-variable">$JRE_HOME</span>/lib<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$JRE_HOME</span>/bin:<span class="hljs-variable">$PATH</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="配置-adt"><a href="#配置-adt" class="headerlink" title="配置 adt"></a>配置 adt</h2><p>安装兼容 32 位 adb 运行的环境</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6<br></code></pre></td></tr></table></figure>
+
+<p>添加路径到 $PATH 环境变量，修改 /etc/profile 或 ~/.profile 等皆可。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">ANDROID_SDK_HOME</span>=/home/mzlogin/android/sdk<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$ANDROID_SDK_HOME</span>/platform-tools:$ANDROID_SDK_HOME/tools:$PATH<br></code></pre></td></tr></table></figure>
+
+<h2 id="安装-SVN-图形前端-RabbitVCS"><a href="#安装-SVN-图形前端-RabbitVCS" class="headerlink" title="安装 SVN 图形前端 RabbitVCS"></a>安装 SVN 图形前端 RabbitVCS</h2><p>在 Terminal 运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo add-apt-repository ppa:rabbitvcs/ppa<br>sudo apt-get update<br>sudo apt-get install rabbitvcs-nautilus3 rabbitvcs-thunar rabbitvcs-gedit rabbitvcs-cli<br></code></pre></td></tr></table></figure>
+
+<h2 id="创建-eclipse-快捷方式"><a href="#创建-eclipse-快捷方式" class="headerlink" title="创建 eclipse 快捷方式"></a>创建 eclipse 快捷方式</h2><p>/usr/share/applications 里新建 Eclipse.desktop，填如下内容：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Desktop Entry]</span><br><span class="hljs-attr">Name</span>=Eclipse<br><span class="hljs-attr">Comment</span>=Launch Eclipse<br><span class="hljs-attr">Exec</span>=/home/mzlogin/android/eclipse/eclipse<br><span class="hljs-attr">Icon</span>=/home/mzlogin/android/eclipse/icon.xpm<br><span class="hljs-attr">StartupNotify</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">Terminal</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">Type</span>=Application<br></code></pre></td></tr></table></figure>
+
+<h2 id="安装-XMind"><a href="#安装-XMind" class="headerlink" title="安装 XMind"></a>安装 XMind</h2><p>到 XMind 官网下载安装包，然后 ：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo dpkg --ignore-depends=lame,libwebkitgtk-1.0-0 -i xmind-linux-3.5.0.201410310637_amd64.deb<br></code></pre></td></tr></table></figure>
+
+<h2 id="切换输入法"><a href="#切换输入法" class="headerlink" title="切换输入法"></a>切换输入法</h2><p>添加一个英文，一个五笔，将切换到上一个源和下一个源的快捷键分别设为左和右 Shift，这样就可以使用左右 Shift 在中英之间来回切换了。</p>
+<p>安装 im-switch 会导致语言支持被移除，恢复用 <code>sudo apt-get install language-selector-gnome</code>。</p>
+<h2 id="消除启动-gVim-在-terminal-中的警告"><a href="#消除启动-gVim-在-terminal-中的警告" class="headerlink" title="消除启动 gVim 在 terminal 中的警告"></a>消除启动 gVim 在 terminal 中的警告</h2><p>安装 vim-gnome 后运行 gVim 会提示：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">GLib-GObject-<span class="hljs-built_in">WARNING</span> **: Attempt <span class="hljs-keyword">to</span> <span class="hljs-keyword">add</span> property GnomeProgram::sm-<span class="hljs-keyword">connect</span> <span class="hljs-keyword">after</span> <span class="hljs-keyword">class</span> was initialised<br></code></pre></td></tr></table></figure>
+
+<p>改为安装 vim-gtk 就好了。</p>
+<h2 id="解决-ibus-五笔候选词水平显示和个数的问题"><a href="#解决-ibus-五笔候选词水平显示和个数的问题" class="headerlink" title="解决 ibus 五笔候选词水平显示和个数的问题"></a>解决 ibus 五笔候选词水平显示和个数的问题</h2><p>修改 /usr/share/ibus-table/tables/wubi-jidian86.db 的 ime 表里的 orientation（水平 0 垂直 1）和 select_keys（有几个选择键就有几个项，从下面代码可知用 <code>,</code> 分隔）。</p>
+<p>/usr/share/ibus-tables/engine/tabsqlitedb.py 中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_page_size</span> (<span class="hljs-params">self</span>):</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(self.get_select_keys().split(<span class="hljs-string">&#x27;,&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<h2 id="将-Caps-Lock-映射为-Ctrl"><a href="#将-Caps-Lock-映射为-Ctrl" class="headerlink" title="将 Caps Lock 映射为 Ctrl"></a>将 Caps Lock 映射为 Ctrl</h2><ol>
+<li><p>安装 Gnome Tweak Tool</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt-get install gnome-tweak-tool<br></code></pre></td></tr></table></figure></li>
+<li><p>打开 tweak-tool，找到「打字」－「大写锁定键行为」，选择「将 CapsLock 作为额外的 Ctrl」</p>
+</li>
+</ol>
+<p>参考 <a target="_blank" rel="noopener" href="http://askubuntu.com/questions/462021/how-do-i-turn-caps-lock-into-an-extra-control-key">http://askubuntu.com/questions/462021/how-do-i-turn-caps-lock-into-an-extra-control-key</a></p>
+<h2 id="将个人文件夹下文件夹名改为英文"><a href="#将个人文件夹下文件夹名改为英文" class="headerlink" title="将个人文件夹下文件夹名改为英文"></a>将个人文件夹下文件夹名改为英文</h2><p>~ 目录下的「桌面」和「文档」等文件夹是中文，在 Terminal 下输入很不方便，将其改为英文的方法：</p>
+<ol>
+<li><p>打开 ~/.config/user-dirs.dirs，将其中的中文改掉：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">XDG_DESKTOP_DIR</span>=<span class="hljs-string">&quot;$HOME/desktop&quot;</span><br><span class="hljs-attr">XDG_DOWNLOAD_DIR</span>=<span class="hljs-string">&quot;$HOME/downloads&quot;</span><br><span class="hljs-attr">XDG_TEMPLATES_DIR</span>=<span class="hljs-string">&quot;$HOME/templates&quot;</span><br><span class="hljs-attr">XDG_PUBLICSHARE_DIR</span>=<span class="hljs-string">&quot;$HOME/public&quot;</span><br><span class="hljs-attr">XDG_DOCUMENTS_DIR</span>=<span class="hljs-string">&quot;$HOME/documents&quot;</span><br><span class="hljs-attr">XDG_MUSIC_DIR</span>=<span class="hljs-string">&quot;$HOME/music&quot;</span><br><span class="hljs-attr">XDG_PICTURES_DIR</span>=<span class="hljs-string">&quot;$HOME/pictures&quot;</span><br><span class="hljs-attr">XDG_VIDEOS_DIR</span>=<span class="hljs-string">&quot;$HOME/videos&quot;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>在文件管理器中将 HOME 目录下的中文文件夹名改成与上面的配置对应。</p>
+</li>
+</ol>
+<h2 id="输入「」与『』"><a href="#输入「」与『』" class="headerlink" title="输入「」与『』"></a>输入「」与『』</h2><p>极点五笔中文输入状态下，按 [] 即输入「」，按 {} 即输入『』。</p>
+<h2 id="VirtualBox-里-Ubuntu-分辨率无法调整"><a href="#VirtualBox-里-Ubuntu-分辨率无法调整" class="headerlink" title="VirtualBox 里 Ubuntu 分辨率无法调整"></a>VirtualBox 里 Ubuntu 分辨率无法调整</h2><p>Ubuntu 14.04 LTS 在 VirtualBox 中刚安装完时，分辨率只有 640*480 一种选项，无法调整。</p>
+<p>解决方法：</p>
+<ol>
+<li><p>打开 xdiagnose</p>
+<p><img   class="lazyload" data-original="/images/posts/linux/xdiagnose.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+</li>
+<li><p>勾选 Debug 下的所有选项</p>
+<p><img   class="lazyload" data-original="/images/posts/linux/xdiagnose-2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+</li>
+<li><p>重启</p>
+</li>
+<li><p>安装增强功能</p>
+<p><img   class="lazyload" data-original="/images/posts/linux/install-additions.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>然后：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span> <span class="hljs-string">/media/</span>&lt;username&gt;<span class="hljs-string">/VBOXADDITIONS_X.X.XX_XXXXX</span><br>sudo <span class="hljs-string">./VBoxLinuxAdditions.run</span><br></code></pre></td></tr></table></figure>
+
+<p>（注意把 username 替换成自己的，VBOXADDITIONS 后面的 X 换成具体版本号）</p>
+</li>
+</ol>
+<h2 id="与-Win7-共享-SSH-key"><a href="#与-Win7-共享-SSH-key" class="headerlink" title="与 Win7 共享 SSH key"></a>与 Win7 共享 SSH key</h2><p>如下步骤适用于在 Ubuntu 上使用从 Win7 拷贝的 SSH key，反之应该也一样能用。</p>
+<p>创建 ~/.ssh 目录，确认其权限为 0700，将 Windows %userprofile%/.ssh 下的 id_rsa 和 id_rsa.pub 文件拷贝到 ~/.ssh 目录下，权限分别改为 0600 和 0644。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">mzlogin@ubuntu:~$ ll ~/.ssh<br>total 20<br>drwx------  2 mzlogin mzlogin 4096 Jun 22 01:03 ./<br>drwxr-xr-x 20 mzlogin mzlogin 4096 Jun 22 01:02 ../<br>-rw-------  1 mzlogin mzlogin 1679 Jun 21 05:17 id_rsa<br>-rw-r--r--  1 mzlogin mzlogin  399 Jun 21 05:17 id_rsa.pub<br></code></pre></td></tr></table></figure>
+
+<p>然后</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh-add ~/.ssh/id_rsa<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2016/01/12/Linux/use-ubuntu-notes/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;01&#x2F;12&#x2F;Linux&#x2F;use-ubuntu-notes&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2016&#x2F;01&#x2F;12&#x2F;Linux&#x2F;use-ubuntu-notes&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/Linux-Ubuntu/" rel="tag">Linux, Ubuntu</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2016/05/21/GitHub/enable-https-for-github-pages/"><i class="iconfont iconleft"></i>为绑定域名的 GitHub Pages 启用 HTTPS</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2015/12/19/Vim/vim-markdown-toc/">为 Markdown 生成 TOC 的 Vim 插件<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-git-pull-%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98"><span class="toc-text">使用 git pull 遇到问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">图形界面编辑配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Exchange"><span class="toc-text">配置 Exchange</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE-JDK"><span class="toc-text">安装和配置 JDK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-adt"><span class="toc-text">配置 adt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-SVN-%E5%9B%BE%E5%BD%A2%E5%89%8D%E7%AB%AF-RabbitVCS"><span class="toc-text">安装 SVN 图形前端 RabbitVCS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-eclipse-%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-text">创建 eclipse 快捷方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-XMind"><span class="toc-text">安装 XMind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-text">切换输入法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E9%99%A4%E5%90%AF%E5%8A%A8-gVim-%E5%9C%A8-terminal-%E4%B8%AD%E7%9A%84%E8%AD%A6%E5%91%8A"><span class="toc-text">消除启动 gVim 在 terminal 中的警告</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3-ibus-%E4%BA%94%E7%AC%94%E5%80%99%E9%80%89%E8%AF%8D%E6%B0%B4%E5%B9%B3%E6%98%BE%E7%A4%BA%E5%92%8C%E4%B8%AA%E6%95%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">解决 ibus 五笔候选词水平显示和个数的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86-Caps-Lock-%E6%98%A0%E5%B0%84%E4%B8%BA-Ctrl"><span class="toc-text">将 Caps Lock 映射为 Ctrl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E4%B8%AA%E4%BA%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8D%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87"><span class="toc-text">将个人文件夹下文件夹名改为英文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E3%80%8C%E3%80%8D%E4%B8%8E%E3%80%8E%E3%80%8F"><span class="toc-text">输入「」与『』</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VirtualBox-%E9%87%8C-Ubuntu-%E5%88%86%E8%BE%A8%E7%8E%87%E6%97%A0%E6%B3%95%E8%B0%83%E6%95%B4"><span class="toc-text">VirtualBox 里 Ubuntu 分辨率无法调整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E-Win7-%E5%85%B1%E4%BA%AB-SSH-key"><span class="toc-text">与 Win7 共享 SSH key</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

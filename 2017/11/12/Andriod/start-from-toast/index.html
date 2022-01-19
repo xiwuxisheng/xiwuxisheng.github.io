@@ -1,0 +1,621 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Android 源码分析 —— 从 Toast 出发 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="本系列文章在 https://github.com/m...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Android 源码分析 —— 从 Toast 出发</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-andriod-2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Android 源码分析 —— 从 Toast 出发</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 12, 2017</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>26120</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>本系列文章在 <a href="https://github.com/mzlogin/rtfsc-android">https://github.com/mzlogin/rtfsc-android</a> 持续更新中，欢迎有兴趣的童鞋们关注。</p>
+<p><img   class="lazyload" data-original="/images/posts/android/toast.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>（图 from Android Developers）</p>
+<p>Toast 是 Android 开发里较常用的一个类了，有时候用它给用户弹提示信息和界面反馈，有时候用它来作为辅助调试的手段。用得多了，自然想对其表层之下的运行机制有所了解，所以在此将它选为我的第一个 RTFSC Roots。</p>
+<p>本篇采用的记录方式是先对它有个整体的了解，然后提出一些问题，再通过阅读源码，对问题进行一一解读而后得出答案。</p>
+<p>本文使用的工具与源码为：Chrome、插件 insight.io、GitHub 项目 <a href="https://github.com/aosp-mirror/platform_frameworks_base">aosp-mirror/platform_frameworks_base</a></p>
+<p><strong>目录</strong></p>
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#toast-%E5%8D%B0%E8%B1%A1">Toast 印象</a></li>
+<li><a href="#%E6%8F%90%E5%87%BA%E9%97%AE%E9%A2%98">提出问题</a></li>
+<li><a href="#%E8%A7%A3%E7%AD%94%E9%97%AE%E9%A2%98">解答问题</a><ul>
+<li><a href="#toast-%E7%9A%84%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4">Toast 的超时时间</a></li>
+<li><a href="#%E8%83%BD%E4%B8%8D%E8%83%BD%E5%BC%B9%E4%B8%80%E4%B8%AA%E6%97%B6%E9%97%B4%E8%B6%85%E9%95%BF%E7%9A%84-toast">能不能弹一个时间超长的 Toast？</a></li>
+<li><a href="#toast-%E8%83%BD%E4%B8%8D%E8%83%BD%E5%9C%A8%E9%9D%9E-ui-%E7%BA%BF%E7%A8%8B%E8%B0%83%E7%94%A8">Toast 能不能在非 UI 线程调用？</a></li>
+<li><a href="#%E5%BA%94%E7%94%A8%E5%9C%A8%E5%90%8E%E5%8F%B0%E6%97%B6%E8%83%BD%E4%B8%8D%E8%83%BD-toast">应用在后台时能不能 Toast？</a></li>
+<li><a href="#toast-%E6%95%B0%E9%87%8F%E6%9C%89%E6%B2%A1%E6%9C%89%E9%99%90%E5%88%B6">Toast 数量有没有限制？</a></li>
+<li><a href="#toastmaketextshow-%E5%85%B7%E4%BD%93%E9%83%BD%E5%81%9A%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88"><code>Toast.makeText(…).show()</code> 具体都做了些什么？</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a><ul>
+<li><a href="#%E8%A1%A5%E5%85%85%E5%90%8E%E7%9A%84-toast-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%88%97%E8%A1%A8">补充后的 Toast 知识点列表</a></li>
+<li><a href="#%E9%81%97%E7%95%99%E7%9F%A5%E8%AF%86%E7%82%B9">遗留知识点</a></li>
+<li><a href="#%E6%9C%AC%E7%AF%87%E7%94%A8%E5%88%B0%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95">本篇用到的源码分析方法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%8E%E8%AF%9D">后话</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="Toast-印象"><a href="#Toast-印象" class="headerlink" title="Toast 印象"></a>Toast 印象</h2><p>首先我们从 Toast 类的 <a href="1">官方文档</a> 和 <a href="2">API 指南</a> 中可以得出它具备如下特性：</p>
+<ol>
+<li><p>Toast 不是 View，它用于帮助创建并展示包含一条小消息的 View；</p>
+</li>
+<li><p>它的设计理念是尽量不惹眼，但又能展示想让用户看到的信息；</p>
+</li>
+<li><p>被展示时，浮在应用界面之上；</p>
+</li>
+<li><p>永远不会获取到焦点；</p>
+</li>
+<li><p>大小取决于消息的长度；</p>
+</li>
+<li><p>超时后会自动消失；</p>
+</li>
+<li><p>可以自定义显示在屏幕上的位置（默认左右居中显示在靠近屏幕底部的位置）；</p>
+</li>
+<li><p>可以使用自定义布局，也只有在自定义布局的时候才需要直接调用 Toast 的构造方法，其它时候都是使用 makeText 方法来创建 Toast；</p>
+</li>
+<li><p>Toast 弹出后当前 Activity 会保持可见性和可交互性；</p>
+</li>
+<li><p>使用 <code>cancel</code> 方法可以立即将已显示的 Toast 关闭，让未显示的 Toast 不再显示；</p>
+</li>
+<li><p>Toast 也算是一个「通知」，如果弹出状态消息后期望得到用户响应，应该使用 Notification。</p>
+</li>
+</ol>
+<p>不知道你看到这个列表，是否学到了新知识或者明确了以前不确定的东西，反正我在整理列表的时候是有的。</p>
+<h2 id="提出问题"><a href="#提出问题" class="headerlink" title="提出问题"></a>提出问题</h2><p>根据以上特性，再结合平时对 Toast 的使用，提出如下问题来继续本次源码分析之旅（大致由易到难排列，后文用 小 demo 或者源码分析来解答）：</p>
+<ol>
+<li><p>Toast 的超时时间具体是多少？</p>
+</li>
+<li><p>能不能弹一个时间超长的 Toast？</p>
+</li>
+<li><p>Toast 能不能在非 UI 线程调用？</p>
+</li>
+<li><p>应用在后台时能不能 Toast？</p>
+</li>
+<li><p>Toast 数量有没有限制？</p>
+</li>
+<li><p><code>Toast.makeText(…).show()</code> 具体都做了些什么？</p>
+</li>
+</ol>
+<h2 id="解答问题"><a href="#解答问题" class="headerlink" title="解答问题"></a>解答问题</h2><h3 id="Toast-的超时时间"><a href="#Toast-的超时时间" class="headerlink" title="Toast 的超时时间"></a>Toast 的超时时间</h3><p>用这样的一个问题开始「Android 源码分析」，真的好怕被打死……大部分人都会嗤之以鼻：Are you kidding me? So easy. 各位大佬们稍安勿躁，阅读大型源码不是个容易的活，让我们从最简单的开始，一点一点建立自信，将这项伟大的事业进行下去。</p>
+<p>面对这个问题，我的第一反应是去查 <code>Toast.LENGTH_LONG</code> 和 <code>Toast.LENGTH_SHORT</code> 的值，毕竟平时都是用这两个值来控制显示长/短 Toast 的。</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/widget/Toast.java">platform_frameworks_base/core/java/android/widget/Toast.java</a> 中能看到它们俩的定义是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Show the view or text notification for a short period of time.  This time</span><br><span class="hljs-comment"> * could be user-definable.  This is the default.</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@see</span> #setDuration</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> LENGTH_SHORT = <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Show the view or text notification for a long period of time.  This time</span><br><span class="hljs-comment"> * could be user-definable.</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@see</span> #setDuration</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> LENGTH_LONG = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>啊哦~原来它们只是两个 flag，并非确切的时间值。</p>
+<p>既然是 flag，那自然就会有根据不同的 flag 来设置不同的具体值的地方，于是使用 insight.io 点击 <code>LENGTH_SHORT</code> 的定义搜索一波 <code>Toast.LENGTH_SHORT</code> 的引用，在 <a href="https://github.com/aosp-mirror/platform_frameworks_base">aosp-mirror/platform_frameworks_base</a> 里一共有 50 处引用，但都是调用 <code>Toast.makeText(...)</code> 时出现的。</p>
+<p>继续搜索 <code>Toast.LENGTH_LONG</code> 的引用，在 <a href="https://github.com/aosp-mirror/platform_frameworks_base">aosp-mirror/platform_frameworks_base</a> 中共出现 42 次，其中有两处长得像是我们想找的：</p>
+<p>第一处，文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/widget/Toast.java">platform_frameworks_base/core/java/android/widget/Toast.java</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TN</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ITransientNotification</span>.<span class="hljs-title">Stub</span> </span>&#123;<br>    ...<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> SHORT_DURATION_TIMEOUT = <span class="hljs-number">4000</span>;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> LONG_DURATION_TIMEOUT = <span class="hljs-number">7000</span>; <br>    ...<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleShow</span><span class="hljs-params">(IBinder windowToken)</span> </span>&#123;<br>        ...<br>        mParams.hideTimeoutMilliseconds = mDuration ==<br>            Toast.LENGTH_LONG ? LONG_DURATION_TIMEOUT : SHORT_DURATION_TIMEOUT;<br>        ...<br>    &#125;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个 hideTimeoutMilliseconds 是干嘛的呢？</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/view/WindowManager.java">platform_frameworks_base/core/java/android/view/WindowManager.java</a> 里能看到这个 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * ...</span><br><span class="hljs-comment"> * ...                                        . Therefore, we do hide</span><br><span class="hljs-comment"> * such windows to prevent them from overlaying other apps.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@hide</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> hideTimeoutMilliseconds = -<span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>在 GitHub 用 blame 查看到改动这一行的最近一次提交 <a href="https://github.com/aosp-mirror/platform_frameworks_base/commit/aa07653d2eea38a7a5bda5944c8a353586916ae9">aa07653d</a>，它的 commit message 能表明它的用途：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs applescript">Prevent apps <span class="hljs-keyword">to</span> overlay other apps via toast windows<br><br>It was possible <span class="hljs-keyword">for</span> apps <span class="hljs-keyword">to</span> <span class="hljs-keyword">put</span> toast type windows<br><span class="hljs-keyword">that</span> overlay other apps which toast winodws aren&#x27;t<br>removed <span class="hljs-keyword">after</span> a <span class="hljs-keyword">timeout</span>.<br><br>Now <span class="hljs-keyword">for</span> apps targeting SDK <span class="hljs-keyword">greater than</span> N MR1 <span class="hljs-keyword">to</span> add a<br>toast window one needs <span class="hljs-keyword">to</span> have a special token. The token<br><span class="hljs-keyword">is</span> added <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> notificatoion manager service only <span class="hljs-keyword">for</span><br><span class="hljs-keyword">the</span> lifetime <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> shown toast <span class="hljs-keyword">and</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">then</span> removed<br>including all windows associated <span class="hljs-keyword">with</span> this token. This<br>prevents apps <span class="hljs-keyword">to</span> add arbitrary toast windows.<br><br>Since legacy apps may rely <span class="hljs-keyword">on</span> <span class="hljs-keyword">the</span> ability <span class="hljs-keyword">to</span> directly<br>add toasts we mitigate <span class="hljs-keyword">by</span> allowing these apps <span class="hljs-keyword">to</span> still<br>add such windows <span class="hljs-keyword">for</span> unlimited duration <span class="hljs-keyword">if</span> this app <span class="hljs-keyword">is</span><br><span class="hljs-keyword">the</span> currently focused one, i.e. <span class="hljs-keyword">the</span> user interacts <span class="hljs-keyword">with</span><br><span class="hljs-keyword">it</span> <span class="hljs-keyword">then</span> <span class="hljs-keyword">it</span> can overlay itself, otherwise we make sure<br>these toast windows are removed <span class="hljs-keyword">after</span> a <span class="hljs-keyword">timeout</span> like<br>a toast would be.<br><br>We don&#x27;t allow more <span class="hljs-keyword">that</span> one toast window per UID being<br>added <span class="hljs-keyword">at</span> a <span class="hljs-built_in">time</span> which prevents <span class="hljs-number">1</span>) legacy apps <span class="hljs-keyword">to</span> <span class="hljs-keyword">put</span> <span class="hljs-keyword">the</span><br>same toast <span class="hljs-keyword">after</span> a <span class="hljs-keyword">timeout</span> <span class="hljs-keyword">to</span> go <span class="hljs-keyword">around</span> our new policy<br><span class="hljs-keyword">of</span> hiding toasts <span class="hljs-keyword">after</span> a <span class="hljs-keyword">while</span>; <span class="hljs-number">2</span>) modern apps <span class="hljs-keyword">to</span> reuse<br><span class="hljs-keyword">the</span> passed token <span class="hljs-keyword">to</span> add more than one window; Note <span class="hljs-keyword">that</span><br><span class="hljs-keyword">the</span> notification manager shows toasts one <span class="hljs-keyword">at</span> a <span class="hljs-built_in">time</span>.<br></code></pre></td></tr></table></figure>
+
+<p>它并不是用来控制 Toast 的显示时间的，只是为了防止有些应用的 toast 类型的窗口长期覆盖在别的应用上面，而超时自动隐藏这些窗口的时间，可以看作是一种防护措施。</p>
+<p>第二处，文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/services/core/java/com/android/server/notification/NotificationManagerService.java">platform_frameworks_base/services/core/java/com/android/server/notification/NotificationManagerService.java</a> 里</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">long</span> delay = r.duration == Toast.LENGTH_LONG ? LONG_DELAY : SHORT_DELAY;<br></code></pre></td></tr></table></figure>
+
+<p>在同一文件里能找到 <code>LONG_DELAY</code> 与 <code>SHORT_DELAY</code> 的定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> LONG_DELAY = PhoneWindowManager.TOAST_WINDOW_TIMEOUT;<br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> SHORT_DELAY = <span class="hljs-number">2000</span>; <span class="hljs-comment">// 2 seconds</span><br></code></pre></td></tr></table></figure>
+
+<p>点击查看 <code>PhoneWindowManager.TOAST_WINDOW_TIMEOUT</code> 的定义：</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/services/core/java/com/android/server/policy/PhoneWindowManager.java">platform_frameworks_base/services/core/java/com/android/server/policy/PhoneWindowManager.java</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** Amount of time (in milliseconds) a toast window can be shown. */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TOAST_WINDOW_TIMEOUT = <span class="hljs-number">3500</span>; <span class="hljs-comment">// 3.5 seconds</span><br></code></pre></td></tr></table></figure>
+<p>至此，我们可以得出 <strong>结论：Toast 的长/短超时时间分别为 3.5 秒和 2 秒。</strong></p>
+<p><em>Tips: 也可以通过分析代码里的逻辑，一层一层追踪用到 <code>LENGTH_SHORT</code> 和 <code>LENGTH_LONG</code> 的地方，最终得出结论，而这里是根据一些合理推断来简化追踪过程，更快达到目标，这在一些场景下是可取和必要的。</em></p>
+<h3 id="能不能弹一个时间超长的-Toast？"><a href="#能不能弹一个时间超长的-Toast？" class="headerlink" title="能不能弹一个时间超长的 Toast？"></a>能不能弹一个时间超长的 Toast？</h3><p>注：这里探讨的是能否直接通过 Toast 提供的公开 API 做到，网络上能搜索到的使用 Timer、反射、自定义等方式达到弹出一个超长时间 Toast 目的的方法不在讨论范围内。</p>
+<p>我们在 Toast 类的源码里看一下跟设置时长相关的代码：</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/widget/Toast.java">platform_frameworks_base/core/java/android/widget/Toast.java</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java">...<br><br>    <span class="hljs-comment">/** <span class="hljs-doctag">@hide</span> */</span><br>    <span class="hljs-meta">@IntDef(&#123;LENGTH_SHORT, LENGTH_LONG&#125;)</span><br>    <span class="hljs-meta">@Retention(RetentionPolicy.SOURCE)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Duration &#123;&#125;<br><br>...<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Set how long to show the view for.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@see</span> #LENGTH_SHORT</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@see</span> #LENGTH_LONG</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDuration</span><span class="hljs-params">(<span class="hljs-meta">@Duration</span> <span class="hljs-keyword">int</span> duration)</span> </span>&#123;<br>        mDuration = duration;<br>        mTN.mDuration = duration;<br>    &#125;<br><br>...<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Make a standard toast that just contains a text view.</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> context  The context to use.  Usually your &#123;<span class="hljs-doctag">@link</span> android.app.Application&#125;</span><br><span class="hljs-comment">     *                 or &#123;<span class="hljs-doctag">@link</span> android.app.Activity&#125; object.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> text     The text to show.  Can be formatted text.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> duration How long to display the message.  Either &#123;<span class="hljs-doctag">@link</span> #LENGTH_SHORT&#125; or</span><br><span class="hljs-comment">     *                 &#123;<span class="hljs-doctag">@link</span> #LENGTH_LONG&#125;</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Toast <span class="hljs-title">makeText</span><span class="hljs-params">(Context context, CharSequence text, <span class="hljs-meta">@Duration</span> <span class="hljs-keyword">int</span> duration)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> makeText(context, <span class="hljs-keyword">null</span>, text, duration);<br>    &#125;<br><br>...<br></code></pre></td></tr></table></figure>
+
+<p>其实从上面 <code>setDuration</code> 和 <code>makeText</code> 的注释已经可以看出，duration 只能取值 <code>LENGTH_SHORT</code> 和 <code>LENGTH_LONG</code>，除了注释之外，还使用了 <code>@Duration</code> 注解来保证此事。<code>Duration</code> 自身使用了 <code>@IntDef</code> 注解，它用于限制可以取的值。</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/annotation/IntDef.java">platform_frameworks_base/core/java/android/annotation/IntDef.java</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Denotes that the annotated element of integer type, represents</span><br><span class="hljs-comment"> * a logical type and that its value should be one of the explicitly</span><br><span class="hljs-comment"> * named constants. If the &#123;<span class="hljs-doctag">@link</span> #flag()&#125; attribute is set to true,</span><br><span class="hljs-comment"> * multiple constants can be combined.</span><br><span class="hljs-comment"> * ...</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<p>不信邪的我们可以快速在一个 demo Android 工程里写一句这样的代码试试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+
+<p>Android Studio 首先就不会同意，警告你 <code>Must be one of: Toast.LENGTH_SHORT, Toast.LENGTH_LONG</code>，但实际这段代码是可以通过编译的，因为 <code>Duration</code> 注解的 <code>Retention</code> 为 <code>RetentionPolicy.SOURCE</code>，我的理解是该注解主要能用于 IDE 的智能提示警告，编译期就被丢掉了。</p>
+<p>但即使 duration 能传入 <code>LENGTH_SHORT</code> 和 <code>LENGTH_LONG</code> 以外的值，也并没有什么卵用，别忘了这里设置的只是一个 flag，真正计算的时候是 <code>long delay = r.duration == Toast.LENGTH_LONG ? LONG_DELAY : SHORT_DELAY;</code>，即 duration 为 <code>LENGTH_LONG</code> 时时长为 3.5 秒，其它情况都是 2 秒。</p>
+<p>所以我们可以得出 <strong>结论：无法通过 Toast 提供的公开 API 直接弹出超长时间的 Toast。</strong>（如节首所述，可以通过一些其它方式实现类似的效果）</p>
+<h3 id="Toast-能不能在非-UI-线程调用？"><a href="#Toast-能不能在非-UI-线程调用？" class="headerlink" title="Toast 能不能在非 UI 线程调用？"></a>Toast 能不能在非 UI 线程调用？</h3><p>这个问题适合用一个 demo 来解答。</p>
+<p>我们创建一个最简单的 App 工程，然后在启动 Activity 的 onCreate 方法里添加这样一段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        Toast.makeText(MainActivity.<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;Call toast on non-UI thread&quot;</span>, Toast.LENGTH_SHORT)<br>                .show();<br>    &#125;<br>&#125;).start();<br></code></pre></td></tr></table></figure>
+
+<p>啊哦~很遗憾程序直接挂掉了。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-number">11</span>-<span class="hljs-number">07</span> <span class="hljs-number">13</span>:<span class="hljs-number">35</span>:<span class="hljs-number">33.980</span> <span class="hljs-number">2020</span>-<span class="hljs-number">2035</span>/org.mazhuang.androiduidemos E/AndroidRuntime: FATAL EXCEPTION: Thread-<span class="hljs-number">77</span><br>    java.lang.RuntimeException: Can&#x27;t create handler inside thread that has not called <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Looper</span>.</span></span>prepare<span class="hljs-literal">()</span><br>        at android.widget.Toast$TN.&lt;init&gt;(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Toast</span>.</span></span>java:<span class="hljs-number">390</span>)<br>        at android.widget.Toast.&lt;init&gt;(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Toast</span>.</span></span>java:<span class="hljs-number">114</span>)<br>        at android.widget.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Toast</span>.</span></span>make<span class="hljs-constructor">Text(Toast.<span class="hljs-params">java</span>:277)</span><br>        at android.widget.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Toast</span>.</span></span>make<span class="hljs-constructor">Text(Toast.<span class="hljs-params">java</span>:267)</span><br>        at org.mazhuang.androiduidemos.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">MainActivity$1</span>.</span></span>run(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">MainActivity</span>.</span></span>java:<span class="hljs-number">27</span>)<br>        at java.lang.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Thread</span>.</span></span>run(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Thread</span>.</span></span>java:<span class="hljs-number">856</span>)<br></code></pre></td></tr></table></figure>
+
+<p>顺着堆栈里显示的方法调用从下往上一路看过去，</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/widget/Toast.java">platform_frameworks_base/core/java/android/widget/Toast.java</a> </p>
+<p>首先是两级 makeText 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 我们的代码里调用的 makeText 方法</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Toast <span class="hljs-title">makeText</span><span class="hljs-params">(Context context, CharSequence text, <span class="hljs-meta">@Duration</span> <span class="hljs-keyword">int</span> duration)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> makeText(context, <span class="hljs-keyword">null</span>, text, duration);<br>&#125;<br><br><span class="hljs-comment">// 隐藏的 makeText 方法，不能手动调用</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Toast <span class="hljs-title">makeText</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> Context context, <span class="hljs-meta">@Nullable</span> Looper looper,</span></span><br><span class="hljs-params"><span class="hljs-function">        <span class="hljs-meta">@NonNull</span> CharSequence text, <span class="hljs-meta">@Duration</span> <span class="hljs-keyword">int</span> duration)</span> </span>&#123;<br>    Toast result = <span class="hljs-keyword">new</span> Toast(context, looper); <span class="hljs-comment">// 这里的 looper 为 null</span><br>    ...<br></code></pre></td></tr></table></figure>
+
+<p>然后到了 Toast 的构造方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Toast</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> Context context, <span class="hljs-meta">@Nullable</span> Looper looper)</span> </span>&#123;<br>    mContext = context;<br>    mTN = <span class="hljs-keyword">new</span> TN(context.getPackageName(), looper); <span class="hljs-comment">// looper 为 null</span><br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>到 Toast$TN 的构造方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// looper = null</span><br>TN(String packageName, <span class="hljs-meta">@Nullable</span> Looper looper) &#123;<br>    ...<br>    <span class="hljs-keyword">if</span> (looper == <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-comment">// Use Looper.myLooper() if looper is not specified.</span><br>        looper = Looper.myLooper();<br>        <span class="hljs-keyword">if</span> (looper == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<br>                    <span class="hljs-string">&quot;Can&#x27;t toast on a thread that has not called Looper.prepare()&quot;</span>);<br>        &#125;<br>    &#125;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>至此，我们已经追踪到了我们的崩溃的 RuntimeException，即要避免进入抛出异常的逻辑，要么调用的时候传递一个 Looper 进来（无法直接实现，能传递 Looper 参数的构造方法与 makeText 方法是 hide 的），要么 <code>Looper.myLooper()</code> 返回不为 null，提示信息 <code>Can&#39;t create handler inside thread that has not called Looper.prepare()</code> 里给出了方法，那我们在 toast 前面加一句 <code>Looper.prepare()</code> 试试？这次不崩溃了，但依然不弹出 Toast，毕竟，这个线程在调用完 <code>show()</code> 方法后就直接结束了，没有调用 <code>Looper.loop()</code>，至于为什么调用 Toast 的线程结束与否会对 Toast 的显示隐藏等起影响，在本文的后面的章节里会进行分析。</p>
+<p>从崩溃提示来看，Android 并没有限制在非 UI 线程里使用 Toast，只是线程得是一个有 Looper 的线程。于是我们尝试构造如下代码，发现可以成功从非 UI 线程弹出 toast 了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MSG_TOAST = <span class="hljs-number">101</span>;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MSG_QUIT = <span class="hljs-number">102</span>;<br><br>        Looper.prepare();<br><br>        <span class="hljs-keyword">final</span> Handler handler = <span class="hljs-keyword">new</span> Handler() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;<br><br>                <span class="hljs-keyword">switch</span> (msg.what) &#123;<br>                    <span class="hljs-keyword">case</span> MSG_TOAST:<br>                        Toast.makeText(MainActivity.<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;Call toast on non-UI thread&quot;</span>, Toast.LENGTH_SHORT)<br>                                .show();<br>                        sendEmptyMessageDelayed(MSG_QUIT, <span class="hljs-number">4000</span>);<br>                        <span class="hljs-keyword">return</span>;<br><br>                    <span class="hljs-keyword">case</span> MSG_QUIT:<br>                        Looper.myLooper().quit();<br>                        <span class="hljs-keyword">return</span>;<br>                &#125;<br><br>                <span class="hljs-keyword">super</span>.handleMessage(msg);<br>            &#125;<br>        &#125;;<br><br>        handler.sendEmptyMessage(MSG_TOAST);<br><br>        Looper.loop();<br>    &#125;<br>&#125;).start();<br></code></pre></td></tr></table></figure>
+
+<p>至于为什么 <code>sendEmptyMesageDelayed(MSG_QUIT, 4000)</code> 里的 delayMillis 我设成了 4000，这里卖个关子，感兴趣的同学可以把这个值调成 0、1000 等等看一下效果，会有一些意想不到的情况发生。</p>
+<p>到此，我们可以得出 <strong>结论：可以在非 UI 线程里调用 Toast，但是得是一个有 Looper 的线程。</strong></p>
+<p>ps. 上面这一段演示代码让人感觉为了弹出一个 Toast 好麻烦，也可以采用 Activity.runOnUiThread、View.post 等方法从非 UI 线程将逻辑切换到 UI 线程里执行，直接从 UI 线程里弹出，UI 线程是有 Looper 的。</p>
+<p><em>知识点：这里如果对 Looper、Handler 和 MessageQueue 有所了解，就容易理解多了，预计下一篇对这三剑客进行讲解。</em></p>
+<h3 id="应用在后台时能不能-Toast？"><a href="#应用在后台时能不能-Toast？" class="headerlink" title="应用在后台时能不能 Toast？"></a>应用在后台时能不能 Toast？</h3><p>这个问题也比较适合用一个简单的 demo 来尝试回答。</p>
+<p>在 MainActivity 的 onCreate 里加上这样一段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">view.postDelayed(<span class="hljs-keyword">new</span> Runnable() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        Toast.makeText(MainActivity.<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;background toast&quot;</span>, Toast.LENGTH_SHORT).show();<br>    &#125;<br>&#125;, <span class="hljs-number">5000</span>);<br></code></pre></td></tr></table></figure>
+
+<p>然后待应用启动后按 HOME 键，等几秒看是否能弹出该 Toast 即可。</p>
+<p><strong>结论是：应用在后台时可以弹出 Toast。</strong></p>
+<h3 id="Toast-数量有没有限制？"><a href="#Toast-数量有没有限制？" class="headerlink" title="Toast 数量有没有限制？"></a>Toast 数量有没有限制？</h3><p>这个问题将在下一节中一并解答。</p>
+<h3 id="Toast-makeText-…-show-具体都做了些什么？"><a href="#Toast-makeText-…-show-具体都做了些什么？" class="headerlink" title="Toast.makeText(…).show() 具体都做了些什么？"></a><code>Toast.makeText(…).show()</code> 具体都做了些什么？</h3><p>首先看一下 makeText 方法。</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/widget/Toast.java">platform_frameworks_base/core/java/android/widget/Toast.java</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Make a standard toast to display using the specified looper.</span><br><span class="hljs-comment"> * If looper is null, Looper.myLooper() is used.</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@hide</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Toast <span class="hljs-title">makeText</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> Context context, <span class="hljs-meta">@Nullable</span> Looper looper,</span></span><br><span class="hljs-params"><span class="hljs-function">        <span class="hljs-meta">@NonNull</span> CharSequence text, <span class="hljs-meta">@Duration</span> <span class="hljs-keyword">int</span> duration)</span> </span>&#123;<br>    Toast result = <span class="hljs-keyword">new</span> Toast(context, looper);<br><br>    LayoutInflater inflate = (LayoutInflater)<br>            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);<br>    View v = inflate.inflate(com.android.internal.R.layout.transient_notification, <span class="hljs-keyword">null</span>);<br>    TextView tv = (TextView)v.findViewById(com.android.internal.R.id.message);<br>    tv.setText(text);<br><br>    result.mNextView = v;<br>    result.mDuration = duration;<br><br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个方法里就是构造了一个 Toast 对象，将需要展示的 View 准备好，设置好超时时长标记，我们可以看一下 <code>com.android.internal.R.layout.transient_notification</code> 这个布局的内容：</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/res/res/layout/transient_notification.xml">platform_frameworks_base/core/res/res/layout/transient_notification.xml</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><br><span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;?android:attr/toastFrameBackground&quot;</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@android:id/message&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_marginHorizontal</span>=<span class="hljs-string">&quot;24dp&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_marginVertical</span>=<span class="hljs-string">&quot;15dp&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">&quot;center_horizontal&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:textAppearance</span>=<span class="hljs-string">&quot;@style/TextAppearance.Toast&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:textColor</span>=<span class="hljs-string">&quot;@color/primary_text_default_material_light&quot;</span></span><br><span class="hljs-tag">        /&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>我们最常见的 Toast 就是从这个布局文件渲染出来的了。</p>
+<p>我们继续看一下 makeText 里调用的 Toast 的构造方法里做了哪些事情：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Constructs an empty Toast object.  If looper is null, Looper.myLooper() is used.</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@hide</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Toast</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> Context context, <span class="hljs-meta">@Nullable</span> Looper looper)</span> </span>&#123;<br>    mContext = context;<br>    mTN = <span class="hljs-keyword">new</span> TN(context.getPackageName(), looper);<br>    mTN.mY = context.getResources().getDimensionPixelSize(<br>            com.android.internal.R.dimen.toast_y_offset);<br>    mTN.mGravity = context.getResources().getInteger(<br>            com.android.internal.R.integer.config_toastDefaultGravity);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>主要就是构造了一个 TN 对象，计算了位置。</p>
+<p>TN 的构造方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java">TN(String packageName, <span class="hljs-meta">@Nullable</span> Looper looper) &#123;<br>    <span class="hljs-comment">// XXX This should be changed to use a Dialog, with a Theme.Toast</span><br>    <span class="hljs-comment">// defined that sets up the layout params appropriately.</span><br>    <span class="hljs-keyword">final</span> WindowManager.LayoutParams params = mParams;<br>    params.height = WindowManager.LayoutParams.WRAP_CONTENT;<br>    params.width = WindowManager.LayoutParams.WRAP_CONTENT;<br>    params.format = PixelFormat.TRANSLUCENT;<br>    params.windowAnimations = com.android.internal.R.style.Animation_Toast;<br>    params.type = WindowManager.LayoutParams.TYPE_TOAST;<br>    params.setTitle(<span class="hljs-string">&quot;Toast&quot;</span>);<br>    params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON<br>            | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE<br>            | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;<br><br>    mPackageName = packageName;<br><br>    <span class="hljs-keyword">if</span> (looper == <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-comment">// Use Looper.myLooper() if looper is not specified.</span><br>        looper = Looper.myLooper();<br>        <span class="hljs-keyword">if</span> (looper == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<br>                    <span class="hljs-string">&quot;Can&#x27;t toast on a thread that has not called Looper.prepare()&quot;</span>);<br>        &#125;<br>    &#125;<br>    mHandler = <span class="hljs-keyword">new</span> Handler(looper, <span class="hljs-keyword">null</span>) &#123;<br>        ...<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>设置了 LayoutParams 的初始值，在后面 show 的时候会用到，设置了包名和 Looper、Handler。</p>
+<p>TN 是 App 中用于与 Notification Service 交互的对象，这里涉及到 Binder 和跨进程通信的知识，这块会在后面开新篇来讲解，这里可以简单地理解一下：Notification Service 是系统为了管理各种 App 的 Notification（包括 Toast）的服务，比如 Toast，由这个服务来统一维护一个待展示 Toast 队列，各 App 需要弹 Toast 的时候就将相关信息发送给这个服务，服务会将其加入队列，然后根据队列的情况，依次通知各 App 展示和隐藏 Toast。</p>
+<p>接下来看看 show 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Show the view for the specified duration.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (mNextView == <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;setView must have been called&quot;</span>);<br>    &#125;<br><br>    INotificationManager service = getService();<br>    String pkg = mContext.getOpPackageName();<br>    TN tn = mTN;<br>    tn.mNextView = mNextView;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        service.enqueueToast(pkg, tn, mDuration);<br>    &#125; <span class="hljs-keyword">catch</span> (RemoteException e) &#123;<br>        <span class="hljs-comment">// Empty</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>调用了 INotificationManager 的 enqueueToast 方法，INotificationManager 是一个接口，其实现类在 NotificationManagerService 里，我们来看 enqueueToast 方法的实现：</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/services/core/java/com/android/server/notification/NotificationManagerService.java">platform_frameworks_base/services/core/java/com/android/server/notification/NotificationManagerService.java</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">enqueueToast</span><span class="hljs-params">(String pkg, ITransientNotification callback, <span class="hljs-keyword">int</span> duration)</span></span><br><span class="hljs-function"></span>&#123;<br>    ...<br><br>    <span class="hljs-keyword">synchronized</span> (mToastQueue) &#123;<br>        ...<br>        <span class="hljs-keyword">try</span> &#123;<br>            ToastRecord record;<br>            <span class="hljs-keyword">int</span> index = indexOfToastLocked(pkg, callback);<br>            <span class="hljs-comment">// If it&#x27;s already in the queue, we update it in place, we don&#x27;t</span><br>            <span class="hljs-comment">// move it to the end of the queue.</span><br>            <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>                record = mToastQueue.get(index);<br>                record.update(duration);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// Limit the number of toasts that any given package except the android</span><br>                <span class="hljs-comment">// package can enqueue.  Prevents DOS attacks and deals with leaks.</span><br>                <span class="hljs-keyword">if</span> (!isSystemToast) &#123;<br>                    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>                    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> N = mToastQueue.size();<br>                    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;N; i++) &#123;<br>                         <span class="hljs-keyword">final</span> ToastRecord r = mToastQueue.get(i);<br>                         <span class="hljs-keyword">if</span> (r.pkg.equals(pkg)) &#123;<br>                             count++;<br>                             <span class="hljs-keyword">if</span> (count &gt;= MAX_PACKAGE_NOTIFICATIONS) &#123;<br>                                 Slog.e(TAG, <span class="hljs-string">&quot;Package has already posted &quot;</span> + count<br>                                        + <span class="hljs-string">&quot; toasts. Not showing more. Package=&quot;</span> + pkg);<br>                                 <span class="hljs-keyword">return</span>;<br>                             &#125;<br>                         &#125;<br>                    &#125;<br>                &#125;<br><br>                Binder token = <span class="hljs-keyword">new</span> Binder();<br>                mWindowManagerInternal.addWindowToken(token, TYPE_TOAST, DEFAULT_DISPLAY);<br>                record = <span class="hljs-keyword">new</span> ToastRecord(callingPid, pkg, callback, duration, token);<br>                mToastQueue.add(record);<br>                index = mToastQueue.size() - <span class="hljs-number">1</span>;<br>                keepProcessAliveIfNeededLocked(callingPid);<br>            &#125;<br>            <span class="hljs-comment">// If it&#x27;s at index 0, it&#x27;s the current toast.  It doesn&#x27;t matter if it&#x27;s</span><br>            <span class="hljs-comment">// new or just been updated.  Call back and tell it to show itself.</span><br>            <span class="hljs-comment">// If the callback fails, this will remove it from the list, so don&#x27;t</span><br>            <span class="hljs-comment">// assume that it&#x27;s valid after this.</span><br>            <span class="hljs-keyword">if</span> (index == <span class="hljs-number">0</span>) &#123;<br>                showNextToastLocked();<br>            &#125;<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            Binder.restoreCallingIdentity(callingId);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>主要就是使用调用方传来的包名、callback 和 duration 构造一个 ToastRecord，然后添加到 mToastQueue 中。如果在 mToastQueue 中已经存在该包名和 callback 的 Toast，则只更新其 duration。</p>
+<p>这段代码里有一段可以回答我们的上一个问题 <code>Toast 数量有没有限制</code> 了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Limit the number of toasts that any given package except the android</span><br><span class="hljs-comment">// package can enqueue.  Prevents DOS attacks and deals with leaks.</span><br><span class="hljs-keyword">if</span> (!isSystemToast) &#123;<br>    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> N = mToastQueue.size();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;N; i++) &#123;<br>         <span class="hljs-keyword">final</span> ToastRecord r = mToastQueue.get(i);<br>         <span class="hljs-keyword">if</span> (r.pkg.equals(pkg)) &#123;<br>             count++;<br>             <span class="hljs-keyword">if</span> (count &gt;= MAX_PACKAGE_NOTIFICATIONS) &#123;<br>                 Slog.e(TAG, <span class="hljs-string">&quot;Package has already posted &quot;</span> + count<br>                        + <span class="hljs-string">&quot; toasts. Not showing more. Package=&quot;</span> + pkg);<br>                 <span class="hljs-keyword">return</span>;<br>             &#125;<br>         &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>即会计算 mToastQueue 里该包名的 Toast 数量，如果超过 50，则将当前申请加入队列的 Toast 抛弃掉。所以上一个问题的 <strong>结论是：Toast 队列里允许每个应用存在不超过 50 个 Toast。</strong></p>
+<p>那么构造 ToastRecord 并加入 mToastQueue 之后是如何调度，控制显示和隐藏的呢？enqueueToast 方法里有个逻辑是如果当前列表里只有一个 ToastRecord，则调用 <code>showNextToastLocked</code>，看一下与该方法相关的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GuardedBy(&quot;mToastQueue&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showNextToastLocked</span><span class="hljs-params">()</span> </span>&#123;<br>    ToastRecord record = mToastQueue.get(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">while</span> (record != <span class="hljs-keyword">null</span>) &#123;<br>        ...<br>        <span class="hljs-keyword">try</span> &#123;<br>            record.callback.show(record.token);<br>            scheduleTimeoutLocked(record);<br>            <span class="hljs-keyword">return</span>;<br>        &#125; <span class="hljs-keyword">catch</span> (RemoteException e) &#123;<br>            ...<br>            <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>                mToastQueue.remove(index);<br>            &#125;<br>            ...<br>        &#125;<br>    &#125;<br>&#125;<br><br>...<br><br><span class="hljs-meta">@GuardedBy(&quot;mToastQueue&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">scheduleTimeoutLocked</span><span class="hljs-params">(ToastRecord r)</span></span><br><span class="hljs-function"></span>&#123;<br>    mHandler.removeCallbacksAndMessages(r);<br>    Message m = Message.obtain(mHandler, MESSAGE_TIMEOUT, r);<br>    <span class="hljs-keyword">long</span> delay = r.duration == Toast.LENGTH_LONG ? LONG_DELAY : SHORT_DELAY;<br>    mHandler.sendMessageDelayed(m, delay);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleTimeout</span><span class="hljs-params">(ToastRecord record)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (DBG) Slog.d(TAG, <span class="hljs-string">&quot;Timeout pkg=&quot;</span> + record.pkg + <span class="hljs-string">&quot; callback=&quot;</span> + record.callback);<br>    <span class="hljs-keyword">synchronized</span> (mToastQueue) &#123;<br>        <span class="hljs-keyword">int</span> index = indexOfToastLocked(record.pkg, record.callback);<br>        <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>            cancelToastLocked(index);<br>        &#125;<br>    &#125;<br>&#125;<br><br>...<br><br><span class="hljs-meta">@GuardedBy(&quot;mToastQueue&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">cancelToastLocked</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>&#123;<br>    ToastRecord record = mToastQueue.get(index);<br>    <span class="hljs-keyword">try</span> &#123;<br>        record.callback.hide();<br>    &#125; <span class="hljs-keyword">catch</span> (RemoteException e) &#123;<br>        ...<br>    &#125;<br><br>    ToastRecord lastToast = mToastQueue.remove(index);<br>    mWindowManagerInternal.removeWindowToken(lastToast.token, <span class="hljs-keyword">true</span>, DEFAULT_DISPLAY);<br><br>    keepProcessAliveIfNeededLocked(record.pid);<br>    <span class="hljs-keyword">if</span> (mToastQueue.size() &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// Show the next one. If the callback fails, this will remove</span><br>        <span class="hljs-comment">// it from the list, so don&#x27;t assume that the list hasn&#x27;t changed</span><br>        <span class="hljs-comment">// after this point.</span><br>        showNextToastLocked(); <span class="hljs-comment">// 继续显示队列里的下一个 Toast</span><br>    &#125;<br>&#125;<br><br>...<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WorkerHandler</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Handler</span></span><br><span class="hljs-class"></span>&#123;<br>    ...<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">switch</span> (msg.what)<br>        &#123;<br>            <span class="hljs-keyword">case</span> MESSAGE_TIMEOUT:<br>                handleTimeout((ToastRecord)msg.obj);<br>                <span class="hljs-keyword">break</span>;<br>            ...<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>即首先调用 <code>record.callback.show(record.token)</code>，通知 App 展示该 Toast，然后根据 duration，延时发送一条超时消息 <code>MESSAGE_TIMEOUT</code>，WorkHandler 收到该消息后，调用 <code>cancelToastLocked</code> 通知应用隐藏该 Toast，并继续调用 <code>showNextToastLocked</code> 显示队列里的下一个 Toast。这样一个机制就保证了只要队列里有 ToastRecord，就能依次显示出来。</p>
+<p>机制弄清楚了，再详细看一下应用接到通知 show 和 hide 一个 Toast 后是怎么做的：</p>
+<p>文件 <a href="https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/java/android/widget/Toast.java">platform_frameworks_base/core/java/android/widget/Toast.java</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TN</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ITransientNotification</span>.<span class="hljs-title">Stub</span> </span>&#123;<br>    ...<br>    TN(String packageName, <span class="hljs-meta">@Nullable</span> Looper looper) &#123;<br>        ...<br>        mHandler = <span class="hljs-keyword">new</span> Handler(looper, <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;<br>                <span class="hljs-keyword">switch</span> (msg.what) &#123;<br>                    <span class="hljs-keyword">case</span> SHOW: &#123;<br>                        IBinder token = (IBinder) msg.obj;<br>                        handleShow(token);<br>                        <span class="hljs-keyword">break</span>;<br>                    &#125;<br>                    <span class="hljs-keyword">case</span> HIDE: &#123;<br>                        handleHide();<br>                        ...<br>                        <span class="hljs-keyword">break</span>;<br>                    &#125;<br>                    ...<br>                &#125;<br>            &#125;<br>        &#125;;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * schedule handleShow into the right thread</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(IBinder windowToken)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (localLOGV) Log.v(TAG, <span class="hljs-string">&quot;SHOW: &quot;</span> + <span class="hljs-keyword">this</span>);<br>        mHandler.obtainMessage(SHOW, windowToken).sendToTarget();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * schedule handleHide into the right thread</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hide</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (localLOGV) Log.v(TAG, <span class="hljs-string">&quot;HIDE: &quot;</span> + <span class="hljs-keyword">this</span>);<br>        mHandler.obtainMessage(HIDE).sendToTarget();<br>    &#125;<br><br>    ...<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleShow</span><span class="hljs-params">(IBinder windowToken)</span> </span>&#123;<br>        ...<br>                mWM.addView(mView, mParams);<br>        ...<br>    &#125;<br><br>    ...<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleHide</span><span class="hljs-params">()</span> </span>&#123;<br>        ...<br>                mWM.removeViewImmediate(mView);<br>        ...<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>显示过程：show 方法被远程调用后，先是发送了一个 SHOW 消息，接收到该消息后调用了 handleShow 方法，然后 <code>mWM.addView</code> 将该 View 添加到窗口。</p>
+<p>隐藏过程：hide 方法被远程调用后，先是发送了一个 HIDE 消息，接收到该消息后调用了 handleHide 方法，然后 <code>mWM.removeViewImmediate</code> 将该 View 从窗口移除。</p>
+<p><em>这里插播一条结论，就是前文留下的为什么调用 Toast 的线程线束之后没弹出的 Toast 就无法弹出了的问题，因为 Notification Service 通知应用进程显示或隐藏 Toast 时，使用的是 <code>mHandler.obtainMessage(SHOW).sendToTarget()</code> 与 <code>mHandler.obtainMessage(HIDE).sendToTarget()</code>，这个消息发出去后，Handler 对应线程没有在 <code>Looper.loop()</code> 过程里的话，就没有办法进入到 Handler 的 handleMessage 方法里去，自然也就无法调用显示和隐藏 View 的流程了。<code>Looper.loop()</code> 相关的知识点将在下篇讲解。</em></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="补充后的-Toast-知识点列表"><a href="#补充后的-Toast-知识点列表" class="headerlink" title="补充后的 Toast 知识点列表"></a>补充后的 Toast 知识点列表</h3><ol>
+<li><p>Toast 不是 View，它用于帮助创建并展示包含一条小消息的 View；</p>
+</li>
+<li><p>它的设计理念是尽量不惹眼，但又能展示想让用户看到的信息；</p>
+</li>
+<li><p>被展示时，浮在应用界面之上；</p>
+</li>
+<li><p>永远不会获取到焦点；</p>
+</li>
+<li><p>大小取决于消息的长度；</p>
+</li>
+<li><p>超时后会自动消失；</p>
+</li>
+<li><p>可以自定义显示在屏幕上的位置（默认左右居中显示在靠近屏幕底部的位置）；</p>
+</li>
+<li><p>可以使用自定义布局，也只有在自定义布局的时候才需要直接调用 Toast 的构造方法，其它时候都是使用 makeText 方法来创建 Toast；</p>
+</li>
+<li><p>Toast 弹出后当前 Activity 会保持可见性和可交互性；</p>
+</li>
+<li><p>使用 <code>cancel</code> 方法可以立即将已显示的 Toast 关闭，让未显示的 Toast 不再显示；</p>
+</li>
+<li><p>Toast 也算是一个「通知」，如果弹出状态消息后期望得到用户响应，应该使用 Notification；</p>
+</li>
+<li><p>Toast 的超时时间为 LENGTH_SHORT 对应 2 秒，LENGTH_LONG 对应 3.5 秒；</p>
+</li>
+<li><p>不能通过 Toast 类的公开方法直接弹一个时间超长的 Toast；</p>
+</li>
+<li><p>应用在后台时可以调用 Toast 并正常弹出；</p>
+</li>
+<li><p>Toast 队列里允许单个应用往里添加 50 个 Toast，超出的将被丢弃。</p>
+</li>
+</ol>
+<h3 id="遗留知识点"><a href="#遗留知识点" class="headerlink" title="遗留知识点"></a>遗留知识点</h3><p>本篇涉及到了一些需要进一步了解的知识点，在后续的篇章中会依次解读：</p>
+<ol>
+<li><p>Handler、Looper 和 MessageQueue</p>
+</li>
+<li><p>WindowManager</p>
+</li>
+<li><p>Binder 与跨进程通信</p>
+</li>
+</ol>
+<h3 id="本篇用到的源码分析方法"><a href="#本篇用到的源码分析方法" class="headerlink" title="本篇用到的源码分析方法"></a>本篇用到的源码分析方法</h3><ol>
+<li><p>查找关键变量被引用的地方；</p>
+</li>
+<li><p>按方法调用堆栈一层层逻辑跟踪与分析；</p>
+</li>
+<li><p>使用 git blame 查看关键代码行的变更日志；</p>
+</li>
+</ol>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>到此，上面提到的几个问题都已经解答完毕，对 Toast 源码的分析也告一段落。</p>
+<p>写这篇文章花费的时间比较长，所以并不能按照预计的节奏更新，这里表示抱歉。另外，各位如果有耐心读到这里，觉得本文的思路是否清晰，是否能跟随文章的节奏理解一些东西？因为我也在摸索写这类文章的组织形式，所以也希望能收到反馈和建议，以作改进，先行谢过。</p>
+<hr>
+<p>最后，照例要安利一下我的微信公众号「闷骚的程序员」，扫码关注，接收 rtfsc-android 的最近更新。</p>
+<div align="center"><img  width="192px" height="192px"  class="lazyload" data-original="https://mazhuang.org/assets/images/qrcode.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></div>
+
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2017/11/12/Andriod/start-from-toast/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2017&#x2F;11&#x2F;12&#x2F;Andriod&#x2F;start-from-toast&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2017&#x2F;11&#x2F;12&#x2F;Andriod&#x2F;start-from-toast&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/RTFSC-Android-Toast/" rel="tag">RTFSC, Android, Toast</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2017/12/03/Andriod/tcp-connect-between-android-emulators/"><i class="iconfont iconleft"></i>解决两个 Android 模拟器之间无法网络通信的问题</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2017/10/24/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/poses/">程序员节的过节姿势大全<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Toast-%E5%8D%B0%E8%B1%A1"><span class="toc-text">Toast 印象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E9%97%AE%E9%A2%98"><span class="toc-text">提出问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94%E9%97%AE%E9%A2%98"><span class="toc-text">解答问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Toast-%E7%9A%84%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4"><span class="toc-text">Toast 的超时时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%BD%E4%B8%8D%E8%83%BD%E5%BC%B9%E4%B8%80%E4%B8%AA%E6%97%B6%E9%97%B4%E8%B6%85%E9%95%BF%E7%9A%84-Toast%EF%BC%9F"><span class="toc-text">能不能弹一个时间超长的 Toast？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Toast-%E8%83%BD%E4%B8%8D%E8%83%BD%E5%9C%A8%E9%9D%9E-UI-%E7%BA%BF%E7%A8%8B%E8%B0%83%E7%94%A8%EF%BC%9F"><span class="toc-text">Toast 能不能在非 UI 线程调用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%A8%E5%90%8E%E5%8F%B0%E6%97%B6%E8%83%BD%E4%B8%8D%E8%83%BD-Toast%EF%BC%9F"><span class="toc-text">应用在后台时能不能 Toast？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Toast-%E6%95%B0%E9%87%8F%E6%9C%89%E6%B2%A1%E6%9C%89%E9%99%90%E5%88%B6%EF%BC%9F"><span class="toc-text">Toast 数量有没有限制？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Toast-makeText-%E2%80%A6-show-%E5%85%B7%E4%BD%93%E9%83%BD%E5%81%9A%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">Toast.makeText(…).show() 具体都做了些什么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E5%90%8E%E7%9A%84-Toast-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%88%97%E8%A1%A8"><span class="toc-text">补充后的 Toast 知识点列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%97%E7%95%99%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">遗留知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E7%AF%87%E7%94%A8%E5%88%B0%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-text">本篇用到的源码分析方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AF%9D"><span class="toc-text">后话</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>基础库梳理一 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="背景当iOS的项目比较成熟后，下一步伴随着的设计必然是...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">基础库梳理一</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-iOS-8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">基础库梳理一</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 13, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2880</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>当iOS的项目比较成熟后，下一步伴随着的设计必然是进行相关组件化的尝试，也就是最后的项目设计必然是模块化，而模块化的前提必然是进行公共组件或者业务的提取，构建成对应的成熟可扩展的framwork进行引入就可以使用其中的api业务。</p>
+<hr>
+<h3 id="整体结构图"><a href="#整体结构图" class="headerlink" title="整体结构图"></a>整体结构图</h3><p>下面是关于我们本身应用设计的整体组件结构图</p>
+<p><img   class="lazyload" data-original="/images/iOS/structure_program.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<hr>
+<h3 id="着手开始"><a href="#着手开始" class="headerlink" title="着手开始"></a>着手开始</h3><p>我们前面进行常用公共方法api集成构建的<code>PublicMethods</code>模块即可看做是其中初步实现的基础工具类集群framework，那下面我要处理的是项目中UI和数据等构建的基础视图库framework和基础数据库framework。</p>
+<hr>
+<h3 id="梳理第一章节"><a href="#梳理第一章节" class="headerlink" title="梳理第一章节"></a>梳理第一章节</h3><h4 id="基础视图库framework"><a href="#基础视图库framework" class="headerlink" title="基础视图库framework"></a>基础视图库framework</h4><p>目前比较成熟的基础UI库就是对应的QMUIKit框架，那么我们目前是以该框架为原型进行继承构建，主要是为了统一基础样式以及后续的可替换可维护性。这里对应的QMUI的视图不做介绍，这里只是对其缺失的需要进行相关的补充.</p>
+<hr>
+<h6 id="UIView–系统类基础视图"><a href="#UIView–系统类基础视图" class="headerlink" title="UIView–系统类基础视图"></a>UIView–系统类基础视图</h6><p>1.做分类category(组件化思考)，包括：</p>
+<ul>
+<li>空白视图(也可直接应用QMUIKit的QMUIEmptyView)</li>
+<li>红点badge(可引入或者仿写第三方框架)</li>
+<li>事件绑定</li>
+<li>视图背景图加载</li>
+</ul>
+<hr>
+<h5 id="UIButton–系统类基础按钮"><a href="#UIButton–系统类基础按钮" class="headerlink" title="UIButton–系统类基础按钮"></a>UIButton–系统类基础按钮</h5><p>分类实现，包括：</p>
+<ul>
+<li>按钮远程图片加载</li>
+<li>响应区设置</li>
+</ul>
+<hr>
+<h5 id="UIScrollView–系统类基础滚动视图"><a href="#UIScrollView–系统类基础滚动视图" class="headerlink" title="UIScrollView–系统类基础滚动视图"></a>UIScrollView–系统类基础滚动视图</h5><p>分类实现，包括：</p>
+<ul>
+<li>重复嵌套的手势识别字段控制</li>
+</ul>
+<hr>
+<h5 id="UILabel–系统类基础标签文本视图"><a href="#UILabel–系统类基础标签文本视图" class="headerlink" title="UILabel–系统类基础标签文本视图"></a>UILabel–系统类基础标签文本视图</h5><p>这里继承QMUILabel即可，提供：</p>
+<ul>
+<li>提供加载html或者富文本的api</li>
+</ul>
+<hr>
+<h5 id="UITextView–系统类基础多行文本视图"><a href="#UITextView–系统类基础多行文本视图" class="headerlink" title="UITextView–系统类基础多行文本视图"></a>UITextView–系统类基础多行文本视图</h5><p>这里继承QMUITextView即可，提供：</p>
+<ul>
+<li>验证输入代理</li>
+<li>宽度计算</li>
+</ul>
+<hr>
+<h5 id="UITableViewCell–系统类基础表单cell视图"><a href="#UITableViewCell–系统类基础表单cell视图" class="headerlink" title="UITableViewCell–系统类基础表单cell视图"></a>UITableViewCell–系统类基础表单cell视图</h5><p>这里走继承体系QMUITableViewCell,主要是为了承接多态设计</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@interface</span> <span class="hljs-attribute">BaseTableViewCell </span>: QMUITableViewCell<br><br><span class="hljs-variable">@property</span> (nonatomic, strong) id model;<br><br><span class="hljs-selector-tag">-</span> (void)<span class="hljs-selector-tag">defaultSetting</span>;<br><br><span class="hljs-selector-tag">-</span> (void)<span class="hljs-selector-tag">setUI</span>;<br><br>@<span class="hljs-selector-tag">end</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">BaseTableViewCell</span></span><br>- (<span class="hljs-keyword">instancetype</span>)initWithStyle:(<span class="hljs-built_in">UITableViewCellStyle</span>)style reuseIdentifier:(<span class="hljs-built_in">NSString</span> *)reuseIdentifier &#123;<br>    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> initWithStyle:style reuseIdentifier:reuseIdentifier];<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) &#123;<br>        [<span class="hljs-keyword">self</span> defaultSetting];<br>        [<span class="hljs-keyword">self</span> setUI];<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;<br>&#125;<br><br>- (<span class="hljs-keyword">void</span>)defaultSetting &#123;<br>    <span class="hljs-keyword">self</span>.layer.shouldRasterize = <span class="hljs-literal">YES</span>;<br>    <span class="hljs-keyword">self</span>.layer.rasterizationScale = [<span class="hljs-built_in">UIScreen</span> mainScreen].scale;<br>    <span class="hljs-keyword">self</span>.layer.contentsScale = [<span class="hljs-built_in">UIScreen</span> mainScreen].scale;<br>    <span class="hljs-keyword">self</span>.selectionStyle = <span class="hljs-built_in">UITableViewCellSelectionStyleNone</span>;<br>&#125;<br><br>- (<span class="hljs-keyword">void</span>)setUI &#123;<br>    [<span class="hljs-keyword">self</span> createInsertsView:<span class="hljs-built_in">UIEdgeInsetsMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)];<br>&#125;<br><span class="hljs-keyword">@end</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="UICollectionViewCell–系统类基础九宫格cell视图"><a href="#UICollectionViewCell–系统类基础九宫格cell视图" class="headerlink" title="UICollectionViewCell–系统类基础九宫格cell视图"></a>UICollectionViewCell–系统类基础九宫格cell视图</h5><p>走继承UICollectionViewCell,主要是为了承接多态设计</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@interface</span> <span class="hljs-attribute">BaseCollectionViewCell </span>: UICollectionViewCell<br><br><span class="hljs-variable">@property</span> (nonatomic, strong) id model;<br><span class="hljs-comment">//指明indexPath</span><br><span class="hljs-variable">@property</span> (nonatomic, strong) NSIndexPath *indexPath;<br><br><span class="hljs-selector-tag">-</span> (void)<span class="hljs-selector-tag">defaultSetting</span>;<br><br><span class="hljs-selector-tag">-</span> (void)<span class="hljs-selector-tag">setUI</span>;<br><br>@<span class="hljs-selector-tag">end</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs objectivec"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">BaseCollectionViewCell</span></span><br><br>- (<span class="hljs-keyword">instancetype</span>)initWithFrame:(<span class="hljs-built_in">CGRect</span>)frame &#123;<br>    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> initWithFrame:frame];<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) &#123;<br>        [<span class="hljs-keyword">self</span> defaultSetting];<br>        [<span class="hljs-keyword">self</span> setUI];<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;<br>&#125;<br><br>- (<span class="hljs-keyword">void</span>)defaultSetting &#123;<br>    <span class="hljs-keyword">self</span>.layer.masksToBounds = <span class="hljs-literal">NO</span>;<br>    <span class="hljs-keyword">self</span>.layer.contentsScale = [<span class="hljs-built_in">UIScreen</span> mainScreen].scale;<br>&#125;<br><br>- (<span class="hljs-keyword">void</span>)setUI &#123;<br>    [<span class="hljs-keyword">self</span> createInsertsView:<span class="hljs-built_in">UIEdgeInsetsMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="UIViewcontroller–基础控制器"><a href="#UIViewcontroller–基础控制器" class="headerlink" title="UIViewcontroller–基础控制器"></a>UIViewcontroller–基础控制器</h5><p>基础控制器一般是构建一个基础BaseViewcontroller继承UIViewcontroller作为顶层可扩展类。</p>
+<p>划分结构：</p>
+<p>1.状态栏statusBar样式</p>
+<ul>
+<li>使用UIViewcontroller的分类进行api的控制，因为子类可以重写改变</li>
+</ul>
+<p>2.自动旋转，目前应用不支持自动旋转，这里省略</p>
+<p>3.视图操作</p>
+<ul>
+<li>构建viewDidLoad的默认setting方法，让子类重写</li>
+<li>根据route进行参数映射公共方法解析</li>
+</ul>
+<hr>
+<blockquote>
+<p>基础的就是上面一些，下面就是关于BaseViewcontroller继承扩展的控制器：</p>
+</blockquote>
+<h6 id="1-BaseListViewController"><a href="#1-BaseListViewController" class="headerlink" title="1.BaseListViewController"></a>1.BaseListViewController</h6><p>顾名思义，就是列表视图的常用结构，提供子类重写便于扩展(如果想使用QMUITableView的组件机制也是可行的)</p>
+<ul>
+<li>提供上下刷新的组件分类</li>
+<li>提供空白页显示的组件分类</li>
+<li>提供刷新提示语控制的组件分类</li>
+<li>其他业务操作组件分类</li>
+</ul>
+<h6 id="2-BaseWebViewController"><a href="#2-BaseWebViewController" class="headerlink" title="2.BaseWebViewController"></a>2.BaseWebViewController</h6><p>进行h5页面装载的容器控制器</p>
+<ul>
+<li>常规UI设置及url加载逻辑</li>
+<li>桥接组件化分类</li>
+<li>代理组件化分类</li>
+<li>其他业务操作组件化分类</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2020/04/13/iOS/%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%B8%80)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2020&#x2F;04&#x2F;13&#x2F;iOS&#x2F;%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%B8%80)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2020&#x2F;04&#x2F;13&#x2F;iOS&#x2F;%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%B8%80)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/base-framework-%E6%A2%B3%E7%90%86/" rel="tag">base, framework, 梳理</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2020/05/19/iOS/%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%BA%8C)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86/"><i class="iconfont iconleft"></i>基础库梳理二</a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2020/04/10/iOS/%E8%A1%A8%E5%8D%95%E9%80%82%E9%85%8D%E5%99%A8/">iOS表单适配器<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-text">整体结构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9D%80%E6%89%8B%E5%BC%80%E5%A7%8B"><span class="toc-text">着手开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%B3%E7%90%86%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%8A%82"><span class="toc-text">梳理第一章节</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

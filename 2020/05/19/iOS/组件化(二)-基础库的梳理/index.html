@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>基础库梳理二 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="基础库UI及说明首先结构如下图所示：
+
+这里分成三层：...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/xiwuxisheng/xiwuxisheng.github.io/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">基础库梳理二</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/xiwuxisheng/xiwuxisheng.github.io/images/theme/theme-iOS-1.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">基础库梳理二</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>五月 19, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>17894</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="基础库UI及说明"><a href="#基础库UI及说明" class="headerlink" title="基础库UI及说明"></a>基础库UI及说明</h1><p>首先结构如下图所示：</p>
+<p><img   class="lazyload" data-original="/images/iOS/structure_progra_baseFold.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>这里分成三层：</p>
+<ul>
+<li>公共设置common层</li>
+<li>核心core层</li>
+<li>公共方法PublicMethods层</li>
+</ul>
+<p>关于数据层主要跟随业务进行数据处理的封装，这里不做描述，后续根据自己的情况进行对应的添加补充，下面主要是进行UI结构上的说明。</p>
+<hr>
+<h3 id="common层"><a href="#common层" class="headerlink" title="common层"></a>common层</h3><h6 id="FGCategoryUtility"><a href="#FGCategoryUtility" class="headerlink" title="FGCategoryUtility"></a>FGCategoryUtility</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 设定视图四个角其中一个的数据结构<br>struct FGCorner &#123;<br>    UIRectCorner cornerType; <span class="hljs-regexp">//</span><span class="hljs-regexp">/&lt; The type of corner.</span><br><span class="hljs-regexp">    CGFloat radius; /</span><span class="hljs-regexp">//</span>&lt; The radius of corner.<br>&#125;;<br>typedef struct FGCorner FGCorner;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 设定视图阴影</span><br><span class="hljs-regexp">struct FGShadow &#123;</span><br><span class="hljs-regexp">    CGColorRef color; /</span><span class="hljs-regexp">//</span>&lt; The color of shadow.<br>    CGSize offset; <span class="hljs-regexp">//</span><span class="hljs-regexp">/&lt; The shadow offset.</span><br><span class="hljs-regexp">    CGFloat opacity; /</span><span class="hljs-regexp">//</span>&lt; The opacity of the shadow.<br>    CGFloat radius; <span class="hljs-regexp">//</span><span class="hljs-regexp">/&lt; The radius of the shadow.</span><br><span class="hljs-regexp">&#125;;</span><br><span class="hljs-regexp">typedef struct FGShadow FGShadow;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span>设定边框<br>struct FGBorder &#123;<br>    CGColorRef color; <span class="hljs-regexp">//</span><span class="hljs-regexp">/&lt; The color of bolder.</span><br><span class="hljs-regexp">    CGFloat width; /</span><span class="hljs-regexp">//</span>&lt; The width of bolder.<br>&#125;;<br>typedef struct FGBorder FGBorder;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/以下是各个数据结构的内联构造函数</span><br><span class="hljs-regexp">/</span>*!<br> <span class="hljs-variable">@abstract</span> Get main screen<span class="hljs-string">&#x27;s scale.</span><br><span class="hljs-string"> */</span><br><span class="hljs-string">static inline CGFloat FGScreenScale() &#123;</span><br><span class="hljs-string">    return [UIScreen mainScreen].scale;</span><br><span class="hljs-string">&#125;;</span><br><span class="hljs-string"></span><br><span class="hljs-string">/*!</span><br><span class="hljs-string"> @abstract Get main screen&#x27;</span>s size.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">static inline CGSize FGScreenSize() &#123;</span><br><span class="hljs-regexp">    return [UIScreen mainScreen].bounds.size;</span><br><span class="hljs-regexp">&#125;;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>*!<br> <span class="hljs-variable">@abstract</span> Describe the layer shadow.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">static inline FGShadow FGShadowMake(CGColorRef color, CGSize offset, CGFloat radius, CGFloat opacity) &#123;</span><br><span class="hljs-regexp">    FGShadow shadow;</span><br><span class="hljs-regexp">    shadow.color = color;</span><br><span class="hljs-regexp">    shadow.offset = offset;</span><br><span class="hljs-regexp">    shadow.radius = radius;</span><br><span class="hljs-regexp">    shadow.opacity = opacity;</span><br><span class="hljs-regexp">    return shadow;</span><br><span class="hljs-regexp">&#125;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>*!<br> <span class="hljs-variable">@abstract</span> Describe the layer bolder.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">static inline FGBorder FGBorderMake(CGColorRef color, CGFloat width) &#123;</span><br><span class="hljs-regexp">    FGBorder border;</span><br><span class="hljs-regexp">    border.color = color;</span><br><span class="hljs-regexp">    border.width = width;</span><br><span class="hljs-regexp">    return border;</span><br><span class="hljs-regexp">&#125;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>*!<br> <span class="hljs-variable">@abstract</span> Describe the layer corner.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">static inline FGCorner FGCornerMake(UIRectCorner cornerType, CGFloat radius) &#123;</span><br><span class="hljs-regexp">    FGCorner corner;</span><br><span class="hljs-regexp">    corner.cornerType = cornerType;</span><br><span class="hljs-regexp">    corner.radius = radius;</span><br><span class="hljs-regexp">    return corner;</span><br><span class="hljs-regexp">&#125;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>*!<br> <span class="hljs-variable">@abstract</span> Convert point to pixel.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">static inline CGFloat FGFloatToPixel(CGFloat value) &#123;</span><br><span class="hljs-regexp">    return value * FGScreenScale();</span><br><span class="hljs-regexp">&#125;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>*!<br> <span class="hljs-variable">@abstract</span> Convert pixel to point.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">static inline CGFloat FGFloatFromPixel(CGFloat value) &#123;</span><br><span class="hljs-regexp">    return value /</span> FGScreenScale();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="FGCategoryMacro"><a href="#FGCategoryMacro" class="headerlink" title="FGCategoryMacro"></a>FGCategoryMacro</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span>宏定义函数，简化联结对象设置<br><span class="hljs-comment">#ifndef FGSYNTH_DUMMY_CLASS</span><br><span class="hljs-comment">#define FGSYNTH_DUMMY_CLASS(_name_) \</span><br><span class="hljs-variable">@interface</span> FGSYNTH_DUMMY_CLASS <span class="hljs-comment">## _name_ : NSObject <span class="hljs-doctag">@end</span> \</span><br><span class="hljs-variable">@implementation</span> FGSYNTH_DUMMY_CLASS <span class="hljs-comment">## _name_ <span class="hljs-doctag">@end</span></span><br><span class="hljs-comment">#endif</span><br><br><span class="hljs-comment">#ifndef FG_DYNAMIC_PROPERTY_OBJECT</span><br><span class="hljs-comment">#define FG_DYNAMIC_PROPERTY_OBJECT(_getter_, _setter_, _association_, _type_) \</span><br>- (void)_setter_ : (_type_)object &#123; \<br>[<span class="hljs-keyword">self</span> <span class="hljs-symbol">willChangeValueForKey:</span>@<span class="hljs-comment">#_getter_]; \</span><br>objc_setAssociatedObject(<span class="hljs-keyword">self</span>, _cmd, object, OBJC_ASSOCIATION_ <span class="hljs-comment">## _association_); \</span><br>[<span class="hljs-keyword">self</span> <span class="hljs-symbol">didChangeValueForKey:</span>@<span class="hljs-comment">#_getter_]; \</span><br>&#125; \<br>- (_type_)_getter_ &#123; \<br><span class="hljs-keyword">return</span> objc_getAssociatedObject(<span class="hljs-keyword">self</span>, <span class="hljs-variable">@selector</span>(<span class="hljs-symbol">_setter_:</span>)); \<br>&#125;<br><span class="hljs-comment">#endif</span><br><br><span class="hljs-comment">#ifndef FG_DYNAMIC_PROPERTY_CTYPE</span><br><span class="hljs-comment">#define FG_DYNAMIC_PROPERTY_CTYPE(_getter_, _setter_, _type_) \</span><br>- (void)_setter_ : (_type_)object &#123; \<br>[<span class="hljs-keyword">self</span> <span class="hljs-symbol">willChangeValueForKey:</span>@<span class="hljs-comment">#_getter_]; \</span><br>NSValue *value = [NSValue <span class="hljs-symbol">value:</span>&amp;object <span class="hljs-symbol">withObjCType:</span><span class="hljs-variable">@encode</span>(_type_)]; \<br>objc_setAssociatedObject(<span class="hljs-keyword">self</span>, _cmd, value, OBJC_ASSOCIATION_RETAIN); \<br>[<span class="hljs-keyword">self</span> <span class="hljs-symbol">didChangeValueForKey:</span>@<span class="hljs-comment">#_getter_]; \</span><br>&#125; \<br>- (_type_)_getter_ &#123; \<br>_type_ cValue = &#123; <span class="hljs-number">0</span> &#125;; \<br>NSValue *value = objc_getAssociatedObject(<span class="hljs-keyword">self</span>, <span class="hljs-variable">@selector</span>(<span class="hljs-symbol">_setter_:</span>)); \<br>[value <span class="hljs-symbol">getValue:</span>&amp;cValue]; \<br><span class="hljs-keyword">return</span> cValue; \<br>&#125;<br><span class="hljs-comment">#endif</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="core层"><a href="#core层" class="headerlink" title="core层"></a>core层</h3><h6 id="UIViewController-FGAutorotate"><a href="#UIViewController-FGAutorotate" class="headerlink" title="UIViewController+FGAutorotate"></a>UIViewController+FGAutorotate</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span>控制器旋转属性<br><span class="hljs-variable">@property</span> (nonatomic) BOOL shouldAutorotate;<br><span class="hljs-variable">@property</span> (nonatomic) UIInterfaceOrientationMask supportedInterfaceOrientations;<br><span class="hljs-variable">@property</span> (nonatomic) UIInterfaceOrientation preferredInterfaceOrientationForPresentation;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="FGModalViewController-QMUIModalPresentationViewController"><a href="#FGModalViewController-QMUIModalPresentationViewController" class="headerlink" title="FGModalViewController: QMUIModalPresentationViewController"></a>FGModalViewController: QMUIModalPresentationViewController</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 快速创建一个从下往上弹出的modalView<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> contentView 内容View<br>- (instancetype)<span class="hljs-symbol">initWithContentView:</span>(UIView *)contentView;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 快速创建一个从下往上弹出的modalView 并添加到window上</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> contentView 内容视图<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> onClickDimmingBlock 点击背景回调方法<br>+ (void)<span class="hljs-symbol">fg_showModalView:</span>(UIView *)contentView <span class="hljs-symbol">inView:</span>(UIView *)superView <span class="hljs-symbol">onClickDimmingBlock:</span>(void(^)(void))onClickDimmingBlock;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="FGNavigationBarBackground-UIView"><a href="#FGNavigationBarBackground-UIView" class="headerlink" title="FGNavigationBarBackground : UIView"></a>FGNavigationBarBackground : UIView</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-variable">@property</span> (nonatomic, assign) FGShadow barShade UI_APPEARANCE_SELECTOR; <span class="hljs-regexp">//</span><span class="hljs-regexp">/&lt; 阴影</span><br><span class="hljs-regexp">@property (nonatomic, assign) BOOL barShadeHidden UI_APPEARANCE_SELECTOR; /</span><span class="hljs-regexp">//</span>&lt; 是否隐藏阴影, 默认NO<br><span class="hljs-variable">@property</span> (nonatomic, strong, nullable) UIImage *backgroundImage UI_APPEARANCE_SELECTOR; <span class="hljs-regexp">//</span><span class="hljs-regexp">/&lt; 背景图片</span><br><span class="hljs-regexp">@property (nonatomic, strong, nullable) UIColor *barTintColor UI_APPEARANCE_SELECTOR; /</span><span class="hljs-regexp">//</span>&lt; 背景色<br></code></pre></td></tr></table></figure>
+<p>UI_APPEARANCE_SELECTOR是系统开关宏，作用是一次性全局统一设置，设置后便不再改变。</p>
+<hr>
+<h6 id="FGBaseNavigationViewController-QMUINavigationController"><a href="#FGBaseNavigationViewController-QMUINavigationController" class="headerlink" title="FGBaseNavigationViewController : QMUINavigationController"></a>FGBaseNavigationViewController : QMUINavigationController</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-variable">@property</span> (nonatomic, strong, readonly) FGNavigationBarBackground *navigationBarBackground;<span class="hljs-regexp">//</span>导航栏背景视图，用于处理导航栏状态不一致时瞬间的变化<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="FGPickerViewController-QMUIModalPresentationViewController"><a href="#FGPickerViewController-QMUIModalPresentationViewController" class="headerlink" title="FGPickerViewController : QMUIModalPresentationViewController"></a>FGPickerViewController : QMUIModalPresentationViewController</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs ruby">type<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">void</span><span class="hljs-params">(^FGPickerSelectedBlock)</span></span>(NSString *content , NSInteger selectedIndex);<br>type<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">void</span><span class="hljs-params">(^FGPickerCancelBlock)</span></span>(void);<br><br><span class="hljs-variable">@property</span> (nonatomic, strong) UILabel *titleLabel;      <span class="hljs-regexp">//</span>标题<br><span class="hljs-variable">@property</span> (nonatomic, strong) UIButton *cancelButton;   <span class="hljs-regexp">//</span>取消按钮<br><span class="hljs-variable">@property</span> (nonatomic, strong) UIButton *sureButton;     <span class="hljs-regexp">//</span>确定按钮<br>/**<br> 展示一级picker控件<br> <span class="hljs-variable">@param</span> title 标题<br> <span class="hljs-variable">@param</span> dataSource 数据源<br> <span class="hljs-variable">@param</span> selectedIndex 默认选中下标<br> <span class="hljs-variable">@param</span> animation 是否动画<br> <span class="hljs-variable">@param</span> complete 选择完成确定<br> <span class="hljs-variable">@param</span> cancel 取消选择<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">+ (void)fg_showPickerWithTitle:(NSString *)title</span><br><span class="hljs-regexp">                 dataSource:(NSArray &lt;NSString *&gt;*)dataSource</span><br><span class="hljs-regexp">       defaultSelectedIndex:(NSInteger)selectedIndex</span><br><span class="hljs-regexp">   defaultSelectedAnimation:(BOOL)animation</span><br><span class="hljs-regexp">                   selected:(FGPickerSelectedBlock)complete</span><br><span class="hljs-regexp">                     cancel:(FGPickerCancelBlock)cancel;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="FGBaseTabbarViewController-QMUITabBarViewController"><a href="#FGBaseTabbarViewController-QMUITabBarViewController" class="headerlink" title="FGBaseTabbarViewController : QMUITabBarViewController"></a>FGBaseTabbarViewController : QMUITabBarViewController</h6><h6 id="FGBaseTableViewController-QMUICommonTableViewController"><a href="#FGBaseTableViewController-QMUICommonTableViewController" class="headerlink" title="FGBaseTableViewController : QMUICommonTableViewController"></a>FGBaseTableViewController : QMUICommonTableViewController</h6><h6 id="FGBaseViewController-QMUICommonViewController"><a href="#FGBaseViewController-QMUICommonViewController" class="headerlink" title="FGBaseViewController : QMUICommonViewController"></a>FGBaseViewController : QMUICommonViewController</h6><p>这里的tabbarVC/tableVC/baseVC都是基于qmui构建，做了一层隔离扩展，一方面是可以重写qmui里面的方法，另外也可以做到无缝替换。</p>
+<hr>
+<h3 id="PublicMethods层"><a href="#PublicMethods层" class="headerlink" title="PublicMethods层"></a>PublicMethods层</h3><h6 id="UIAlertController-FGBlocks"><a href="#UIAlertController-FGBlocks" class="headerlink" title="UIAlertController+FGBlocks"></a>UIAlertController+FGBlocks</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 弹出alert/actionsheet<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> viewController 当前控制器<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> title 标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> message 内容<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> preferredStyle 弹出方式<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> cancelButtonTitle 取消按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> destructiveButtonTitle 作用按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> otherButtonTitles 附加按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> popoverPresentationControllerBlock 气泡菜单回调<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> tapBlock 按钮点击回调<br>+ (nonnull instancetype)<span class="hljs-symbol">fg_showInViewController:</span>(nonnull UIViewController *)viewController<br>                                   <span class="hljs-symbol">withTitle:</span>(nullable NSString *)title<br>                                     <span class="hljs-symbol">message:</span>(nullable NSString *)message<br>                              <span class="hljs-symbol">preferredStyle:</span>(UIAlertControllerStyle)preferredStyle<br>                           <span class="hljs-symbol">cancelButtonTitle:</span>(nullable NSString *)cancelButtonTitle<br>                      <span class="hljs-symbol">destructiveButtonTitle:</span>(nullable NSString *)destructiveButtonTitle<br>                           <span class="hljs-symbol">otherButtonTitles:</span>(nullable NSArray *)otherButtonTitles<br><span class="hljs-comment">#if TARGET_OS_IOS</span><br>          <span class="hljs-symbol">popoverPresentationControllerBlock:</span>(nullable UIAlertControllerPopoverPresentationControllerBlock)popoverPresentationControllerBlock<br><span class="hljs-comment">#endif</span><br>                                    <span class="hljs-symbol">tapBlock:</span>(nullable UIAlertControllerCompletionBlock)tapBlock;<br><br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 弹出alert</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> viewController 当前控制器<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> title 标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> message 内容<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> cancelButtonTitle  取消按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> destructiveButtonTitle 作用按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> otherButtonTitles 附加按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> tapBlock 按钮点击回调<br>+ (nonnull instancetype)<span class="hljs-symbol">fg_showAlertInViewController:</span>(nonnull UIViewController *)viewController<br>                                        <span class="hljs-symbol">withTitle:</span>(nullable NSString *)title<br>                                          <span class="hljs-symbol">message:</span>(nullable NSString *)message<br>                                <span class="hljs-symbol">cancelButtonTitle:</span>(nullable NSString *)cancelButtonTitle<br>                           <span class="hljs-symbol">destructiveButtonTitle:</span>(nullable NSString *)destructiveButtonTitle<br>                                <span class="hljs-symbol">otherButtonTitles:</span>(nullable NSArray *)otherButtonTitles<br>                                         <span class="hljs-symbol">tapBlock:</span>(nullable UIAlertControllerCompletionBlock)tapBlock;<br><br><br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 弹出actionsheet</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> viewController 当前控制器<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> title 标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> message 内容<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> cancelButtonTitle 取消按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> destructiveButtonTitle 作用按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> otherButtonTitles 附加按钮标题<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> popoverPresentationControllerBlock 气泡菜单回调<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> tapBlock 按钮点击回调<br>+ (nonnull instancetype)<span class="hljs-symbol">fg_showActionSheetInViewController:</span>(nonnull UIViewController *)viewController<br>                                              <span class="hljs-symbol">withTitle:</span>(nullable NSString *)title<br>                                                <span class="hljs-symbol">message:</span>(nullable NSString *)message<br>                                      <span class="hljs-symbol">cancelButtonTitle:</span>(nullable NSString *)cancelButtonTitle<br>                                 <span class="hljs-symbol">destructiveButtonTitle:</span>(nullable NSString *)destructiveButtonTitle<br>                                      <span class="hljs-symbol">otherButtonTitles:</span>(nullable NSArray *)otherButtonTitles<br><span class="hljs-comment">#if TARGET_OS_IOS</span><br>                     <span class="hljs-symbol">popoverPresentationControllerBlock:</span>(nullable UIAlertControllerPopoverPresentationControllerBlock)popoverPresentationControllerBlock<br><span class="hljs-comment">#endif</span><br>                                               <span class="hljs-symbol">tapBlock:</span>(nullable UIAlertControllerCompletionBlock)tapBlock;<br><br><br><span class="hljs-variable">@property</span> (readonly, nonatomic) BOOL visible; <span class="hljs-regexp">//</span>是否可视<br><span class="hljs-variable">@property</span> (readonly, nonatomic) NSInteger cancelButtonIndex; <span class="hljs-regexp">//</span>取消索引<br><span class="hljs-variable">@property</span> (readonly, nonatomic) NSInteger firstOtherButtonIndex; <span class="hljs-regexp">//</span>第一个附加按钮索引<br><span class="hljs-variable">@property</span> (readonly, nonatomic) NSInteger destructiveButtonIndex; <span class="hljs-regexp">//</span>动作按钮索引<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UIBarButtonItem-FGBuildObject"><a href="#UIBarButtonItem-FGBuildObject" class="headerlink" title="UIBarButtonItem+FGBuildObject"></a>UIBarButtonItem+FGBuildObject</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs ruby">+ (instancetype)<span class="hljs-symbol">fg_itemWithImage:</span>(id)image<br>                          <span class="hljs-symbol">offset:</span>(CGFloat)offset<br>                          <span class="hljs-symbol">target:</span>(nullable id)target<br>                          <span class="hljs-symbol">action:</span>(nullable SEL)action;<br><br>+ (instancetype)<span class="hljs-symbol">fg_itemWithImage:</span>(id)image<br>                <span class="hljs-symbol">highlightedColor:</span>(nullable UIColor *)highlightedColor<br>                          <span class="hljs-symbol">offset:</span>(CGFloat)offset<br>                          <span class="hljs-symbol">target:</span>(nullable id)target<br>                          <span class="hljs-symbol">action:</span>(nullable SEL)action;<br><br>+ (instancetype)<span class="hljs-symbol">fg_itemWithTitle:</span>(NSString *)title<br>                          <span class="hljs-symbol">target:</span>(nullable id)target<br>                          <span class="hljs-symbol">action:</span>(nullable SEL)action;<br><br>+ (instancetype)<span class="hljs-symbol">fg_itemWithTitle:</span>(NSString *)title<br>                          <span class="hljs-symbol">offset:</span>(CGFloat)offset<br>                          <span class="hljs-symbol">target:</span>(nullable id)target<br>                          <span class="hljs-symbol">action:</span>(nullable SEL)action;<br><br>+ (instancetype)<span class="hljs-symbol">fg_itemWithTitle:</span>(NSString *)title<br>                <span class="hljs-symbol">normalAttributes:</span>(nullable NSDictionary *)normalAttributes<br>           <span class="hljs-symbol">highlightedAttributes:</span>(nullable NSDictionary *)highlightedAttributes<br>                          <span class="hljs-symbol">offset:</span>(CGFloat)offset<br>                          <span class="hljs-symbol">target:</span>(nullable id)target<br>                          <span class="hljs-symbol">action:</span>(nullable SEL)action;<br></code></pre></td></tr></table></figure>
+<p>UIBarButtonItem的附加构造方法，加入了高亮色highlightedColor以及offset图片水平偏移的设置</p>
+<hr>
+<h6 id="UIButton-FGLoading"><a href="#UIButton-FGLoading" class="headerlink" title="UIButton+FGLoading"></a>UIButton+FGLoading</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 开始加载<br>- (void)fg_startLoading;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 结束加载</span><br><span class="hljs-regexp">- (void)fg_stopLoading;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UICollectionViewCell-FGAdditions"><a href="#UICollectionViewCell-FGAdditions" class="headerlink" title="UICollectionViewCell+FGAdditions"></a>UICollectionViewCell+FGAdditions</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">/内层底部视图</span><br><span class="hljs-regexp">@property (nonatomic, strong) UIView *insertsView;</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/获取重用cellId</span><br><span class="hljs-regexp">+ (NSString *)fg_cellId;</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> 内层构建约束<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> edge 内边距<br>- (void)<span class="hljs-symbol">fg_createInsertsView:</span>(UIEdgeInsets)edge;<br><span class="hljs-regexp">//</span>允许cell提供高度设置<br>+ (CGSize)fg_dynamicSizeCell;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UIImage-FGUtilities"><a href="#UIImage-FGUtilities" class="headerlink" title="UIImage+FGUtilities"></a>UIImage+FGUtilities</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/*!<br> <span class="hljs-variable">@abstract</span> Return the image object associated with the specified filename.<br> <span class="hljs-variable">@param</span> resource The name of file.<br> <span class="hljs-variable">@result</span> An UIImage object, <span class="hljs-keyword">or</span> <span class="hljs-literal">nil</span> <span class="hljs-keyword">if</span> no resource <span class="hljs-keyword">or</span> error resource.<br> <span class="hljs-variable">@discussion</span><br> This method loads the image data from the specified file, but <span class="hljs-keyword">not</span> caches it.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">+ (nullable UIImage *)fg_imageWithResource:(NSString *)resource;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>*!<br> <span class="hljs-variable">@abstract</span> Return the animated image object associated with the specified filename.<br> <span class="hljs-variable">@param</span> resource The name of file.<br> <span class="hljs-variable">@result</span> An UIImage object, <span class="hljs-keyword">or</span> <span class="hljs-literal">nil</span> <span class="hljs-keyword">if</span> no resource <span class="hljs-keyword">or</span> error resource.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">+ (nullable UIImage *)fg_animatedImageWithResource:(NSString *)resource;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>**<br> 压缩图片 限制图片的最大长边的长度为newImageWidth<br> <br> <span class="hljs-variable">@param</span> image 图片<br> <span class="hljs-variable">@param</span> newImageWidth 最大长边值<br> <span class="hljs-variable">@return</span> 裁剪后的新图片<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">+ (UIImage *)fg_compressImage:(UIImage *)image newWidth:(CGFloat)newImageWidth;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>**<br> 压缩长图 限制图片的最小长边的长度为newImageWidth<br> <br> 长图： 宽&gt;=长*<span class="hljs-number">2</span>  或者 长&gt;=宽*<span class="hljs-number">2</span><br> <br> <span class="hljs-variable">@param</span> image 图片<br> <span class="hljs-variable">@param</span> newImageWidth 最大长边值<br> <span class="hljs-variable">@return</span> 裁剪后的新图片<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">+ (UIImage *) fg_compressLongImage:(UIImage *)image newWidth:(CGFloat)newImageWidth;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>**<br> 是否为长图<br> <br> 长图： 宽&gt;=长*<span class="hljs-number">2</span>  或者 长&gt;=宽*<span class="hljs-number">2</span><br> <br> <span class="hljs-variable">@return</span> <span class="hljs-keyword">return</span> value description<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">- (BOOL) fg_isLongImage;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span>  将原图片按照size绘制<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> image 原图<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> size 目的size<br>+ (UIImage*) <span class="hljs-symbol">fg_originImage:</span>(UIImage *)image <span class="hljs-symbol">scaleToSize:</span>(CGSize)size;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 修正图片的方向</span><br><span class="hljs-regexp">- (UIImage *)fg_fixOrientation;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> 更改图片本身的朝向<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> orient 方向<br>- (UIImage *)<span class="hljs-symbol">fg_rotate:</span>(UIImageOrientation)orient;<br><br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 图片旋转</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> rotate 旋转角度参数<br>- (UIImage *)<span class="hljs-symbol">fg_rotateAngle:</span>(NSInteger)rotate;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UILabel-FGLoadMutableAttibute"><a href="#UILabel-FGLoadMutableAttibute" class="headerlink" title="UILabel+FGLoadMutableAttibute"></a>UILabel+FGLoadMutableAttibute</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 加载html<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> htmlStr html字符串<br>- (void)<span class="hljs-symbol">fg_loadHtml:</span>(NSString *)htmlStr;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 加载文件html</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> filePath 文件路径<br>- (void)<span class="hljs-symbol">fg_loadHtmlFromFilePath:</span>(NSString *)filePath;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="CALayer-FGDrawing-UIView-FGDrawing"><a href="#CALayer-FGDrawing-UIView-FGDrawing" class="headerlink" title="CALayer+FGDrawing/UIView+FGDrawing"></a>CALayer+FGDrawing/UIView+FGDrawing</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 添加阴影<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> shadow 阴影结构数据<br>- (void)<span class="hljs-symbol">fg_addShadow:</span>(FGShadow)shadow;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 添加边框</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> border 边框结构数据<br>- (void)<span class="hljs-symbol">fg_addBorder:</span>(FGBorder)border;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 添加圆角</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radius 圆角半径<br>- (void)<span class="hljs-symbol">fg_addCorner:</span>(CGFloat)radius;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 添加边框、圆角</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> border 边框结构数据<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radius 圆角结构数据<br>- (void)<span class="hljs-symbol">fg_addBorder:</span>(FGBorder)border <span class="hljs-symbol">radius:</span>(CGFloat)radius;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UIScrollView-FGMultiply"><a href="#UIScrollView-FGMultiply" class="headerlink" title="UIScrollView+FGMultiply"></a>UIScrollView+FGMultiply</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 嵌套时是否随着手势生效<br><span class="hljs-variable">@property</span> (nonatomic, strong) NSNumber *recognizeScrollEnable;<br><span class="hljs-regexp">//</span>监听滚动停止<br><span class="hljs-variable">@property</span> (nonatomic, copy, nullable) FGMultiplyScrollHandle handle;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UITabBar-FGCustomBadge"><a href="#UITabBar-FGCustomBadge" class="headerlink" title="UITabBar+FGCustomBadge"></a>UITabBar+FGCustomBadge</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/**<br> *<br> *设置tab上icon的宽度，用于调整badge的位置<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">- (void)fg_setTabIconWidth:(CGFloat)width;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>**<br> *设置badge的top<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">- (void)fg_setBadgeTop:(CGFloat)top;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>**<br> *设置badge样、数字<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">- (void)fg_setBadgeStyle:(FGSKMCustomBadgeStyleType)type value:(NSInteger)badgeValue atIndex:(NSInteger)index;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>**<br> 清空所有红点视图<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">- (void)fg_cleanAllBadgeView;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UITabBarItem-FGBuildObject"><a href="#UITabBarItem-FGBuildObject" class="headerlink" title="UITabBarItem+FGBuildObject"></a>UITabBarItem+FGBuildObject</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">/附加构建方法</span><br><span class="hljs-regexp">+ (instancetype)fg_itemWithTitle:(nullable NSString *)title image:(nullable NSString *)image tag:(NSInteger)tag;</span><br><span class="hljs-regexp">+ (instancetype)fg_itemWithTitle:(nullable NSString *)title image:(nullable NSString *)image selectedImage:(nullable NSString *)selectedImage;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UITableView-FGWeexTable"><a href="#UITableView-FGWeexTable" class="headerlink" title="UITableView+FGWeexTable"></a>UITableView+FGWeexTable</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">/底部footview隐藏</span><br><span class="hljs-regexp">- (void)fg_hideCellFootView;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UITableViewCell-FGAdditions"><a href="#UITableViewCell-FGAdditions" class="headerlink" title="UITableViewCell+FGAdditions"></a>UITableViewCell+FGAdditions</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">/内层底部视图</span><br><span class="hljs-regexp">@property (nonatomic, strong) UIView *insertsView;</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/获取重用cellId</span><br><span class="hljs-regexp">+ (NSString *)fg_cellId;</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> 内层构建约束<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> edge 内边距<br>- (void)<span class="hljs-symbol">fg_createInsertsView:</span>(UIEdgeInsets)edge;<br><br><span class="hljs-regexp">//</span>允许cell提供高度设置<br>- (CGFloat)<span class="hljs-symbol">fg_dynamicRowHeight:</span>(UITableViewCell *)cell<br>                  <span class="hljs-symbol">tableView:</span>(UITableView *)tableView;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UITextField-FGUtilities"><a href="#UITextField-FGUtilities" class="headerlink" title="UITextField+FGUtilities"></a>UITextField+FGUtilities</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-variable">@property</span> (nonatomic, nullable) UIColor *placeholdColor; <span class="hljs-regexp">//</span><span class="hljs-regexp">/&lt; The color of the placehold.</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span>*!<br> <span class="hljs-variable">@abstract</span> Limit the maximum number of inputs. Emoji is regarded as a unit length.<br> <span class="hljs-variable">@param</span> number The maximum number of inputs.<br> <span class="hljs-variable">@param</span> autoIntercept Whether needs interception.<br> <span class="hljs-variable">@result</span> The number of inputs.<br> *<span class="hljs-regexp">/</span><br><span class="hljs-regexp">- (NSInteger) fg_limitMaxNumber:(NSInteger)number autoIntercept:(BOOL)autoIntercept;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> 失去第一响应<br>+ (void) fg_allResignFirstResponder;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 选中范围</span><br><span class="hljs-regexp">- (void) fg_selectTextAtRange:(NSRange)range;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UITextView-FGUtilities"><a href="#UITextView-FGUtilities" class="headerlink" title="UITextView+FGUtilities"></a>UITextView+FGUtilities</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 限制字符长度<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> number 长度<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> autoIntercept 是否自动打断<br>- (NSInteger)<span class="hljs-symbol">fg_limitMaxNumber:</span>(NSInteger)number<br>                 <span class="hljs-symbol">autoIntercept:</span>(BOOL)autoIntercept;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="UIView-FGUtilities"><a href="#UIView-FGUtilities" class="headerlink" title="UIView+FGUtilities"></a>UIView+FGUtilities</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">//</span> 绘制左上右上圆角<br>/<span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radious 圆角半径<br>- (void)<span class="hljs-symbol">fg_roundedCornersOnTopWithRadious:</span>(CGFloat)radious;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 绘制左上圆角</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radious 圆角半径<br>- (void)<span class="hljs-symbol">fg_roundedCornersOnTopLeftWithRadious:</span>(CGFloat)radious;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 绘制右上圆角</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radious 圆角半径<br>- (void)<span class="hljs-symbol">fg_roundedCornersOnTopRightWithRadious:</span>(CGFloat)radious;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 绘制左下右下圆角</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radious 圆角半径<br>- (void)<span class="hljs-symbol">fg_roundedCornersOnBottomWithRadious:</span>(CGFloat)radious;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 绘制左下圆角</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radious 圆角半径<br>- (void)<span class="hljs-symbol">fg_roundedCornersOnBottomLeftWithRadious:</span>(CGFloat)radious;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 绘制右下圆角</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radious 圆角半径<br>- (void)<span class="hljs-symbol">fg_roundedCornersOnBottomRightWithRadious:</span>(CGFloat)radious;<br><br><span class="hljs-regexp">//</span><span class="hljs-regexp">/ 绘制全部圆角</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">//</span> <span class="hljs-variable">@param</span> radious 圆角半径<br>- (void)<span class="hljs-symbol">fg_roundedCornersOnAllSideWithRadious:</span>(CGFloat)radious;<br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="FGViewCreateUtil"><a href="#FGViewCreateUtil" class="headerlink" title="FGViewCreateUtil"></a>FGViewCreateUtil</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">/构建UILabel</span><br><span class="hljs-regexp">- (UILabel *)fg_label:(UIFont *)font</span><br><span class="hljs-regexp">             color:(UIColor *)color</span><br><span class="hljs-regexp">              text:(NSString *)text;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">- (UILabel *)fg_label:(UIFont *)font</span><br><span class="hljs-regexp">             color:(UIColor *)color</span><br><span class="hljs-regexp">              text:(NSString *)text</span><br><span class="hljs-regexp">        numerLines:(NSInteger)lines;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">- (UILabel *)fg_label:(UIFont *)font</span><br><span class="hljs-regexp">             color:(UIColor *)color</span><br><span class="hljs-regexp">              text:(NSString *)text</span><br><span class="hljs-regexp">      textAligment:(NSTextAlignment)textAlignment</span><br><span class="hljs-regexp">        numerLines:(NSInteger)lines;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/构建UIButton</span><br><span class="hljs-regexp">- (UIButton *)fg_btn:(nonnull NSString *)text</span><br><span class="hljs-regexp">             font:(nonnull UIFont *)font</span><br><span class="hljs-regexp">            color:(nonnull UIColor *)color</span><br><span class="hljs-regexp">  backGroundColor:(nonnull UIColor *)backGroundColor;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">- (UIButton *)fg_btn:(nonnull NSString *)normalImage</span><br><span class="hljs-regexp">    selectedImage:(nullable NSString *)selectedImage;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">- (void)fg_btn:(UIButton *)btn</span><br><span class="hljs-regexp">         title:(NSString *)title</span><br><span class="hljs-regexp">    titleColor:(UIColor *)titleColor</span><br><span class="hljs-regexp">          font:(UIFont *)font</span><br><span class="hljs-regexp">   normalImage:(NSString *)normalImage;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/构建UITableView</span><br><span class="hljs-regexp">- (UITableView *)fg_tableViewConfig:(id&lt;UITableViewDelegate,UITableViewDataSource&gt;)delegate</span><br><span class="hljs-regexp">                           style:(UITableViewStyle)style;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/UITableView注册多个UITableViewCell类型</span><br><span class="hljs-regexp">- (void)fg_registerCells:(NSArray *)arr</span><br><span class="hljs-regexp">            tableView:(UITableView *)tableView;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">- (void)fg_registerCellsDic:(NSDictionary *)dic</span><br><span class="hljs-regexp">               tableView:(UITableView *)tableView;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/设置当前滚动视图contentInset不自动调整</span><br><span class="hljs-regexp">- (void)fg_setAutoContentAdjustment:(UIScrollView *)scrollView;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/禁用UITableView的估算行高</span><br><span class="hljs-regexp">- (void)fg_stopTableViewEstimated:(UITableView *)tableView;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/提供手势点击方法</span><br><span class="hljs-regexp">- (void)fg_addTapGesture:(UIView *)view</span><br><span class="hljs-regexp">               action:(SEL)action;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h6 id="WKWebView-FGUtilities"><a href="#WKWebView-FGUtilities" class="headerlink" title="WKWebView+FGUtilities"></a>WKWebView+FGUtilities</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby">/<span class="hljs-regexp">/截图</span><br><span class="hljs-regexp">- (void ) fg_screenFromContentSizeHeight:(float)height</span><br><span class="hljs-regexp">                            andSnapshot:(void(^)(UIImage *snapShotImage))finishBlock;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<p>这里显示的都是关于UI设置及方法方面的，后续如果存在新增请在对应的分块中进行，并修改podspec文件后再升级。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://github.com/xiwuxisheng/xiwuxisheng.github.io/2020/05/19/iOS/%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%BA%8C)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86/index.html" title="https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2020&#x2F;05&#x2F;19&#x2F;iOS&#x2F;%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%BA%8C)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86&#x2F;index.html">https:&#x2F;&#x2F;github.com&#x2F;xiwuxisheng&#x2F;xiwuxisheng.github.io&#x2F;2020&#x2F;05&#x2F;19&#x2F;iOS&#x2F;%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%BA%8C)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiwuxisheng/xiwuxisheng.github.io/tags/base-framework-%E6%A2%B3%E7%90%86/" rel="tag">base, framework, 梳理</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/xiwuxisheng/xiwuxisheng.github.io/2020/04/13/iOS/%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%B8%80)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86/">基础库梳理一<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%BA%93UI%E5%8F%8A%E8%AF%B4%E6%98%8E"><span class="toc-text">基础库UI及说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#common%E5%B1%82"><span class="toc-text">common层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#core%E5%B1%82"><span class="toc-text">core层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PublicMethods%E5%B1%82"><span class="toc-text">PublicMethods层</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/utils.js"></script>
+<script src="/xiwuxisheng/xiwuxisheng.github.io/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
