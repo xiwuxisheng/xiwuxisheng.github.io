@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>多环境参数的配置 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="一、设计目的1、根据需求切换开发、测试、生产的环境，快...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">多环境参数的配置</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/theme-multiply.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">多环境参数的配置</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 20, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8374</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="一、设计目的"><a href="#一、设计目的" class="headerlink" title="一、设计目的"></a>一、设计目的</h1><p>1、根据需求切换开发、测试、生产的环境，快速响应差异化;<br>2、统一团队配置，优化开发流程，实现环境配置的统一管理。</p>
+<h1 id="二、应用环境"><a href="#二、应用环境" class="headerlink" title="二、应用环境"></a>二、应用环境</h1><p><strong>1、Dev</strong><br>日常业务或者组件开发，打印日志，查看页面元素、内存、定位问题等，最常使用环境；<br><strong>2、Test</strong><br>测试环境(预发布)，测试及验证，包含隐藏功能，比如内部token等信息的查看、日志信息查看等；<br><strong>3、Production</strong><br>生产环境，预备发布到App Store的最终版本，此版本调试功能不可用。  </p>
+<h1 id="三、项目结构体系"><a href="#三、项目结构体系" class="headerlink" title="三、项目结构体系"></a>三、项目结构体系</h1><p>先看一下项目的结构配置示意图：<br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId11.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><strong>备注：</strong><br>这是一张关于项目的具体配置体系的结构图，包括各个部分的关系。<br>其中的红线代表构建一个完整的app经过的流程步骤。</p>
+<h1 id="四、配置加载过程"><a href="#四、配置加载过程" class="headerlink" title="四、配置加载过程"></a>四、配置加载过程</h1><p>编译加载过程流程图：<br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId12.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>通过该加载流程我们可以知道进行动态处理”动手术”的地方就是红色区域标识的位置。</p>
+<h1 id="五、配置可选方案"><a href="#五、配置可选方案" class="headerlink" title="五、配置可选方案"></a>五、配置可选方案</h1><p>明晰了项目配置的结构，那么首先这里<strong>Project</strong>是排除的，因为它并不与我们的环境设置挂钩。但是也需要先理解一下各个部分的定义：</p>
+<p><strong>Project：</strong><br>组织源代码和资源文件，可包含多个<strong>Scheme</strong>，也可包含多个<strong>Target</strong>目标对象，包含整体项目资源和配置的集合体。  </p>
+<p><strong>Target：</strong><br>定义构建产品(App、Extension、Framework),指定需要编译的源代码和打包的资源文件和构建的过程步骤。<br>根据不同的环境设置多个target，意味着设置三个target，对应开发、测试、生产，配合设置不同宏定义参数进行内部设置的区分，比如三方库appId，网络请求头参数设置等。  </p>
+<p><strong>演示图1：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId13.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId14.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
+<p>这里打开可以看到对应三个target，也就是可以切换不同的target来确定构建目标，不过一般来说，不会在这里切换，会对应环境构建<strong>Scheme</strong>来进行切换。</p>
+<p><strong>Scheme：</strong><br>定义完整构建过程，指定<strong>Target</strong>进行对应的构建流程，允许创建多个，但是同一时刻只能允许一个生效，整合目标configuration编译环境。</p>
+<p><strong>演示图2：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId15.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId16.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
+<p><strong>优点：</strong><br>切换快速，一个target对应两套<strong>Build<br>Settings</strong>(release/debug)，如果代码变动不大，使用起来很方便.  </p>
+<p><strong>缺点：</strong><br>1.每个target需要构建不同的bundleId,签名证书重新生成，增加到3个<br>2.如果后台业务与bundleId有绑定，则所有的逻辑也需要变更修改（后台视频业务、IM服务）<br>3.代码同步问题，一份代码三个target都需要引用勾选，漏掉后果很严重，如果存在环境的影响，还需要维护环境宏变量  </p>
+<p><strong>Configurations</strong><br>先确定涉及到的定义：  </p>
+<p><strong>Build Configuration：</strong><br>可以把<strong>Build Settings</strong>当作是一个集体设置族参数，而<strong>BuildConfiguration</strong>则是用来管理和分组不同族<strong>BuildSettings</strong>的管理器，一般管理的<strong>BuildSettings族</strong>有Debug和Release两种，意思是这里有两套<strong>BuildSettings</strong>的配置集合，用于构建不同性质的App.</p>
+<p><strong>Build Settings：</strong><br>保存构建需要的设置信息，例如系统版本、异常支持、架构支持、三方库路径、编译顺序等.</p>
+<blockquote>
+<p>本身是配合<strong>xcconfig</strong>进行配置设置的<strong>Build<br>Configuration</strong>,该方案是无<strong>xcconfig</strong>的设置，结果就是<strong>Build<br>Settings</strong>里面需要对新增加的<strong>Configurations</strong>除了以前旧有的debug/release设置以外还需要提供修改支持。还有创建scheme打到多环境，每个<strong>Schem</strong>对应一个<strong>Configurations</strong>环境，形成一一对应的关系，便于直接通过切换<strong>Scheme</strong>变更环境，构建不同的步骤。</p>
+<p>如果需要自定义参数配置，要么使用不同<strong>Configurations</strong>的环境定义宏，内部宏区分处理，同Duplicate方案</p>
+<p>也可以User-Defined根据不同<strong>Configurations</strong>定义不同参数，同时在info.plist里面同key配置引入即可</p>
+</blockquote>
+<p><strong>示意图：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId17.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><strong>优点：</strong><br>根据env环境配置单一的环境，切换就可完成<br><strong>缺点：</strong><br>1.完全一一对应env环境，不区分当前编译类型debug/release/test<br>2.完全一一对应env环境，具体编译的debug/release根据具体业务确定<br>3.纯粹手动<strong>BuildSettings</strong>配置，如果出现丢失或者删除，难以对比跟踪，带来编译错误也查找困难<br>4.不适合统一管理，成员各个修改，给配置合并带来问题  </p>
+<p><strong>实例：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId18.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId19.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><strong>Configuration+xcconfig</strong><br><strong>xcconfig(Build Configuration File，构建配置文件)</strong>  </p>
+<p>纯文本文件，是作用于<strong>Project或者Target的BuildSettings</strong>，也就是说它可以代替<strong>Build<br>Settings</strong>，由手工修改变成了”外界配置”，再按照上述定义来看，我们可以确定，我们需要的是一<strong>BuildSettings</strong>,那么也就是一组<strong>xcconfig</strong>文件，由于是文件，那么可以用git进行统一管理.里面的内容格式类似于：</p>
+<p>BUILD_SETTING_NAME = VALUE<br>SWIFT_VERSION = 5.0</p>
+<p>使之生效，则需要在<strong>BuildSettings</strong>最前面加上${inherited},表示不覆盖并且保留具有相同key值的设置.</p>
+<p><strong>xcconfig</strong>文件的修改实际上是修改<strong>BuildSettings</strong>中的参数,这里包含3种层次的类型文件：<strong>Project xcconfigFile、Target xcconfig File、Pod xcconfig File</strong>(一般会自动生成，需要进行include引用)</p>
+<p>一般项目中是不包含<strong>Project xcconfig File、Target xcconfig<br>File</strong>文件的,所以需要自己创建这里需要注意一下项目最终生效配置过程，特别是存在同名配置的情况下，这里有一个优先级的步骤。</p>
+<p><strong>优先级：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId20.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>如果想继承保留，使用value时，在前面添加${inherited},后面跟着具体设置的值或者在后面添加${inherited}，前面设置具体值  </p>
+<p>例如：<br>SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) RELEASE<br>或者<br>SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE $(inherited)  </p>
+<p><strong>使用示意图：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId21.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId22.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>由此我们就完成了设置，剩下的就是补上<strong>xcconfig File</strong>文件的内容.</p>
+<p>注意一下xcode项目里定义的<strong>BuildSettings</strong>参数，可以从project.pbxproj里面去找到，如图所示:<br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId23.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >    </p>
+<p>其中一部分对应：<br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId24.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId25.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId26.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>所以这里如果我们使用同名key值，就可能会造成覆盖，可以根据自己的需求来处理。</p>
+<h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><p>1.在2方案的基础上逐级下沉细节配置，按照业务需求可非手动动态添加或者修改配置，可以代<strong>BuildSettings</strong>里面的设置，可以看作是2方案的加强版<br>2.将手动配置变成了动态注入配置，剥离环境影响，解耦合，可扩展性更强大<br>3.无需对项目scheme、target等”动手术”.<br>4.统一参数配置更灵活，直接文件写好即可，层次清晰  </p>
+<p><strong>缺点：</strong><br>1.需要了解<strong>xcconfig</strong>的配置语法和加载机制<br>2.维护成本，同一个设置多个文件，优先级区分处理  </p>
+<p><strong>4、结论</strong><br>1、通过以上三个方案的比较，<strong>Duplicate</strong>最先放弃，因为起码需要构建不同bundleId的设置和对证书请求、业务方面造成的影响范围太广，工程量巨大，性价比最低.<br>2、<strong>Configurations</strong>方案最直接简单，需要手动设置好参数，对新增的参数的设置是间接处理，但是不管是漏掉设置还是删除都会造成严重的后果，跟踪机制薄弱，不适合统一管理.<br>3、<strong>Configuration+xcconfig</strong>细化了配置流程，将新增参数独立解耦出来，而且由于是文件，可以通过git统一管理跟踪，而且就算<strong>BuildSettings</strong>漏掉或者删掉，也会有动态设置补充，灵活且稳定性最好.<br>所以，这里我们选择第3个方案，实现<strong>Configuration+xcconfig</strong>的结合处理.</p>
+<h1 id="六、整体设计"><a href="#六、整体设计" class="headerlink" title="六、整体设计"></a>六、整体设计</h1><p><strong>配置结构示意图：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId27.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h1 id="七、配置变量"><a href="#七、配置变量" class="headerlink" title="七、配置变量"></a>七、配置变量</h1><p><strong>常用编译配置变量：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId28.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>上面的参数可以从官网里面获取，具体地址为：<br><a target="_blank" rel="noopener" href="https://xcodebuildsettings.com/">[官方网址:][https://xcodebuildsettings.com/]</a><br>注意：这里是官方配置参数字段说明，如果需要覆盖掉buildsetting的参数，那么可以使用同名key字段，同时删除xcode中 buildsetting的参数； </p>
+<p>如果需要另外定义，则可以取名与系统定义不一致，如果需要让buildsetting使用，部分非选择项可以直接将自定义字段名填入buildsetting中，也可以生效，但不建议，因为这样做的后果是xcconfig中配置的参数名不能改动，不能删除，否则会影响编译配置效果。</p>
+<p><strong>目前初版参数对照表如下：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId31.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>上述不是完整配置字段，但是变更环境后会造成上述参数变换的效果</p>
+<p><strong>具体变量设置：</strong><br><strong>公共变量xcconfig</strong><br>由于project build setting与target buildsetting两者的设置基本一致，那么我们只是从业务层面去区分公共设置，这里常用的配置包括以下：<br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId32.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
+<p><strong>Project xcconfig</strong><br>本项目梳理无，只包含一个基础xcconfig对公共变量xcconfig引入。<br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId33.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
+<h2 id="Target-xcconfig-File"><a href="#Target-xcconfig-File" class="headerlink" title="Target xcconfig File"></a><strong>Target xcconfig File</strong></h2><p><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId34.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h1 id="八、应用参数"><a href="#八、应用参数" class="headerlink" title="八、应用参数"></a>八、应用参数</h1><p><strong>B端当前参数梳理:</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId35.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
+<p><strong>应用参数存储:</strong><br>1.确认当前参数是否保密参数，如果是非保密，则放在${configuration}Configurations.xcconfig中，主要是为了直观处理。<br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId36.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>根据环境填充即可，目前通过脚本会自动构建生成对应的plist文件，用于使用和查找。  </p>
+<p><strong>附上脚本：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;CONFIGURATION -&gt; \<span class="hljs-variable">$</span>&#123;CONFIGURATION&#125;\&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;SRCROOT -&gt; <span class="hljs-variable">$</span>&#123;SRCROOT&#125;&quot;</span><br>/usr/libexec/PlistBuddy <span class="hljs-literal">-c</span> <span class="hljs-string">&quot;Clear&quot;</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildsettings.plist<br>/usr/libexec/PlistBuddy <span class="hljs-literal">-c</span> <span class="hljs-string">&quot;Clear&quot;</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildConfiguration.plist<br>xcodebuild <span class="hljs-literal">-project</span> kanfangriji.xcodeproj <span class="hljs-literal">-target</span> kanfangriji <span class="hljs-literal">-configuration</span> <span class="hljs-variable">$</span>&#123;CONFIGURATION&#125; <span class="hljs-literal">-showBuildSettings</span> | grep <span class="hljs-string">&quot;=&quot;</span> &gt; <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildsettings.txt<br><br><span class="hljs-built_in">cat</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildsettings.txt | <span class="hljs-keyword">while</span> read line;<br><span class="hljs-keyword">do</span><br>k=<span class="hljs-variable">$</span>&#123;line%=*&#125;<br>v=<span class="hljs-variable">$</span>&#123;line<span class="hljs-comment">##*=&#125;</span><br>/usr/libexec/PlistBuddy <span class="hljs-literal">-c</span> <span class="hljs-string">&quot;Add <span class="hljs-variable">$k</span> string <span class="hljs-variable">$v</span>&quot;</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildsettings.plist<br>done<br><br><span class="hljs-built_in">cat</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/kanfangriji/ShareConfigurations.xcconfig | grep <span class="hljs-string">&quot;=&quot;</span> | <span class="hljs-keyword">while</span> read line;<br><span class="hljs-keyword">do</span><br>k=<span class="hljs-variable">$</span>&#123;line%=*&#125;<br>v=<span class="hljs-variable">$</span>&#123;line<span class="hljs-comment">##*=&#125;</span><br>/usr/libexec/PlistBuddy <span class="hljs-literal">-c</span> <span class="hljs-string">&quot;Add <span class="hljs-variable">$k</span> string <span class="hljs-variable">$v</span>&quot;</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildConfiguration.plist<br>done<br><br><span class="hljs-built_in">cat</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/kanfangriji/<span class="hljs-variable">$</span>&#123;CONFIGURATION&#125;Project.xcconfig | grep <span class="hljs-string">&quot;=&quot;</span> | <span class="hljs-keyword">while</span> read line;<br><span class="hljs-keyword">do</span><br>k=<span class="hljs-variable">$</span>&#123;line%=*&#125;<br>v=<span class="hljs-variable">$</span>&#123;line<span class="hljs-comment">##*=&#125;</span><br>/usr/libexec/PlistBuddy <span class="hljs-literal">-c</span> <span class="hljs-string">&quot;Add <span class="hljs-variable">$k</span> string <span class="hljs-variable">$v</span>&quot;</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildConfiguration.plist<br>done<br><br><span class="hljs-built_in">cat</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/kanfangriji/<span class="hljs-variable">$</span>&#123;CONFIGURATION&#125;Target.xcconfig | grep <span class="hljs-string">&quot;=&quot;</span> | <span class="hljs-keyword">while</span> read line;<br><span class="hljs-keyword">do</span><br>k=<span class="hljs-variable">$</span>&#123;line%=*&#125;<br>v=<span class="hljs-variable">$</span>&#123;line<span class="hljs-comment">##*=&#125;</span><br>/usr/libexec/PlistBuddy <span class="hljs-literal">-c</span> <span class="hljs-string">&quot;Add <span class="hljs-variable">$k</span> string <span class="hljs-variable">$v</span>&quot;</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildConfiguration.plist<br>done<br><br><span class="hljs-built_in">cat</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/kanfangriji/<span class="hljs-variable">$</span>&#123;CONFIGURATION&#125;Configurations.xcconfig | grep <span class="hljs-string">&quot;=&quot;</span> | <span class="hljs-keyword">while</span> read line;<br><span class="hljs-keyword">do</span><br>k=<span class="hljs-variable">$</span>&#123;line%=*&#125;<br>v=<span class="hljs-variable">$</span>&#123;line<span class="hljs-comment">##*=&#125;</span><br>/usr/libexec/PlistBuddy <span class="hljs-literal">-c</span> <span class="hljs-string">&quot;Add <span class="hljs-variable">$k</span> string <span class="hljs-variable">$v</span>&quot;</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildConfiguration.plist<br>done<br><span class="hljs-built_in">rm</span> <span class="hljs-literal">-rf</span> <span class="hljs-variable">$</span>&#123;SRCROOT&#125;/buildsettings.txt<br></code></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId37.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId38.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
+<p>2.保密参数，则使用私有外联参数定义，隐藏内部参数<br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId39.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId40.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>内部需要根据环境进行划分，使用时直接使用SKM_ServerHost就可以进行实现    </p>
+<p><strong>新增配置项整体流程：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId41.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h1 id="九、任务执行流程"><a href="#九、任务执行流程" class="headerlink" title="九、任务执行流程"></a>九、任务执行流程</h1><p><strong>具体步骤：</strong><br><img   class="lazyload" data-original="/images/multiplyEnv/document_image_rId42.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
+<h1 id="十、应用及测试"><a href="#十、应用及测试" class="headerlink" title="十、应用及测试"></a>十、应用及测试</h1><p><strong>步骤：</strong><br>1.增加配置项后，这里区分，如果是私密应用参数，则忽略；<br>2.如果是其他的，启动编译；<br>3.工具类分别读取脚本生成的结果配置表和手动配置表自动进行对比；<br>4.无输出信息，则成功；否则，输出不一致项信息，进行弹窗提醒<br>5.如果有提示信息，则排错及纠正后重复2开始的步骤；<br>6.切换不同scheme环境，重复2开始的步骤；<br>7.成功，则配置项正确通过<br>8.结束流程  </p>
+<p><strong>附上自动匹配代码段：</strong>  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs css">+ (NSString *)matchBuildSettings &#123;<br>    // 个人配置<br>    NSString *buildPath = <span class="hljs-selector-attr">[[NSBundle mainBundle]</span> pathForResource:@<span class="hljs-string">&quot;buildConfiguration&quot;</span> ofType:@<span class="hljs-string">&quot;plist&quot;</span>];<br>    // 最终结果<br>    NSString *resultPath = <span class="hljs-selector-attr">[[NSBundle mainBundle]</span> pathForResource:@<span class="hljs-string">&quot;buildsettings&quot;</span> ofType:@<span class="hljs-string">&quot;plist&quot;</span>];<br>    NSMutableString *muStr = <span class="hljs-selector-attr">[NSMutableString new]</span>;<br>    if (!buildPath) &#123;<br>        <span class="hljs-selector-attr">[muStr appendString:@<span class="hljs-string">&quot;buildConfiguration.plist文件缺失&quot;</span>]</span>;<br>        return muStr<span class="hljs-selector-class">.copy</span>;<br>    &#125;<br>    if (!resultPath) &#123;<br>        <span class="hljs-selector-attr">[muStr appendString:@<span class="hljs-string">&quot;buildsettings.plist文件缺失&quot;</span>]</span>;<br>        return muStr<span class="hljs-selector-class">.copy</span>;<br>    &#125;<br>    NSDictionary *buildData = <span class="hljs-selector-attr">[NSDictionary dictionaryWithContentsOfFile:buildPath]</span>;<br>    NSDictionary *resultData = <span class="hljs-selector-attr">[NSDictionary dictionaryWithContentsOfFile:resultPath]</span>;<br>    NSArray *buildKeys = <span class="hljs-selector-attr">[buildData allKeys]</span>;<br>    <span class="hljs-keyword">@autoreleasepool</span> &#123;<br>        for (NSString *key in buildKeys) &#123;<br>            NSString *buildValue = buildData<span class="hljs-selector-attr">[key]</span>;<br>            NSString *resultValue = resultData<span class="hljs-selector-attr">[key]</span>;<br>            if (buildValue<span class="hljs-selector-class">.length</span> == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-selector-attr">[muStr appendFormat:@<span class="hljs-string">&quot;%@为空\n&quot;</span>,key]</span>;<br>            &#125;<br>            if (buildValue<span class="hljs-selector-class">.length</span> &gt; <span class="hljs-number">0</span> &amp;&amp; resultValue<span class="hljs-selector-class">.length</span> &gt; <span class="hljs-number">0</span>) &#123;<br>                if (<span class="hljs-selector-attr">[buildValue containsString:@<span class="hljs-string">&quot;$(inherited)&quot;</span>]</span>) &#123;<br>                    NSString *temp = <span class="hljs-selector-attr">[buildValue stringByReplacingOccurrencesOfString:@<span class="hljs-string">&quot;$(inherited)&quot;</span> withString:@<span class="hljs-string">&quot;&quot;</span>]</span>;<br>                    if (!<span class="hljs-selector-attr">[resultValue containsString:temp]</span>) &#123;<br>                        <span class="hljs-selector-attr">[muStr appendFormat:@<span class="hljs-string">&quot;%@=%@配置有误\n&quot;</span>,key,buildValue]</span>;<br>                    &#125;<br>                &#125;else if(!<span class="hljs-selector-attr">[buildValue isEqualToString:resultValue]</span>)&#123;<br>                    <span class="hljs-selector-attr">[muStr appendFormat:@<span class="hljs-string">&quot;%@=%@配置有误\n&quot;</span>,key,buildValue]</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    NSString *resultStr = muStr<span class="hljs-selector-class">.copy</span>;<br>    if (resultStr<span class="hljs-selector-class">.length</span>) &#123;<br>        return resultStr;<br>    &#125;<br>    return nil;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="十一、其他"><a href="#十一、其他" class="headerlink" title="十一、其他"></a>十一、其他</h1><p><strong>问题1:</strong><br>统一管理后如何不小心在配置文件中更改了怎么办？<br>直接清空<strong>Build Settings</strong>那一栏，因为xcconfig文件内容会根据环境自动覆盖  </p>
+<p><strong>问题2:</strong><br>对打包脚本的影响？<br>不影响，只要不修改configuration的的name值，不会影响。  </p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://xiwuxisheng.github.io/2022/01/20/iOS/%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html" title="https:&#x2F;&#x2F;xiwuxisheng.github.io&#x2F;2022&#x2F;01&#x2F;20&#x2F;iOS&#x2F;%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#x2F;index.html">https:&#x2F;&#x2F;xiwuxisheng.github.io&#x2F;2022&#x2F;01&#x2F;20&#x2F;iOS&#x2F;%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xcode-%E5%A4%9A%E7%8E%AF%E5%A2%83-%E7%BC%96%E8%AF%91%E5%8F%82%E6%95%B0-buildSettings/" rel="tag">xcode, 多环境, 编译参数, buildSettings</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2020/05/19/iOS/%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%BA%8C)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86/">基础库梳理二<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%AE%BE%E8%AE%A1%E7%9B%AE%E7%9A%84"><span class="toc-text">一、设计目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83"><span class="toc-text">二、应用环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E4%BD%93%E7%B3%BB"><span class="toc-text">三、项目结构体系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-text">四、配置加载过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%85%8D%E7%BD%AE%E5%8F%AF%E9%80%89%E6%96%B9%E6%A1%88"><span class="toc-text">五、配置可选方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="toc-text">优点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%95%B4%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-text">六、整体设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%85%8D%E7%BD%AE%E5%8F%98%E9%87%8F"><span class="toc-text">七、配置变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Target-xcconfig-File"><span class="toc-text">Target xcconfig File</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%BA%94%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-text">八、应用参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">九、任务执行流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%BA%94%E7%94%A8%E5%8F%8A%E6%B5%8B%E8%AF%95"><span class="toc-text">十、应用及测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%85%B6%E4%BB%96"><span class="toc-text">十一、其他</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
