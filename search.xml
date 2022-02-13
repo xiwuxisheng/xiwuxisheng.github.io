@@ -133,6 +133,88 @@
       </tags>
   </entry>
   <entry>
+    <title>编译原理</title>
+    <url>/2022/02/13/iOS/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过了解平台从源码到机器可识别的代码的过程，有助于我们理解静态库与动态库的制作，也能有思路去优化app的性能，比如启动速度，还有包括app的”瘦身”计划等。</p>
+<h1 id="编译过程简述"><a href="#编译过程简述" class="headerlink" title="编译过程简述"></a>编译过程简述</h1><p>首先需要了解一下编译的详细设计，这里有张图可以表示：</p>
+<p><img src="/images/compiler/image1.jpg"></p>
+<p>这里简单解释一下就是：</p>
+<ul>
+<li><p>  源码开始进行编译，首先第一步就是预处理，主要是进行导入库的源码替换操作，形成修改后的源程序</p>
+</li>
+<li><p>  编译器将处理后的代码编译成汇编程序</p>
+</li>
+<li><p>  汇编器将程序翻译成机器指令，包装成可重定向目标程序，这是一个二进制文件</p>
+</li>
+<li><p>  链接器对依赖的其余目标程序合并到本程序中，生成可执行程序</p>
+</li>
+<li><p>  可执行程序通过加载器加入内存，并由系统执行</p>
+</li>
+</ul>
+<p>为什么会有这样一套流程，原因是计算机无法理解高级语言逻辑，所以我们需要有一套流程能够将高级语言转化成机器可以识别的二进制，这就有了编译器的出现。</p>
+<h1 id="编译命令GCC"><a href="#编译命令GCC" class="headerlink" title="编译命令GCC"></a>编译命令GCC</h1><p>GCC（GNU Compiler Collection，GNU编译器套件）是由GNU开发的编程语言译器。GNU编译器套件包括C、C++、Objective-C、Fortran、Java、Ada和Go语言前端，也包括了这些语言的库（如libstdc++，libgcj等。）</p>
+<h1 id="编写源程序"><a href="#编写源程序" class="headerlink" title="编写源程序"></a>编写源程序</h1><p>简单的一个C程序，如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#include</span> &lt;stdio<span class="hljs-selector-class">.h</span>&gt;<br>int <span class="hljs-selector-tag">main</span>()<br>&#123;<br>    printf(&quot;hello, world\n&quot;);<br>    return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="GCC编译"><a href="#GCC编译" class="headerlink" title="GCC编译"></a>GCC编译</h1><p>进入hello.c当前目录下，继续步骤如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">// 将hello<span class="hljs-selector-class">.c</span>文件编译成可执行程序hello<br>gcc -o hello hello<span class="hljs-selector-class">.c</span><br>// 执行hello程序<br>./hello<br><br></code></pre></td></tr></table></figure>
+<p>结果：hello,world，由此可以知道刚才是直接将文件翻译成了机器二进制语言文件hello，然后这个文件机器是可以识别的，通过执行，与程序逻辑保持一致，那么我们可以探究一下其中具体做了哪些事情呢，这里有一张编译过程的网络引用图：</p>
+<p><img src="/images/compiler/image2.jpg"></p>
+<p>通过这张图，将编译过程进行拆分，可以分为四类：</p>
+<ul>
+<li><p>  预处理(text)</p>
+</li>
+<li><p>  编译(text)</p>
+</li>
+<li><p>  汇编(binary)</p>
+</li>
+<li><p>  链接(binary)</p>
+</li>
+</ul>
+<h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><p>C预处理器，也可以为预编译器，是一个独立于C编译器的小程序，一般简称CPP,即C Pre-Processor，其主要功能用来实现源代码编译之前，实现文本替换</p>
+<p>比如这里的hello.c文件，开头里面包含了 #include &lt;stdio.h&gt; ，这里告诉了预处理器需要先系统头文件stdio.h的内容读取后插入到hello.c源程序中来，同时替换掉 #include &lt;stdio.h&gt; </p>
+<p>修改后的 C 程序一般另保存为 .i 后缀的文本文件(本例为 hello.i)，输出的hello.i 将用于下一个阶段。</p>
+<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><p>编译器CC1，编译器通过将hello.i文件进行编译，得到.s后缀的汇编语言文本文件，这里得到最终结果hello.s。</p>
+<p>编译成汇编语言程序有个好处，就是对于不同的编译器，不同的高级语言，都会编译输出一样的汇编程序。</p>
+<p>也就是说这一步相当于生成统一的汇编中间代码，就是为了适应不同平台的需要。</p>
+<h1 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h1><p>这不操作比较关键，需要理解概念可重定位目标文件 (Relocatable Object File)，包含可与其它 relocatable object file相结合的二进制代码和数据，由编译器和汇编器产生。</p>
+<p>通过汇编(as)会直接生成可重定位目标文件，也就是实现了汇编语言到机器指令的转化，变成了hello.o的二进制文件，这个时候生成的文件机器已经可以识别，但是别忘了，原来逻辑中还是用了C标准库prinf方法，而目前的生成的hello.o中无法识别prinf的逻辑，所以还会有下一步。</p>
+<p>再范围大一些的理解<strong>目标文件:</strong></p>
+<ul>
+<li><p>  可重定位目标文件</p>
+</li>
+<li><p>  可执行目标文件(Executable Object File),包含可直接复制到内存并执行的二进制代码和数据，由链接器生成。</p>
+</li>
+<li><p>  共享目标文件 (Shared Object File),特殊的可重定位目标文件，可以被装载入内存，并且可以在装载或运行的时候动态地链接。这里比如prinf.o.</p>
+</li>
+</ul>
+<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>在我们生成了hello.o文件后，由于逻辑中依赖了C标准库prinf方法，那么需要一种方法让机器能够识别并且执行，这时候就需要一种方式将prinf.o内容合并进来，那就是链接器的作用。</p>
+<p>最后经过链接器的作用后，会生成hello可执行文件，通过loader加载入内存，并由系统执行，也就是./hello，最终整个程序就跑起来了。</p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS, 编译原理，编译过程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在线功能收集</title>
+    <url>/2022/02/13/%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过收集整理到的在线功能链接，可以非常快速方便的得到想要的资源，这样有利于快速提高开发效率。下面会按照各个分类进行整理和逐渐完善</p>
+<h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><p>在线webp转为其余格式：</p>
+<p><a href="https://www.aconvert.com/cn/image/webp-to-jpg">https://www.aconvert.com/cn/image/webp-to-jpg</a></p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><p>在线格式化：</p>
+<p><a href="https://tool.oschina.net/codeformat/json/">https://tool.oschina.net/codeformat/json/</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>在线, 工具, webp, JSON, 格式化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基础库梳理二</title>
     <url>/2020/05/19/iOS/%E7%BB%84%E4%BB%B6%E5%8C%96(%E4%BA%8C)-%E5%9F%BA%E7%A1%80%E5%BA%93%E7%9A%84%E6%A2%B3%E7%90%86/</url>
     <content><![CDATA[<h1 id="基础库UI及说明"><a href="#基础库UI及说明" class="headerlink" title="基础库UI及说明"></a>基础库UI及说明</h1><p>首先结构如下图所示：</p>
@@ -1101,7 +1183,7 @@
 
 <p><strong>预览效果：</strong></p>
 <p><a href="https://github.com/">https://github.com</a></p>
-<p><a href="mailto:&#101;&#120;&#x61;&#x6d;&#112;&#108;&#101;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#101;&#120;&#x61;&#x6d;&#112;&#108;&#101;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;</a></p>
+<p><a href="mailto:&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;</a></p>
 <p><strong>对应 HTML：</strong></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://github.com&quot;</span>&gt;</span>https://github.com<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:example@gmail.com&quot;</span>&gt;</span>example@gmail.com<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
 

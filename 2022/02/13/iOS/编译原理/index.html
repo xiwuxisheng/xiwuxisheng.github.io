@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>编译原理 - 习武的个人博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="工作、生活、学习、感想、心态、技术、经历、旅游、swift、iOS、flutter、html、nodeJS、weex等">
+  <meta name="description" content="目的通过了解平台从源码到机器可识别的代码的过程，有助于...">
+  <meta name="author" content="习武">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">编译原理</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/theme-iOS-11.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">编译原理</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>二月 13, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1941</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过了解平台从源码到机器可识别的代码的过程，有助于我们理解静态库与动态库的制作，也能有思路去优化app的性能，比如启动速度，还有包括app的”瘦身”计划等。</p>
+<h1 id="编译过程简述"><a href="#编译过程简述" class="headerlink" title="编译过程简述"></a>编译过程简述</h1><p>首先需要了解一下编译的详细设计，这里有张图可以表示：</p>
+<p><img   class="lazyload" data-original="/images/compiler/image1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>这里简单解释一下就是：</p>
+<ul>
+<li><p>  源码开始进行编译，首先第一步就是预处理，主要是进行导入库的源码替换操作，形成修改后的源程序</p>
+</li>
+<li><p>  编译器将处理后的代码编译成汇编程序</p>
+</li>
+<li><p>  汇编器将程序翻译成机器指令，包装成可重定向目标程序，这是一个二进制文件</p>
+</li>
+<li><p>  链接器对依赖的其余目标程序合并到本程序中，生成可执行程序</p>
+</li>
+<li><p>  可执行程序通过加载器加入内存，并由系统执行</p>
+</li>
+</ul>
+<p>为什么会有这样一套流程，原因是计算机无法理解高级语言逻辑，所以我们需要有一套流程能够将高级语言转化成机器可以识别的二进制，这就有了编译器的出现。</p>
+<h1 id="编译命令GCC"><a href="#编译命令GCC" class="headerlink" title="编译命令GCC"></a>编译命令GCC</h1><p>GCC（GNU Compiler Collection，GNU编译器套件）是由GNU开发的编程语言译器。GNU编译器套件包括C、C++、Objective-C、Fortran、Java、Ada和Go语言前端，也包括了这些语言的库（如libstdc++，libgcj等。）</p>
+<h1 id="编写源程序"><a href="#编写源程序" class="headerlink" title="编写源程序"></a>编写源程序</h1><p>简单的一个C程序，如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#include</span> &lt;stdio<span class="hljs-selector-class">.h</span>&gt;<br>int <span class="hljs-selector-tag">main</span>()<br>&#123;<br>    printf(&quot;hello, world\n&quot;);<br>    return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="GCC编译"><a href="#GCC编译" class="headerlink" title="GCC编译"></a>GCC编译</h1><p>进入hello.c当前目录下，继续步骤如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">// 将hello<span class="hljs-selector-class">.c</span>文件编译成可执行程序hello<br>gcc -o hello hello<span class="hljs-selector-class">.c</span><br>// 执行hello程序<br>./hello<br><br></code></pre></td></tr></table></figure>
+<p>结果：hello,world，由此可以知道刚才是直接将文件翻译成了机器二进制语言文件hello，然后这个文件机器是可以识别的，通过执行，与程序逻辑保持一致，那么我们可以探究一下其中具体做了哪些事情呢，这里有一张编译过程的网络引用图：</p>
+<p><img   class="lazyload" data-original="/images/compiler/image2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>通过这张图，将编译过程进行拆分，可以分为四类：</p>
+<ul>
+<li><p>  预处理(text)</p>
+</li>
+<li><p>  编译(text)</p>
+</li>
+<li><p>  汇编(binary)</p>
+</li>
+<li><p>  链接(binary)</p>
+</li>
+</ul>
+<h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><p>C预处理器，也可以为预编译器，是一个独立于C编译器的小程序，一般简称CPP,即C Pre-Processor，其主要功能用来实现源代码编译之前，实现文本替换</p>
+<p>比如这里的hello.c文件，开头里面包含了 #include &lt;stdio.h&gt; ，这里告诉了预处理器需要先系统头文件stdio.h的内容读取后插入到hello.c源程序中来，同时替换掉 #include &lt;stdio.h&gt; </p>
+<p>修改后的 C 程序一般另保存为 .i 后缀的文本文件(本例为 hello.i)，输出的hello.i 将用于下一个阶段。</p>
+<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><p>编译器CC1，编译器通过将hello.i文件进行编译，得到.s后缀的汇编语言文本文件，这里得到最终结果hello.s。</p>
+<p>编译成汇编语言程序有个好处，就是对于不同的编译器，不同的高级语言，都会编译输出一样的汇编程序。</p>
+<p>也就是说这一步相当于生成统一的汇编中间代码，就是为了适应不同平台的需要。</p>
+<h1 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h1><p>这不操作比较关键，需要理解概念可重定位目标文件 (Relocatable Object File)，包含可与其它 relocatable object file相结合的二进制代码和数据，由编译器和汇编器产生。</p>
+<p>通过汇编(as)会直接生成可重定位目标文件，也就是实现了汇编语言到机器指令的转化，变成了hello.o的二进制文件，这个时候生成的文件机器已经可以识别，但是别忘了，原来逻辑中还是用了C标准库prinf方法，而目前的生成的hello.o中无法识别prinf的逻辑，所以还会有下一步。</p>
+<p>再范围大一些的理解<strong>目标文件:</strong></p>
+<ul>
+<li><p>  可重定位目标文件</p>
+</li>
+<li><p>  可执行目标文件(Executable Object File),包含可直接复制到内存并执行的二进制代码和数据，由链接器生成。</p>
+</li>
+<li><p>  共享目标文件 (Shared Object File),特殊的可重定位目标文件，可以被装载入内存，并且可以在装载或运行的时候动态地链接。这里比如prinf.o.</p>
+</li>
+</ul>
+<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>在我们生成了hello.o文件后，由于逻辑中依赖了C标准库prinf方法，那么需要一种方法让机器能够识别并且执行，这时候就需要一种方式将prinf.o内容合并进来，那就是链接器的作用。</p>
+<p>最后经过链接器的作用后，会生成hello可执行文件，通过loader加载入内存，并由系统执行，也就是./hello，最终整个程序就跑起来了。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>习武</li>
+    <li><strong>本文链接：</strong><a href="https://xiwuxisheng.github.io/2022/02/13/iOS/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.html" title="https:&#x2F;&#x2F;xiwuxisheng.github.io&#x2F;2022&#x2F;02&#x2F;13&#x2F;iOS&#x2F;%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86&#x2F;index.html">https:&#x2F;&#x2F;xiwuxisheng.github.io&#x2F;2022&#x2F;02&#x2F;13&#x2F;iOS&#x2F;%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%EF%BC%8C%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/" rel="tag">iOS, 编译原理，编译过程</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/02/13/%E5%B7%A5%E5%85%B7/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/">在线功能收集<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E7%9A%84"><span class="toc-text">目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E7%AE%80%E8%BF%B0"><span class="toc-text">编译过程简述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4GCC"><span class="toc-text">编译命令GCC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%BA%90%E7%A8%8B%E5%BA%8F"><span class="toc-text">编写源程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GCC%E7%BC%96%E8%AF%91"><span class="toc-text">GCC编译</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-text">编译</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96"><span class="toc-text">汇编</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-text">链接</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="mqqwpa://im/chat?chat_type=wpa&uin=756364924&version=1&src_type=web&web_src=oicqzone.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/xiwuxisheng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto://756364924@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://github.com/xiwuxisheng/xiwuxisheng.github.io">习武</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
