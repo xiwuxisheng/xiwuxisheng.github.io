@@ -206,16 +206,16 @@
       <section class="content">
         
         <p>在分析alloc源码之前，先来看看一下3个变量 内存地址 和 指针地址 区别：</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image1.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc1.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <p>分别输出3个对象的<strong>内容、内存地址、指针地址</strong>，下图是打印结果</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image2.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc2.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <p><strong>结论：</strong>通过上图可以看出，3个对象<strong>指向的是同一个内存空间</strong>，所以其<strong>内容 和内存地址是相同的</strong>，但是对象的指针地址是不同的</p>
 <blockquote>
 <p>%p -&gt; &amp;p1：是对象的指针地址，<br>%p -&gt; p1： 是对象指针指向的的内存地址</p>
 </blockquote>
 <p>这就是本文需要探索的内容，alloc做了什么？init做了什么？</p>
 <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h5 id="alloc-源码探索"><a href="#alloc-源码探索" class="headerlink" title="alloc 源码探索"></a><strong>alloc</strong> 源码探索</h5><p>alloc + init整体源码的探索流程如下</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image3.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc3.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <ul>
 <li><p>【第一步】首先根据main函数中的LGPerson类的alloc方法进入alloc方法的源码实现（即源码分析开始）</p>
 <figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gml"><span class="hljs-comment">//alloc源码分析-第一步</span><br> + (<span class="hljs-symbol">id</span>)alloc &#123;<br>         <span class="hljs-keyword">return</span> _objc_rootAlloc(<span class="hljs-literal">self</span>);<br>   &#125;<br></code></pre></td></tr></table></figure></li>
@@ -257,12 +257,12 @@
 
 <p>根据源码分析，得出其实现流程图如下所示：</p>
 <p>_class_createInstanceFromZone流程</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image4.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc4.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <h3 id="alloc-核心操作"><a href="#alloc-核心操作" class="headerlink" title="alloc 核心操作"></a>alloc 核心操作</h3><p>核心操作都位于<strong>calloc</strong>方法中</p>
 <p><strong>cls-&gt;instanceSize</strong>：<strong>计算所需内存大小</strong></p>
 <p>计算需要开辟内存的大小的执行流程如下所示</p>
 <p>instanceSize流程</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image5.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc5.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <ul>
 <li> 1、跳转至instanceSize的源码实现</li>
 </ul>
@@ -307,7 +307,7 @@
 </ul>
 <p>下面以align（8）为例，图解16字节对齐算法的计算过程，如下所示</p>
 <p>16字节对齐算法图解</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image6.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc6.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <ul>
 <li><p>首先将原始的内存 8 与 size_t(15)相加，得到 8 + 15 = 23</p>
 </li>
@@ -321,7 +321,7 @@
 
 
 <p>这里我们可以通过断点来印证上述的说法，在未执行calloc时，poobj为nil，执行后，再po<br>obj法线，返回了一个16进制的地址</p>
-<p><img   class="lazyload" data-original="/images//iOS/alloc/image7.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images//iOS/alloc7.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <p>在平常的开发中，一般一个对象的打印的格式都是类似于这样的<a href="LGPerson:0x01111111f">LGPerson:0x01111111f</a>（是一个指针）。为什么这里不是呢？</p>
 <ul>
 <li><p>主要是因为objc 地址 还没有与传入 的 cls进行关联，</p>
@@ -330,10 +330,10 @@
 </li>
 </ul>
 <h4 id="obj-gt-initInstanceIsa：类与isa关联"><a href="#obj-gt-initInstanceIsa：类与isa关联" class="headerlink" title="obj-&gt;initInstanceIsa：类与isa关联"></a>obj-&gt;initInstanceIsa：类与isa关联</h4><p>经过calloc可知，内存已经申请好了，类也已经传入进来了，接下来就需要将类与 地址指针 即isa指针进行关联，其关联的流程图如下所示</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image8.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc8.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <p>主要过程就是初始化一个isa指针，并将isa指针指向申请的内存地址，在将指针与cls类进行关联</p>
 <p>同样也可以通过断点调试来印证上面的说法，在执行完initInstanceIsa后，在通过poobj可以得出一个对象指针</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image9.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc9.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
 <li><p>通过对alloc源码的分析，可以得知alloc的主要目的就是开辟内存，而且开辟的内存需要使用16字节对齐算法，现在开辟的内存的大小基本上都是16的整数倍</p>
 </li>
@@ -365,15 +365,15 @@
 
 <p>但是一般开发中并不建议使用new，主要是因为有时会重写init方法做一些自定义的操作，如<strong>initWithXXX</strong>，会调用[super init用new初始化可能会无法走到自定义的initWithXXX部分。</p>
 <p>例如，在CJLPerson中有两个初始化方法，一个是重写的父类的init，一个是自定义的initWithXXX方法，如下图所示</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image10.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc10.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <ul>
 <li>使用 alloc + init 初始化时，打印的情况如下</li>
 </ul>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image11.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc11.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <ul>
 <li>使用new初始化时，打印的情况如下</li>
 </ul>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image12.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc12.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><ul>
 <li><p>如果子类没有重写父类的init，new会调用父类的init方法</p>
 </li>
@@ -385,7 +385,7 @@
 <p>注：可在github下载已经编译成功的<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/chenjialin1016/objc4-debugTest">objc-781源码</a></p>
 <h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>【问题】为什么无法断点到obj-&gt;initInstanceIsa(cls, hasCxxDtor);？</p>
 <p>主要是因为断点断住的不是自定义类的流程，而是系统级别的</p>
-<p><img   class="lazyload" data-original="/images/iOS/alloc/image13.tif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><img   class="lazyload" data-original="/images/iOS/alloc13.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 
       </section>
       <section class="extra">
