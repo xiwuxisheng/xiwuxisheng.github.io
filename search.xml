@@ -252,6 +252,70 @@
       </tags>
   </entry>
   <entry>
+    <title>源码探索的三种方式</title>
+    <url>/2023/07/16/iOS/%E6%BA%90%E7%A0%81%E6%8E%A2%E7%B4%A2%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<p>一般源码探索的方式有三种:  </p>
+<ul>
+<li>1、符号断点跟流程</li>
+<li>2、按住control + step into</li>
+<li>3、汇编跟流程</li>
+</ul>
+<p>下面详细讲解如何查找函数所在的源码库，主要通过alloc讲解</p>
+<h3 id="1、符号断点"><a href="#1、符号断点" class="headerlink" title="1、符号断点"></a>1、符号断点</h3><h4 id="通过alloc的符号断点"><a href="#通过alloc的符号断点" class="headerlink" title="通过alloc的符号断点"></a>通过alloc的符号断点</h4><ul>
+<li>选择断点Symbolic Breakpoint </li>
+</ul>
+<p><img src="/images/iOS/sourcecode1.jpeg"> </p>
+<ul>
+<li>Symbol断点中输入 alloc</li>
+</ul>
+<p><img src="/images/iOS/sourcecode2.jpeg"></p>
+<ul>
+<li>在main函数中CJLPerson初始化地方加一个断点<br>在走到这部分断点之前，需要关闭上面新增的符号断点，原因是因为alloc的调用有很多，如果开启了就不能准确的定位到CJLPerson的alloc方法 。</li>
+</ul>
+<p><img src="/images/iOS/sourcecode3.jpeg"> </p>
+<h4 id="符号断点的关闭状态"><a href="#符号断点的关闭状态" class="headerlink" title="符号断点的关闭状态"></a>符号断点的关闭状态</h4><p><img src="/images/iOS/sourcecode4.jpeg"> </p>
+<h4 id="运行程序，断在CJLPerson的alloc部分"><a href="#运行程序，断在CJLPerson的alloc部分" class="headerlink" title="运行程序，断在CJLPerson的alloc部分"></a>运行程序，断在CJLPerson的alloc部分</h4><ul>
+<li>打开alloc的符号断点，断点为：</li>
+</ul>
+<p><img src="/images/iOS/sourcecode5.jpeg"> </p>
+<ul>
+<li>继续执行</li>
+</ul>
+<p><img src="/images/iOS/sourcecode6.jpeg"> </p>
+<p>再看一下alloc符号断点的堆栈调用情况，从下图中可以看出alloc源码是位于系统库libobjc.A.dylib（通过Apple的开源库网址可以下载objc源码）</p>
+<p><img src="/images/iOS/sourcecode7.jpeg"> </p>
+<h3 id="2、按住control-step-into"><a href="#2、按住control-step-into" class="headerlink" title="2、按住control+step into"></a>2、按住control+step into</h3><ul>
+<li>main函数中CJLPerson的alloc加一个断点，运行程序，会断在CJLPerson位置<br><img src="/images/iOS/sourcecode8.jpeg"> </li>
+<li>按住control，选择step into ⬇️键 </li>
+</ul>
+<p><img src="/images/iOS/sourcecode9.jpeg"> </p>
+<ul>
+<li>进入后显示如下：</li>
+</ul>
+<p><img src="/images/iOS/sourcecode10.jpeg"> </p>
+<ul>
+<li>下一个objc_alloc符号断点，断点后显示了objc_alloc所在的源码库(通过Apple的开源网址下载探究源码) </li>
+</ul>
+<p><img src="/images/iOS/sourcecode11.jpeg"> </p>
+<h3 id="3、汇编"><a href="#3、汇编" class="headerlink" title="3、汇编"></a>3、汇编</h3><ul>
+<li>mian函数中CJLPerson的alloc断点处加断点，运行程序，开始卡住断点<br><img src="/images/iOS/sourcecode12.jpeg"> </li>
+<li>重点流程来了，xcode 工具栏 选择 Debug –&gt; Debug Workflow –&gt; Always Show Disassembly,这个 选项表示 始终显示反汇编 ，即 通过汇编 跟流程<br><img src="/images/iOS/sourcecode13.jpeg"> </li>
+<li>按住control，进入step into ⬇️，执行导下图的callq ，对应 objc_alloc<br><img src="/images/iOS/sourcecode14.jpeg"> </li>
+<li>按住control，进入step into ⬇️，查看断点在objc_alloc部分<br><img src="/images/iOS/sourcecode15.jpeg"> </li>
+<li>通过objc_alloc的符号断点，得知源码所在库(通过Apple的开源网址下载探究源码)<br><img src="/images/iOS/sourcecode16.jpeg"> </li>
+</ul>
+<blockquote>
+<p>备注附上Apple提供的开源地址<br>1、<a href="https://opensource.apple.com/"></a>Apple开源源码汇总总地址<br>根据相应的版本查找对应的源码，以mac 10.15为例: macOS –&gt; 10.15 –&gt; 选择10.15 –&gt; 搜索 objc<br>2、<a href="https://github.com/apple-oss-distributions/"></a>Apple直接源码下载<br>直接搜索想要下载的源码名称即可，例如objc：直接搜索 objc –&gt; objc4/ –&gt; 选择相应的objc的版本</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS, 源码, 探索</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>编译原理</title>
     <url>/2022/02/13/iOS/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过了解平台从源码到机器可识别的代码的过程，有助于我们理解静态库与动态库的制作，也能有思路去优化app的性能，比如启动速度，还有包括app的”瘦身”计划等。</p>
@@ -1302,7 +1366,7 @@
 
 <p><strong>预览效果：</strong></p>
 <p><a href="https://github.com/">https://github.com</a></p>
-<p><a href="mailto:&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#101;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#101;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a></p>
+<p><a href="mailto:&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <p><strong>对应 HTML：</strong></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://github.com&quot;</span>&gt;</span>https://github.com<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:example@gmail.com&quot;</span>&gt;</span>example@gmail.com<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
